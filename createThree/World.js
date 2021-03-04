@@ -1,24 +1,25 @@
 
-import { InteractionManager } from "three.interactive";
-import { Box3, Vector3 } from 'three'
+import { InteractionManager } from 'three.interactive';
+import { Box3, Vector3 } from 'three';
 import gsap from 'gsap';
 
 import state from './state'
-import createBall from "./components/models/createBall";
-import createCube from "./components/createCube"
+import loadBalls from './components/models/loadBalls';
+import loadModel from './components/models/loadModel';
+import setupBall from './components/models/setupBall';
 
-import { createCamera } from "./components/camera";
-import { createScene } from "./components/scene";
-import { createVignette } from "./components/vignette"
+import { createCamera } from './components/camera';
+import { createScene } from './components/scene';
+import { createVignette } from './components/vignette'
 
-import { createPointLights } from "./components/lights/pointLights";
-import { createAmbientLights } from "./components/lights/ambientLights";
-import { createDirectionalLights } from "./components/lights/directionalLights";
-import { createHemisphereLights } from "./components/lights/hemisphereLights";
+import { createPointLights } from './components/lights/pointLights';
+import { createAmbientLights } from './components/lights/ambientLights';
+import { createDirectionalLights } from './components/lights/directionalLights';
+import { createHemisphereLights } from './components/lights/hemisphereLights';
 
-import { createRenderer } from "./systems/renderer";
-import { Resizer } from "./systems/Resizer";
-import { Loop } from "./systems/Loop";
+import { createRenderer } from './systems/renderer';
+import { Resizer } from './systems/Resizer';
+import { Loop } from './systems/Loop';
 
 let camera;
 let renderer;
@@ -26,8 +27,7 @@ let scene;
 let loop;
 let background;
 let interactionManager;
-let motionHandler;
-let cubes;
+let balls;
 
 class World {
   
@@ -37,6 +37,7 @@ class World {
     renderer = createRenderer(container);
     background = createVignette(container);
     loop = new Loop(camera, scene, renderer);
+    
     interactionManager = new InteractionManager(
       renderer,
       camera,
@@ -51,49 +52,22 @@ class World {
     const pointLight = createPointLights();
     const ambientLight = createAmbientLights();
     const directionalLight = createDirectionalLights();
+    const leftLight = createDirectionalLights();
+    const bottomLight = createDirectionalLights();
     const hemisphereLight = createHemisphereLights();
+
+    leftLight.position.set(0, 0, -20);
+    bottomLight.position.set(0, -10, -10);
 
     loop.updatables.push(background);
 
-    camera.add( ambientLight, directionalLight, pointLight );
-
-    // CUBES
-    cubes = {
-      cube1: createCube({x: 0, y: 10, z: 10.01, color: 'blue', speed: 0.01, name: 'Scene 1'}),
-      cube2: createCube({x: 6, y: -30, z: -6, color: 'purple', speed: 0.005, name: 'Scene 2'}),
-      cube3: createCube({x: 32, y: -40, z: 3, color: 'yellow', speed: 0.02, name: 'Scene 3'}),
-      cube4: createCube({x: 48, y: 5, z: 1, color: 'green', speed: 0.015, name: 'Scene 4'}),
-      cube5: createCube({x: 64, y: 2, z: -2, color: 'red', speed: 0.009, name: 'Scene 5'}),
-      cube6: createCube({x: 80, y: 0, z: 0.01, color: 'orange', speed: 0.003, name: 'Scene 6'}),
-    }
-
-    loop.updatables.push(cubes.cube1)
-    loop.updatables.push(cubes.cube2)
-    loop.updatables.push(cubes.cube3)
-    loop.updatables.push(cubes.cube4)
-    loop.updatables.push(cubes.cube5)
-    loop.updatables.push(cubes.cube6)
-    
-    for (const [name, object] of Object.entries(cubes)) {
-      object.addEventListener("click", (event) => {
-        event.stopPropagation();
-        alert(`${object.name} was clicked`);
-      });
-      interactionManager.add(object);
-      scene.add(object);
-    }
-    
-    scene.add(camera, hemisphereLight, background)
-
-    setTimeout(() => {
-      this.motionHandler(cubes.cube1, 5)
-    }, 2000)
+    camera.add(directionalLight, pointLight, leftLight, bottomLight, hemisphereLight);
+    scene.add(ambientLight, camera, background)
 
     const resizer = new Resizer(container, camera, renderer);
   }
 
-  motionHandler (object, speed) {
-    console.log(object)
+  motionHandler(object, speed) {
     state.clicks = object.name
     gsap.to(camera.position, speed || 2, {
       x: object.position.x,
@@ -105,17 +79,17 @@ class World {
 
   cameraHandler() {
     if (state.currentSlide === 1) {
-      this.motionHandler(cubes.cube1, 7)
+      this.motionHandler(balls.ball1, 7)
     } else if (state.currentSlide === 2) {
-      this.motionHandler(cubes.cube2, 6)
+      this.motionHandler(balls.ball2, 6)
     } else if (state.currentSlide === 3) {
-      this.motionHandler(cubes.cube3, 4)
+      this.motionHandler(balls.ball3, 4)
     } else if (state.currentSlide === 4) {
-      this.motionHandler(cubes.cube4, 5)
+      this.motionHandler(balls.ball4, 5)
     } else if (state.currentSlide === 5) {
-      this.motionHandler(cubes.cube5)
+      this.motionHandler(balls.ball5)
     } else if (state.currentSlide === 6) {
-      this.motionHandler(cubes.cube6)
+      this.motionHandler(balls.ball6)
     }
   }
 
@@ -149,7 +123,33 @@ class World {
     renderer.dispose();
   }
 
-  async init() {}
+  async init() {
+    const models = await loadBalls();
+
+    balls = {
+      ball1: setupBall({model: models.touchModel, x: 0, y: 10, z: -80, speed: 0.01, name: 'touch'}),
+      ball2: setupBall({model: models.synesthesiaModel, x: 68.4, y: 10, z: -40.3, speed: 0.015, name: 'synesthesia'}),
+      ball3: setupBall({model: models.sightModel, x: -69.7, y: 10, z: -40.5, speed: 0.02, name: 'sight'}),
+      ball4: setupBall({model: models.hearingModel, x: -69.5, y: 10, z: -39.3, speed: 0.015, name: 'hearing'}),
+      ball5: setupBall({model: models.smellModel, x: 0, y: 10, z: 80, speed: 0.009, name: 'smell'}),
+      ball6: setupBall({model: models.tasteModel, x: 68.4, y: 10, z: 39.2, speed: 0.003, name: 'taste'}),
+    }
+
+    for (const [name, object] of Object.entries(balls)) {
+      console.log(object)
+      object.addEventListener('click', (event) => {
+        event.stopPropagation();
+        console.log(`${name} was clicked`);
+      });
+      interactionManager.add(object);
+      loop.updatables.push(object)
+      scene.add(object);
+    }
+
+    setTimeout(() => {
+      this.motionHandler(balls.ball1, 5)
+    }, 2000)
+  }
 }
 
 export { World }
