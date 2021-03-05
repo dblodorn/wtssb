@@ -302,16 +302,14 @@ blockquote > p {
   white-space: nowrap;
   position: relative;
   letter-spacing: 1px;
-  font-size: var(--md-size);
+  font-size: var(--reg-size);
   padding: var(--pad-single) var(--pad-double);
-  margin-right: var(--pad-single);
-  margin-bottom: var(--pad-single);
   border-radius: 50rem;
 }
 
 .lozenge-button.small {
   padding: .5rem var(--pad-micro)!important;
-  font-size: var(--sm-size);
+  font-size: var(--micro-size);
 }
 
 @media (hover: hover) {

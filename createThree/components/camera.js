@@ -7,7 +7,7 @@ function createCamera(container) {
     0.01,
     1000
   );
-  camera.position.z = 5;
+  camera.position.z = -10;
   return camera;
 }
 

@@ -1,7 +1,10 @@
 <template>
+  <fragment>
+    <portal-target name="modal"/>
     <main id="three-wrapper">
       <nuxt/>
     </main>
+  </fragment>
 </template>
 
 <script>

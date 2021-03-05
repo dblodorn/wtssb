@@ -15,7 +15,7 @@
 
 /* TYPOGRAPHY */
 :root { 
-  --micro-size: calc(var(--base-unit) / 1.25);
+  --micro-size: calc(var(--base-unit) / 1.125);
   --sm-size: var(--base-unit);
   --reg-size: calc(var(--base-unit) * 1.125);
   --md-size: calc(var(--base-unit) * 1.5);
@@ -43,19 +43,5 @@
 @media (--md) {
   :root {
     --base-unit: 1.75rem;
-  }
-}
-
-@media (--lg) {
-  :root {
-    --base-unit: 2rem;
-    --micro-size: calc(var(--base-unit) / 2);
-    --sm-size: var(--base-unit);
-    --reg-size: calc(var(--base-unit) * 1.25);
-    --md-size: calc(var(--base-unit) * 1.75);
-    --big-size: calc(var(--base-unit) * 2.125);
-    --xl-size: calc(var(--base-unit) * 3.5);
-    --header-height: calc(var(--base-unit) * 4);
-    --footer-height: calc(var(--base-unit) * 8);
   }
 }

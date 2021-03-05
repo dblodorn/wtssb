@@ -49,7 +49,8 @@ export default {
   modules: [
     '@nuxt/http',
     '@nuxtjs/axios',
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    'portal-vue/nuxt',
   ],
   http: {},
   server: {
