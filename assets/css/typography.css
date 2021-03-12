@@ -103,7 +103,7 @@ h3,
   font-weight: var(--font-weight-a);
   font-family: var(--font-a);
   text-transform: uppercase;
-  color: var(--black);
+  color: var(--white);
 }
 
 h4,
@@ -115,7 +115,7 @@ h5,
   font-weight: var(--font-weight-a);
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: var(--black);
+  color: var(--white);
   line-height: 1.1;
 }
 

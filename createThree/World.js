@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import state from './state'
 import loadBalls from './components/models/loadBalls';
 import setupBall from './components/models/setupBall';
+import createSkybox from './components/createSkybox'
 
 import { createCamera } from './components/camera';
 import { createScene } from './components/scene';
@@ -80,8 +81,11 @@ class World {
 
     loop.updatables.push(background);
 
-    camera.add(directionalLight, pointLight, leftLight, bottomLight, hemisphereLight);
-    scene.add(ambientLight, camera, background)
+    camera.add(directionalLight, pointLight, leftLight, bottomLight );
+    scene.add(ambientLight, camera, background, hemisphereLight)
+
+    const skyboxA = new createSkybox({x: -120, y: -120, z: -120, name: 'arid'})
+    scene.add(skyboxA)
 
     const resizer = new Resizer(container, camera, renderer);
   }

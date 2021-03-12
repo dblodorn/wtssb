@@ -114,7 +114,7 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(255,255,255,.7);
+    background-color: rgba(0,0,0,.75);
   }
   .scene-wrapper {
     width: 100%;
@@ -135,7 +135,7 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: #dbdbdb;
+    background-color: var(--black);
   }
   #nav-container {
     position: absolute;

@@ -31,9 +31,9 @@
   --p_sm: var(--sm-size);
   --p_med: var(--reg-size);
   --p_lg: var(--big-size);
-  --font-a: 'basis', sans-serif;
-  --font-b: 'Space Mono', sans-serif;
-  --font-weight-a: 600;
+  --font-a: 'Space Mono', sans-serif;
+  --font-b: 'Space Mono Italic', sans-serif;
+  --font-weight-a: 400;
   --font-weight-b: 400;
   --font-style-a: regular;
   --font-style-b: regular;
