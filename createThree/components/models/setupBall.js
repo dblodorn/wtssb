@@ -12,20 +12,26 @@ export default function({model, x, y, z, scale, speed, name}) {
   scale = parseFloat(scale)
   speed = parseFloat(speed)
   
+  model.scale.set(scale, scale, scale)
   
-  console.log({x, y, z, scale, speed})
-  // console.log(model.name, model.children[0].position)
-
   const box = new Box3().setFromObject(model);
   const size = box.getSize(new Vector3()).length();
 
-  console.log(size)
+  console.log(size, model)
   
+  model.position.set(0,0,0)
+  
+  model.children.forEach(element => {
+    element.position.set(0,0,0)
+  });
+  
+  /*
   const children = model.children[0]
   children.position.set(0,0,0)
-  children.scale.set(scale, scale, scale) 
+  children.
+  */
 
-  model.position.set(x || 0, y || 0, z || 0);
+  model.position.set(x, y, z);
   model.name = name || 'ball'
   
   model.tick = () => {
