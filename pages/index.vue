@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import { 
   startWorld, 
   clearWorld,
@@ -28,6 +29,12 @@ import {
 
 export default {
   layout: 'threelanding',
+  asyncData () {
+    return axios.get(`${process.env.CMS_URL}`)
+      .then((res) => {
+        return { data: res.data.options }
+      })
+  },
   data() {
     return {
       worldWrapper: null,
@@ -43,6 +50,7 @@ export default {
         this.worldLoaded = true
         startWorld({
           container: this.worldWrapper,
+          data: this.data,
           ball1: () => {this.ball1Handler()},
           ball2: () => {this.ball2Handler()},
           ball3: () => {this.ball3Handler()},

@@ -34,15 +34,16 @@ let ball3Function;
 let ball4Function;
 let ball5Function;
 let ball6Function;
-
+let skyBox;
 class World {
   
-  constructor({container, ball1, ball2, ball3, ball4, ball5, ball6}) {
+  constructor({container, data, ball1, ball2, ball3, ball4, ball5, ball6}) {
     camera = createCamera(container);
     scene = createScene();
     renderer = createRenderer(container);
     background = createVignette(container);
     loop = new Loop(camera, scene, renderer);
+    state.api = data
     
     interactionManager = new InteractionManager(
       renderer,
@@ -84,9 +85,6 @@ class World {
     camera.add(directionalLight, pointLight, leftLight, bottomLight );
     scene.add(ambientLight, camera, background, hemisphereLight)
 
-    const skyboxA = new createSkybox({x: -120, y: -120, z: -120, name: 'arid'})
-    scene.add(skyboxA)
-
     const resizer = new Resizer(container, camera, renderer);
   }
 
@@ -102,16 +100,34 @@ class World {
   cameraHandler(slide) {
     if (slide === 1) {
       this.motionHandler(balls.ball1, 7)
+      scene.remove(skyBox)
+      skyBox = new createSkybox({images: state.api.scene_1})
+      scene.add(skyBox)
     } else if (slide === 2) {
       this.motionHandler(balls.ball2, 6)
+      scene.remove(skyBox)
+      skyBox = new createSkybox({images: state.api.scene_2})
+      scene.add(skyBox)
     } else if (slide === 3) {
       this.motionHandler(balls.ball3, 4)
+      scene.remove(skyBox)
+      skyBox = new createSkybox({images: state.api.scene_3})
+      scene.add(skyBox)
     } else if (slide === 4) {
       this.motionHandler(balls.ball4, 5)
+      scene.remove(skyBox)
+      skyBox = new createSkybox({images: state.api.scene_4})
+      scene.add(skyBox)
     } else if (slide === 5) {
       this.motionHandler(balls.ball5)
+      scene.remove(skyBox)
+      skyBox = new createSkybox({images: state.api.scene_5})
+      scene.add(skyBox)
     } else if (slide === 6) {
       this.motionHandler(balls.ball6)
+      scene.remove(skyBox)
+      skyBox = new createSkybox({images: state.api.scene_6})
+      scene.add(skyBox)
     }
   }
 
@@ -120,7 +136,6 @@ class World {
     console.log('next', state.currentSlide)
     if (state.currentSlide < state.slideCount) {
       state.currentSlide = state.currentSlide + 1
-      console.log('next', state.currentSlide)
     } else if (state.currentSlide === 6) {
       state.currentSlide = 1
     }
@@ -157,21 +172,48 @@ class World {
   }
 
   stop() {
-    console.log('stop');
     loop.stop();
     renderer.dispose();
   }
 
   async init() {
     const models = await loadBalls();
-
+    console.log(state.api)
+    
+    skyBox = new createSkybox({images: state.api.scene_2})
+    scene.add(skyBox)
+    
     balls = {
-      ball1: setupBall({model: models.touchModel, x: 0, y: 10, z: 10.01, speed: 0.01, name: 'touch'}),
-      ball2: setupBall({model: models.synesthesiaModel, x: 16, y: -30, z: -6, speed: 0.015, name: 'synesthesia'}),
-      ball3: setupBall({model: models.sightModel, x: 32, y: -40, z: 3, speed: 0.02, name: 'sight'}),
-      ball4: setupBall({model: models.hearingModel, x: 48, y: 5, z: 1, speed: 0.015, name: 'hearing'}),
-      ball5: setupBall({model: models.smellModel, x: 64, y: 2, z: -2, speed: 0.009, name: 'smell'}),
-      ball6: setupBall({model: models.tasteModel, x: 80, y: 0, z: 0.01, speed: 0.003, name: 'taste'}),
+      ball1: setupBall({
+        model: models.touchModel,
+        ...state.api.model_config_1,
+        name: state.api.ball_1.name
+      }),
+      ball2: setupBall({
+        model: models.synesthesiaModel, 
+        ...state.api.model_config_2,
+        name: state.api.ball_2.name
+      }),
+      ball3: setupBall({
+        model: models.sightModel,
+        ...state.api.model_config_3,
+        name: state.api.ball_3.name
+      }),
+      ball4: setupBall({
+        model: models.hearingModel,
+        ...state.api.model_config_4,
+        name: state.api.ball_4.name
+      }),
+      ball5: setupBall({
+        model: models.smellModel,
+        ...state.api.model_config_5,
+        name: state.api.ball_5.name
+      }),
+      ball6: setupBall({
+        model: models.tasteModel,
+        ...state.api.model_config_5,
+        name: state.api.ball_6.name
+      }),
     }
 
     for (const [name, object] of Object.entries(balls)) {
@@ -184,7 +226,6 @@ class World {
       event.stopPropagation();
       this.ball1Handler();
     });
-    // interaalls.ball1);
 
     balls.ball2.addEventListener('click', (event) => {
       event.stopPropagation();

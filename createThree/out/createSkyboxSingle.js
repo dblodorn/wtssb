@@ -7,16 +7,23 @@ import {
   BackSide
 } from "three";
 
-import state from './../state'
+import state from './../../state'
 
-export default function ({images}) {
-
-  console.log(state.api)
+export default function ({x, y, z, name, materials}) {
 
   let materialArray = []
   
-  images.forEach(item => {
-    let texture = new TextureLoader().load(item);
+  const materials = [
+    'ft.jpg',
+    'bk.jpg',
+    'up.jpg',
+    'dn.jpg',
+    'rt.jpg',
+    'lf.jpg'
+  ]
+
+  materials.forEach(item => {
+    let texture = new TextureLoader().load(`https://media.dmbk.io/skybox-pack/${name}/${item}`);
     materialArray.push(new MeshBasicMaterial( { map: texture }));
   });
 
@@ -27,10 +34,12 @@ export default function ({images}) {
 
   const skyboxGeo = new BoxGeometry(1600, 1600, 1600);
   const skybox = new Mesh(skyboxGeo, materialArray);
-  skybox.name = 'SkyBox'
+
   const rotateSpeed = 0.01;
 
-  skybox.position.set(-120, -120, -120);
+  if (name) { skybox.name = name }
+
+  skybox.position.set(x || 0, y || 0, z || 0);
   skybox.rotation.set(0, 0, 0);
 
   const radiansPerSecond = MathUtils.degToRad(30);

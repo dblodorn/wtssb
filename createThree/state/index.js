@@ -3,6 +3,7 @@ export default {
   clicks: 0,
   currentSlide: 1,
   slideCount: 6,
+  api: false,
   lights: {
     addLights: true,
     exposure: 1.0,
