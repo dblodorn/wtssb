@@ -1,34 +1,14 @@
 <template>
-  <fragment>
-    <transition name="fade">
-      <main-menu 
-        v-if="menuState"
-        :closeHandler="toggleMenu"
-        v-scroll-lock="menuState"
-      />
-    </transition>
-    <app-header :menuHandler="toggleMenu"/>
-    <breadcrumbs/>
-    <main class="page-wrapper">
-      <nuxt />
-    </main>
-    <app-footer />
-  </fragment>
+  <main class="page-wrapper">
+    <nuxt />
+  </main>
 </template>
 
 <script>
 import debounce from 'lodash/debounce'
 import { mapGetters, mapActions, mapMutations } from 'vuex'
-import AppHeader from '@/components/AppHeader'
-import AppFooter from '@/components/AppFooter'
-import MainMenu from '@/components/MainMenu'
 
 export default {
-  components: {
-    AppHeader,
-    AppFooter,
-    MainMenu
-  },
   computed: {
     ...mapGetters({
       breakpoint: 'screen/breakpoint'
