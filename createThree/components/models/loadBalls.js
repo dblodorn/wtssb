@@ -6,7 +6,6 @@ export default async function () {
   const loader = new GLTFLoader();
   loader.crossOrigin = true;
 
-  console.log('BALLS:', state.api)
   const balls = state.api
 
   const [touchData, synesthesiaData, sightData, hearingData, smellData, tasteData] = await Promise.all([

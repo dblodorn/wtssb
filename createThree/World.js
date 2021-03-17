@@ -1,6 +1,4 @@
-
 import { InteractionManager } from 'three.interactive';
-import { Box3, Vector3 } from 'three';
 import gsap from 'gsap';
 
 import state from './state'
@@ -83,7 +81,7 @@ class World {
     loop.updatables.push(background);
 
     camera.add(directionalLight, pointLight, leftLight, bottomLight );
-    scene.add(ambientLight, camera, background, hemisphereLight)
+    scene.add(camera, background)
 
     const resizer = new Resizer(container, camera, renderer);
   }
