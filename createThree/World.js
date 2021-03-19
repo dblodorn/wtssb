@@ -177,40 +177,39 @@ class World {
   }
 
   async init() {
-    const models = await loadBalls();
-    console.log(state.api)
+    const models = await loadBalls(loop);
     
     skyBox = new createSkybox({images: state.api.scene_2})
     scene.add(skyBox)
     
     balls = {
       ball1: setupBall({
-        model: models.touchModel,
+        gltf: models.touchModel,
         ...state.api.model_config_1,
         name: state.api.ball_1.name
       }),
       ball2: setupBall({
-        model: models.synesthesiaModel, 
+        gltf: models.synesthesiaModel, 
         ...state.api.model_config_2,
         name: state.api.ball_2.name
       }),
       ball3: setupBall({
-        model: models.sightModel,
+        gltf: models.sightModel,
         ...state.api.model_config_3,
         name: state.api.ball_3.name
       }),
       ball4: setupBall({
-        model: models.hearingModel,
+        gltf: models.hearingModel,
         ...state.api.model_config_4,
         name: state.api.ball_4.name
       }),
       ball5: setupBall({
-        model: models.smellModel,
+        gltf: models.smellModel,
         ...state.api.model_config_5,
         name: state.api.ball_5.name
       }),
       ball6: setupBall({
-        model: models.tasteModel,
+        gltf: models.tasteModel,
         ...state.api.model_config_5,
         name: state.api.ball_6.name
       }),

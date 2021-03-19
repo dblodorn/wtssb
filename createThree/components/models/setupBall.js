@@ -1,11 +1,16 @@
 import {
   MathUtils,
   Box3,
-  Vector3
+  Vector3,
+  AnimationMixer
 } from "three";
 
-export default function({model, x, y, z, scale, speed, name}) {
+export default function({gltf, x, y, z, scale, speed, name}) {
   const radiansPerSecond = MathUtils.degToRad(30);
+  
+  const model = gltf.scene || gltf.scenes[0];
+  const clip = gltf.animations[0];
+
   x = parseFloat(x)
   y = parseFloat(y)
   z = parseFloat(z)
@@ -13,28 +18,16 @@ export default function({model, x, y, z, scale, speed, name}) {
   speed = parseFloat(speed)
   
   model.scale.set(scale, scale, scale)
-  
-  const box = new Box3().setFromObject(model);
-  const size = box.getSize(new Vector3()).length();
-
-  console.log(size, model)
-  
-  model.position.set(0,0,0)
-  
-  model.children.forEach(element => {
-    element.position.set(0,0,0)
-  });
-  
-  /*
-  const children = model.children[0]
-  children.position.set(0,0,0)
-  children.
-  */
 
   model.position.set(x, y, z);
   model.name = name || 'ball'
-  
-  model.tick = () => {
+
+  const mixer = new AnimationMixer(model);
+  const action = mixer.clipAction(clip);
+  action.play();
+
+  model.tick = (delta) => {
+    mixer.update(delta * 20);
     model.rotation.z += radiansPerSecond * speed;
     model.rotation.x += radiansPerSecond * speed;
     model.rotation.y += radiansPerSecond * speed;

@@ -11,8 +11,6 @@ import state from './../state'
 
 export default function ({images}) {
 
-  console.log(state.api)
-
   let materialArray = []
   
   images.forEach(item => {
@@ -22,8 +20,6 @@ export default function ({images}) {
 
   for (let i = 0; i < 6; i++)
     materialArray[i].side = BackSide;
-
-  console.log(materialArray)
 
   const skyboxGeo = new BoxGeometry(1600, 1600, 1600);
   const skybox = new Mesh(skyboxGeo, materialArray);

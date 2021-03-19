@@ -1,17 +1,21 @@
+import { AnimationMixer } from 'three';
+
 function setupModel(gltf) {
-  const scene = gltf.scene || gltf.scenes[0];
-  const clips = gltf.animations || [];
+  const model = gltf.scene || gltf.scenes[0];
+  const clips = gltf.animations;
   
-  if (!scene) {
-    // Valid, but not supported by this viewer.
-    throw new Error(
-      'This model contains no scene, and cannot be viewed here. However,'
-      + ' it may contain individual 3D resources.'
-    );
+  /*
+  const mixer = new AnimationMixer(gltf.scene);
+  const action = mixer.clipAction(clip);
+  action.setEffectiveTimeScale(1);
+  action.play();
+  /*
+  model.tick = (delta) => {
+    mixer.update(delta);
   }
-  
+  */
   return {
-    scene,
+    model,
     clips
   };
 }

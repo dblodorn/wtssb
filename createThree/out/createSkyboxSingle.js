@@ -30,8 +30,6 @@ export default function ({x, y, z, name, materials}) {
   for (let i = 0; i < 6; i++)
     materialArray[i].side = BackSide;
 
-  console.log(materialArray)
-
   const skyboxGeo = new BoxGeometry(1600, 1600, 1600);
   const skybox = new Mesh(skyboxGeo, materialArray);
 
