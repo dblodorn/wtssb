@@ -1,5 +1,6 @@
 <template>
-  <div :class="['scene-wrapper', worldLoaded && 'reveal']">
+  <viewport-wrapper :zIndex="1">
+    <intro v-if="!modelsLoaded"/>
     <portal v-if="modal" to="modal">
       <viewport-wrapper :zIndex="10000">
         <div class="modal-inner pad-single">
@@ -10,12 +11,15 @@
         </div>
       </viewport-wrapper>
     </portal>
-    <div id="nav-container" class="flex-row pad-single">
-      <button @click="prev" id="prev" class="lozenge-button small"><span>Prev</span></button>
-      <button @click="next" id="next" class="lozenge-button small"><span>Next</span></button>
-    </div>
-    <section id="three-world" ref="threeWorld"/>
-  </div>
+    <navigation
+      :cameraHandler="(slide) => cameraHandler(slide)"
+    />
+    <section 
+      id="three-world" 
+      :class="['bezier-300', modelsLoaded && 'visible']"
+      ref="threeWorld"
+    />
+  </viewport-wrapper>
 </template>
 
 <script>
@@ -23,9 +27,12 @@ import axios from 'axios'
 import { 
   startWorld, 
   clearWorld,
-  nextHandler,
-  prevHandler,
+  cameraHandler
 } from './../createThree'
+
+import Navigation from '@/components/Navigation'
+import Intro from '@/components/Intro'
+
 
 export default {
   layout: 'threelanding',
@@ -35,22 +42,27 @@ export default {
         return { data: res.data.options }
       })
   },
+  components: {
+    Navigation,
+    Intro
+  },
   data() {
     return {
       worldWrapper: null,
-      worldLoaded: false,
       sense: null,
       modal: false,
+      modalTimeout: null,
+      modelsLoaded: false
     }
   },
   mounted() {
     this.worldWrapper = this.$refs.threeWorld
     this.$nextTick(() => {
       setTimeout(() => {
-        this.worldLoaded = true
         startWorld({
           container: this.worldWrapper,
           data: this.data,
+          onLoad: () => {this.loadedHandler()},
           ball1: () => {this.ball1Handler()},
           ball2: () => {this.ball2Handler()},
           ball3: () => {this.ball3Handler()},
@@ -63,43 +75,45 @@ export default {
   },
   beforeDestroy() {
     clearWorld()
+    clearTimeout(this.modalTimeout)
   },
   methods: {
-    prev() {
-      prevHandler()
+    cameraHandler(slide) {
+      cameraHandler(slide)
+      clearTimeout(this.modalTimeout)
     },
-    next() {
-      nextHandler()
+    loadedHandler() {
+      console.log('models loaded')
+      this.modelsLoaded = true
+    },
+    modalPop() {
+      this.modalTimeout = setTimeout(() => {
+        this.modal = true
+      }, 2000)
     },
     ball1Handler() {
-      console.log('ball 1 handler vue')
       this.sense = 'touch'
-      this.modal = true
+      this.modalPop()
     },
     ball2Handler() {
-      console.log('ball 2 handler vue')
       this.sense = 'synesthesia'
-      this.modal = true
+      this.modalPop()
     },
     ball3Handler() {
-      console.log('ball 3 handler vue')
       this.sense = 'sight'
-      this.modal = true
+      this.modalPop()
     },
     ball4Handler() {
-      console.log('ball 4 handler vue')
       this.sense = 'hearing'
-      this.modal = true
+      this.modalPop()
     },
     ball5Handler() {
-      console.log('ball 5 handler vue')
       this.sense = 'smell'
-      this.modal = true
+      this.modalPop()
     },
     ball6Handler() {
-      console.log('ball 6 handler vue')
       this.sense = 'taste'
-      this.modal = true
+      this.modalPop()
     }
   },
   head () {
@@ -116,27 +130,8 @@ export default {
     top: var(--pad-single);
     right: var(--pad-single);
   }
-  .modal-inner {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: rgba(0,0,0,.75);
-  }
-  .scene-wrapper {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: opacity 500ms ease-in;
-    will-change: opacity;
-  }
-  .scene-wrapper.reveal {
-    opacity: 1;
-  }
+  .modal-inner,
+  .scene-wrapper,
   #three-world {
     width: 100%;
     height: 100%;
@@ -144,13 +139,16 @@ export default {
     top: 0;
     left: 0;
   }
-  #nav-container {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 12000;
-    width: 100%;
-    justify-content: space-between;
+  .modal-inner {
+    background-color: rgba(0,0,0,.75);
+  }
+  #three-world {
+    opacity: 0;
+    pointer-events: none;
+  }
+  #three-world.visible {
+    opacity: 1;
+    pointer-events: all;
   }
   canvas:focus {
     outline: 0!important;

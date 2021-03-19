@@ -34,14 +34,15 @@ let ball3Function;
 let ball4Function;
 let ball5Function;
 let ball6Function;
+let onLoadFunction;
 let skyBox;
 class World {
   
-  constructor({container, data, ball1, ball2, ball3, ball4, ball5, ball6}) {
+  constructor({container, data, onLoad, ball1, ball2, ball3, ball4, ball5, ball6}) {
     camera = createCamera(container);
     scene = createScene();
     renderer = createRenderer(container);
-    background = createVignette(container);
+    // background = createVignette(container);
     loop = new Loop(camera, scene, renderer);
     state.api = data
     
@@ -60,6 +61,7 @@ class World {
     ball4Function = ball4
     ball5Function = ball5
     ball6Function = ball6
+    onLoadFunction = onLoad
 
     this.ball1Handler = this.ball1Handler.bind(this);
     this.ball2Handler = this.ball2Handler.bind(this);
@@ -80,10 +82,10 @@ class World {
     leftLight.position.set(0, 0, -20);
     bottomLight.position.set(0, -10, -10);
 
-    loop.updatables.push(background);
+    // loop.updatables.push(background);
 
     camera.add(directionalLight, pointLight, leftLight, bottomLight );
-    scene.add(ambientLight, camera, background, hemisphereLight)
+    scene.add(ambientLight, camera, hemisphereLight)
 
     const resizer = new Resizer(container, camera, renderer);
   }
@@ -178,10 +180,12 @@ class World {
 
   async init() {
     const models = await loadBalls(loop);
-    
+
     skyBox = new createSkybox({images: state.api.scene_2})
     scene.add(skyBox)
     
+    onLoadFunction();
+
     balls = {
       ball1: setupBall({
         gltf: models.touchModel,
@@ -210,7 +214,7 @@ class World {
       }),
       ball6: setupBall({
         gltf: models.tasteModel,
-        ...state.api.model_config_5,
+        ...state.api.model_config_6,
         name: state.api.ball_6.name
       }),
     }

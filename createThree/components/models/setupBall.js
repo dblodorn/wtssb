@@ -5,7 +5,7 @@ import {
   AnimationMixer
 } from "three";
 
-export default function({gltf, x, y, z, scale, speed, name}) {
+export default function({gltf, x, y, z, scale, speed, animation_speed, name}) {
   const radiansPerSecond = MathUtils.degToRad(30);
   
   const model = gltf.scene || gltf.scenes[0];
@@ -16,6 +16,7 @@ export default function({gltf, x, y, z, scale, speed, name}) {
   z = parseFloat(z)
   scale = parseFloat(scale)
   speed = parseFloat(speed)
+  animation_speed = parseFloat(animation_speed)
   
   model.scale.set(scale, scale, scale)
 
@@ -27,7 +28,7 @@ export default function({gltf, x, y, z, scale, speed, name}) {
   action.play();
 
   model.tick = (delta) => {
-    mixer.update(delta * 20);
+    mixer.update(delta * animation_speed);
     model.rotation.z += radiansPerSecond * speed;
     model.rotation.x += radiansPerSecond * speed;
     model.rotation.y += radiansPerSecond * speed;
@@ -35,4 +36,3 @@ export default function({gltf, x, y, z, scale, speed, name}) {
   
   return model;
 }
-
