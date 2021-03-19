@@ -12,6 +12,7 @@
       </viewport-wrapper>
     </portal>
     <navigation
+      v-if="modelsLoaded"
       :cameraHandler="(slide) => cameraHandler(slide)"
     />
     <section 
