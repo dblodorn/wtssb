@@ -4,14 +4,21 @@
     <portal v-if="modal" to="modal">
       <viewport-wrapper :zIndex="10000">
         <div class="modal-inner pad-single">
-          <button @click="() => {
-            modal = false
-            cameraHandler(currentSlide)
-            setPopup(false)
-          }" class="lozenge-button small close-button">
-            <span>CLOSE</span>
-          </button>
-          <h1 v-html="sense"/>
+          <chat 
+            :chatData="data.scene_1_chat"
+            :sense="sense"
+          >
+            <button @click="() => {
+              modal = false
+              cameraHandler(currentSlide)
+              setPopup(false)
+            }" class="close-button">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><title>e-remove</title><g stroke-width="1" fill="var(--white)" stroke="var(--white)"><line fill="none" stroke="var(--white)" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="13.5" y1="2.5" x2="2.5" y2="13.5"></line> <line fill="none" stroke="var(--white)" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="2.5" y1="2.5" x2="13.5" y2="13.5"></line></g></svg>
+            </button>
+          </chat>
+          <div class="video-wrapper">
+            <video playsinline muted autoplay loop src="/Smell_Scene_v1d-Arnold.mp4"></video>
+          </div>
         </div>
       </viewport-wrapper>
     </portal>
@@ -39,6 +46,7 @@ import {
 
 import Navigation from '@/components/Navigation'
 import Intro from '@/components/Intro'
+import Chat from '@/components/Chat'
 
 
 export default {
@@ -51,7 +59,8 @@ export default {
   },
   components: {
     Navigation,
-    Intro
+    Intro,
+    Chat
   },
   data() {
     return {
@@ -141,11 +150,35 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="scss">
+  .video-wrapper {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    video {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+  }
   .close-button {
-    position: fixed;
-    top: var(--pad-single);
-    right: var(--pad-single);
+    width: 2.25rem;
+    height: 2.25rem;
+    svg {
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+    }
   }
   .modal-inner,
   .scene-wrapper,
