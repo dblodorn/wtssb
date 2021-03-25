@@ -1,11 +1,13 @@
 import {
   MathUtils,
-  Box3,
-  Vector3,
-  AnimationMixer
+  WireframeGeometry,
+  LineBasicMaterial,
+  LineSegments,
+  AnimationMixer,
 } from "three";
 
-export default function({gltf, x, y, z, scale, speed, animation_speed, name}) {
+export default function({wireframe, gltf, x, y, z, scale, speed, animation_speed, name}) {
+  
   const radiansPerSecond = MathUtils.degToRad(30);
   
   const model = gltf.scene || gltf.scenes[0];
@@ -22,6 +24,22 @@ export default function({gltf, x, y, z, scale, speed, animation_speed, name}) {
 
   model.position.set(x, y, z);
   model.name = name || 'ball'
+
+  const toggleWireframe = (state) => {
+    if (state === true) {
+      model.traverse(function(child) {
+        if (child.isMesh) {
+          const wireframeGeometry = new WireframeGeometry(child.geometry);
+          const wireframeMaterial = new LineBasicMaterial({color: 0x000000});
+          const wireframe = new LineSegments(wireframeGeometry, wireframeMaterial);
+          wireframe.name = 'wireframe';
+          child.add(wireframe);
+        }
+      });
+    }
+  }
+
+  toggleWireframe(wireframe)
 
   const mixer = new AnimationMixer(model);
   const action = mixer.clipAction(clip);

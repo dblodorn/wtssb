@@ -1,5 +1,4 @@
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import { setupModel } from "./setupModel.js";
 import state from './../../state'
 
 export default async function (loop) {

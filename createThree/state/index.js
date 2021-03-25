@@ -4,9 +4,10 @@ export default {
   currentSlide: 1,
   slideCount: 6,
   api: false,
+  wireFrame: false,
   lights: {
     addLights: true,
-    exposure: 1.0,
+    exposure: 2.0,
     textureEncoding: 'sRGB',
     ambientIntensity: 1,
     ambientColor: 0xFFFFFF,

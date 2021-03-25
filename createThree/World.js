@@ -10,7 +10,6 @@ import createSkybox from './components/createSkybox'
 
 import { createCamera } from './components/camera';
 import { createScene } from './components/scene';
-import { createVignette } from './components/vignette'
 
 import { createPointLights } from './components/lights/pointLights';
 import { createAmbientLights } from './components/lights/ambientLights';
@@ -25,7 +24,6 @@ let camera;
 let renderer;
 let scene;
 let loop;
-let background;
 let interactionManager;
 let balls;
 let ball1Function;
@@ -54,6 +52,7 @@ class World {
 
     this.cameraHandler = this.cameraHandler.bind(this);
     this.motionHandler = this.motionHandler.bind(this);
+    this.zoomOutHandler = this.zoomOutHandler.bind(this);
 
     ball1Function = ball1
     ball2Function = ball2
@@ -95,6 +94,15 @@ class World {
       x: object.position.x,
       y: object.position.y,
       z: 6 + object.position.z,
+      ease: 'expo.out',
+    })
+  }
+
+  zoomOutHandler(object) {
+    gsap.to(camera.position, 10, {
+      x: object.position.x - 5,
+      y: object.position.y - 5,
+      z: object.position.z - 5,
       ease: 'expo.out',
     })
   }
@@ -144,7 +152,7 @@ class World {
     this.cameraHandler(state.currentSlide)
   }
 
-  prevHandler() {
+  prevHandler() { 
     state.clicks = state.clicks + 1
     console.log('prev')
     if (state.currentSlide > 1) {
@@ -157,12 +165,36 @@ class World {
   }
 
   /* BALL HANDLERS */
-  ball1Handler(arg) {ball1Function()}
-  ball2Handler(arg) {ball2Function()}
-  ball3Handler(arg) {ball3Function()}
-  ball4Handler(arg) {ball4Function()}
-  ball5Handler(arg) {ball5Function()}
-  ball6Handler(arg) {ball6Function()}
+  ball1Handler(arg) {
+    console.log('ball 1')
+    this.zoomOutHandler(balls.ball1)
+    ball1Function()
+  }
+  ball2Handler(arg) {
+    console.log('ball 2')
+    this.zoomOutHandler(balls.ball2)
+    ball2Function()
+  }
+  ball3Handler(arg) {
+    console.log('ball 3')
+    this.zoomOutHandler(balls.ball3)
+    ball3Function()
+  }
+  ball4Handler(arg) {
+    console.log('ball 4')
+    this.zoomOutHandler(balls.ball4)
+    ball4Function()
+  }
+  ball5Handler(arg) {
+    console.log('ball 4')
+    this.zoomOutHandler(balls.ball5)
+    ball5Function()
+  }
+  ball6Handler(arg) {
+    console.log('ball 5')
+    this.zoomOutHandler(balls.ball6)
+    ball6Function()
+  }
   
   /* RENDER */
   render() {
@@ -188,31 +220,37 @@ class World {
 
     balls = {
       ball1: setupBall({
+        wireframe: true,
         gltf: models.touchModel,
         ...state.api.model_config_1,
         name: state.api.ball_1.name
       }),
       ball2: setupBall({
+        wireframe: false,
         gltf: models.synesthesiaModel, 
         ...state.api.model_config_2,
         name: state.api.ball_2.name
       }),
       ball3: setupBall({
+        wireframe: false,
         gltf: models.sightModel,
         ...state.api.model_config_3,
         name: state.api.ball_3.name
       }),
       ball4: setupBall({
+        wireframe: false,
         gltf: models.hearingModel,
         ...state.api.model_config_4,
         name: state.api.ball_4.name
       }),
       ball5: setupBall({
+        wireframe: false,
         gltf: models.smellModel,
         ...state.api.model_config_5,
         name: state.api.ball_5.name
       }),
       ball6: setupBall({
+        wireframe: false,
         gltf: models.tasteModel,
         ...state.api.model_config_6,
         name: state.api.ball_6.name
@@ -225,6 +263,7 @@ class World {
       scene.add(object);
     }
 
+    // CLICK FUNCTIONS
     balls.ball1.addEventListener('click', (event) => {
       event.stopPropagation();
       this.ball1Handler();
@@ -255,6 +294,38 @@ class World {
       this.ball6Handler();
     });
 
+    // HOVER FUNCTIONS
+    /*
+    balls.ball1.addEventListener('mouseover', (event) => {
+      event.stopPropagation();
+      console.log('ball 1 hover')
+    });
+
+    balls.ball2.addEventListener('mouseover', (event) => {
+      event.stopPropagation();
+      console.log('ball 2 hover')
+    });
+
+    balls.ball3.addEventListener('mouseover', (event) => {
+      event.stopPropagation();
+      console.log('ball 3 hover')
+    });
+
+    balls.ball4.addEventListener('mouseover', (event) => {
+      event.stopPropagation();
+      console.log('ball 4 hover')
+    });
+
+    balls.ball5.addEventListener('mouseover', (event) => {
+      event.stopPropagation();
+      console.log('ball 5 hover')
+    });
+
+    balls.ball6.addEventListener('mouseover', (event) => {
+      event.stopPropagation();
+      console.log('ball 6 hover')
+    });
+    */
     setTimeout(() => {
       this.cameraHandler(1)
     }, 50)
