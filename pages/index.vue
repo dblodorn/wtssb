@@ -4,7 +4,11 @@
     <portal v-if="modal" to="modal">
       <viewport-wrapper :zIndex="10000">
         <div class="modal-inner pad-single">
-          <button @click="() => {modal = false}" class="lozenge-button small close-button">
+          <button @click="() => {
+            modal = false
+            cameraHandler(currentSlide)
+            setPopup(false)
+          }" class="lozenge-button small close-button">
             <span>CLOSE</span>
           </button>
           <h1 v-html="sense"/>
@@ -25,6 +29,8 @@
 
 <script>
 import axios from 'axios'
+import { mapMutations } from 'vuex'
+
 import { 
   startWorld, 
   clearWorld,
@@ -49,6 +55,7 @@ export default {
   },
   data() {
     return {
+      currentSlide: 1,
       worldWrapper: null,
       sense: null,
       modal: false,
@@ -79,42 +86,51 @@ export default {
     clearTimeout(this.modalTimeout)
   },
   methods: {
+    ...mapMutations({
+      setPopup: 'setPopup'
+    }),
     cameraHandler(slide) {
       cameraHandler(slide)
       clearTimeout(this.modalTimeout)
     },
     loadedHandler() {
-      console.log('models loaded')
       this.modelsLoaded = true
     },
     modalPop() {
+      this.setPopup(true)
       this.modalTimeout = setTimeout(() => {
         this.modal = true
-      }, 2000)
+      }, 50)
     },
     ball1Handler() {
       this.sense = 'touch'
       this.modalPop()
+      this.currentSlide = 1
     },
     ball2Handler() {
       this.sense = 'synesthesia'
       this.modalPop()
+      this.currentSlide = 2
     },
     ball3Handler() {
       this.sense = 'sight'
       this.modalPop()
+      this.currentSlide = 3
     },
     ball4Handler() {
       this.sense = 'hearing'
       this.modalPop()
+      this.currentSlide = 4
     },
     ball5Handler() {
       this.sense = 'smell'
       this.modalPop()
+      this.currentSlide = 5
     },
     ball6Handler() {
       this.sense = 'taste'
       this.modalPop()
+      this.currentSlide = 6
     }
   },
   head () {

@@ -1,6 +1,6 @@
 <template>
   <fragment>
-    <portal-target name="modal"/>
+    <portal-target name="modal" transition="fade"/>
     <main id="three-wrapper">
       <nuxt/>
     </main>

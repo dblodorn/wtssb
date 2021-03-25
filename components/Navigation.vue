@@ -1,5 +1,5 @@
 <template>
-  <menu id="nav-container">
+  <menu id="nav-container" :class="[popup && 'hide', 'bezier-300']">
     <button 
       v-for="(item, index) in nav" 
       :key="`slide-button-${index}`"
@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: "Navigation",
   props: {
@@ -39,11 +41,16 @@ export default {
         }
       ]
     }
+  },
+  computed: {
+    ...mapState({
+      popup: 'popup'
+    })
   }
 }
 </script>
 
-<style lang="css">
+<style lang="scss">
   :root {
     --nav-wrapper: 12rem;
     --nav-dot: 2.5rem;
@@ -57,6 +64,10 @@ export default {
     z-index: 12000;
     width: var(--nav-wrapper);
     height: var(--nav-wrapper);
+    &.hide {
+      opacity: 0;
+      transform: rotate(90deg);
+    }
   }
   #nav-container:after {
     content: "";

@@ -1,5 +1,7 @@
 export const state = () => ({
-  api: false
+  api: false,
+  popup: false,
+  scene: 1
 })
 
 
@@ -9,12 +11,18 @@ export const actions = {
   },
   async getData({ commit }) {
     const { data } = await this.$axios.get(`${process.env.CMS_URL}`)
-    commit('SET_DATA', data)
+    commit('setData', data)
   }
 }
 
 export const mutations = {
-  SET_DATA(state, theData) {
+  setData(state, theData) {
     state.api = theData
+  },
+  setPopup(state, bool) {
+    state.popup = bool
+  },
+  setScene(state, number) {
+    state.scene = number
   }
 }
