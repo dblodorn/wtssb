@@ -5,7 +5,7 @@
       <viewport-wrapper :zIndex="10000">
         <div class="modal-inner pad-single">
           <chat 
-            :chatData="data.scene_1_chat"
+            :chatData="currentChat"
             :sense="sense"
           >
             <button @click="closeHandler(currentSlide)" class="close-button">
@@ -63,9 +63,10 @@ export default {
       currentSlide: 1,
       worldWrapper: null,
       sense: 'touch',
-      modal: true,
+      modal: false,
       modalTimeout: null,
-      modelsLoaded: false
+      modelsLoaded: false,
+      currentChat: null
     }
   },
   mounted() {
@@ -116,31 +117,37 @@ export default {
       this.sense = 'touch'
       this.modalPop()
       this.currentSlide = 1
+      this.currentChat = this.data.scene_1_chat
     },
     ball2Handler() {
       this.sense = 'synesthesia'
       this.modalPop()
       this.currentSlide = 2
+      this.currentChat = this.data.scene_2_chat
     },
     ball3Handler() {
       this.sense = 'sight'
       this.modalPop()
       this.currentSlide = 3
+      this.currentChat = this.data.scene_3_chat
     },
     ball4Handler() {
       this.sense = 'hearing'
       this.modalPop()
       this.currentSlide = 4
+      this.currentChat = this.data.scene_4_chat
     },
     ball5Handler() {
       this.sense = 'smell'
       this.modalPop()
       this.currentSlide = 5
+      this.currentChat = this.data.scene_5_chat
     },
     ball6Handler() {
       this.sense = 'taste'
       this.modalPop()
       this.currentSlide = 6
+      this.currentChat = this.data.scene_6_chat
     }
   },
   head () {
