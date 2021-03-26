@@ -63,7 +63,7 @@ export default {
       currentSlide: 1,
       worldWrapper: null,
       sense: 'touch',
-      modal: true,
+      modal: false,
       video: false,
       modalTimeout: null,
       modelsLoaded: false,
