@@ -8,12 +8,15 @@
       <li
         v-for="(chat, i) in chatData"
         :key="`ln-${i}`"
+        class="chat-item"
       >
         <div v-if="chat.acf_fc_layout === 'text'" class="text-wrapper">
           <div class="chat-name">
             <span v-html="chat.name"/>
           </div>
-          <p v-html="chat.text"/>
+          <div class="chat-text">
+            <p v-html="chat.text"/>
+          </div>
         </div>
         <div v-if="chat.acf_fc_layout === 'image'" class="image-wrapper">
           <img :src="chat.image">
@@ -45,6 +48,9 @@ export default {
     --chat-width: 38rem;
     --chat-bg: #999;
     --close-height: 4rem;
+    --chat-orange: #f37043;
+    --chat-blue: #394792;
+    --chat-name-height: 3rem;
   }
   .chat-close {
     position: absolute;
@@ -67,6 +73,10 @@ export default {
     background: var(--chat-bg);
     z-index: 1000;
     overflow: hidden;
+    * {
+      font-family: var(--font-a);
+      font-style: normal;
+    }
   }
   .chat {
     width: 100%;
@@ -76,6 +86,38 @@ export default {
     left: 0;
     overflow-y: scroll;
     overflow-x: hidden;
+  }
+  .chat-item {
+    &:nth-child(odd) {
+      .chat-name {
+        background-color: var(--chat-orange);
+      }
+    }
+    &:nth-child(even) {
+      .chat-name {
+        background-color: var(--chat-blue);
+        * {
+          color: var(--white);
+        }
+      }
+    }
+  }
+  .chat-text {
+    padding: var(--pad-single);
+    background: var(--white);
+    border-radius: calc(var(--chat-name-height) / 2);
+    width: 80%;
+  }
+  .chat-name {
+    padding: 0 var(--pad-single);
+    height: var(--chat-name-height);
+    border-radius: calc(var(--chat-name-height) / 2);
+    max-width: 18rem;
+    z-index: 10;
+    transform: translateY(calc(var(--chat-name-height) / 2));
+    * {
+      font-size: var(--sm-size);
+    } 
   }
   .image-wrapper {
     width: 100%;
