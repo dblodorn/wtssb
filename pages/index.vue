@@ -1,6 +1,10 @@
 <template>
   <viewport-wrapper :zIndex="1">
     <intro v-if="!modelsLoaded"/>
+    <navigation
+      v-if="modelsLoaded"
+      :cameraHandler="(slide) => cameraHandler(slide)"
+    />
     <portal v-if="modal" to="modal">
       <viewport-wrapper :zIndex="10000">
         <div class="modal-inner pad-single">
@@ -13,15 +17,11 @@
             </button>
           </chat>
           <div class="video-wrapper">
-            <video playsinline muted autoplay loop src="/Smell_Scene_v1d-Arnold.mp4"></video>
+            <video v-if="video" playsinline muted autoplay loop src="/Smell_Scene_v1d-Arnold.mp4"></video>
           </div>
         </div>
       </viewport-wrapper>
     </portal>
-    <navigation
-      v-if="modelsLoaded"
-      :cameraHandler="(slide) => cameraHandler(slide)"
-    />
     <section 
       id="three-world" 
       :class="['bezier-300', modelsLoaded && 'visible']"
@@ -63,7 +63,8 @@ export default {
       currentSlide: 1,
       worldWrapper: null,
       sense: 'touch',
-      modal: false,
+      modal: true,
+      video: false,
       modalTimeout: null,
       modelsLoaded: false,
       currentChat: null
@@ -71,6 +72,8 @@ export default {
   },
   mounted() {
     this.worldWrapper = this.$refs.threeWorld
+    this.video = this.data.video_1
+    this.currentChat = this.data.scene_1_chat
     this.$nextTick(() => {
       setTimeout(() => {
         startWorld({
@@ -117,36 +120,42 @@ export default {
       this.sense = 'touch'
       this.modalPop()
       this.currentSlide = 1
+      this.video = this.data.video_1
       this.currentChat = this.data.scene_1_chat
     },
     ball2Handler() {
       this.sense = 'synesthesia'
       this.modalPop()
       this.currentSlide = 2
+      this.video = this.data.video_2
       this.currentChat = this.data.scene_2_chat
     },
     ball3Handler() {
       this.sense = 'sight'
       this.modalPop()
       this.currentSlide = 3
+      this.video = this.data.video_3
       this.currentChat = this.data.scene_3_chat
     },
     ball4Handler() {
       this.sense = 'hearing'
       this.modalPop()
       this.currentSlide = 4
+      this.video = this.data.video_4
       this.currentChat = this.data.scene_4_chat
     },
     ball5Handler() {
       this.sense = 'smell'
       this.modalPop()
       this.currentSlide = 5
+      this.video = this.data.video_5
       this.currentChat = this.data.scene_5_chat
     },
     ball6Handler() {
       this.sense = 'taste'
       this.modalPop()
       this.currentSlide = 6
+      this.video = this.data.video_6
       this.currentChat = this.data.scene_6_chat
     }
   },

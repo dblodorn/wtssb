@@ -53,7 +53,7 @@ export default {
 <style lang="scss">
   :root {
     --nav-wrapper: 12rem;
-    --nav-dot: 2.5rem;
+    --nav-dot: 2.5rem; 
     --nav-border: 2px solid white;
     --nav-left: 6rem;
   }
@@ -65,8 +65,8 @@ export default {
     width: var(--nav-wrapper);
     height: var(--nav-wrapper);
     &.hide {
-      opacity: 0;
-      transform: rotate(90deg);
+      opacity: 1;
+      // transform: rotate(90deg);
     }
   }
   #nav-container:after {
