@@ -8,11 +8,7 @@
             :chatData="data.scene_1_chat"
             :sense="sense"
           >
-            <button @click="() => {
-              modal = false
-              cameraHandler(currentSlide)
-              setPopup(false)
-            }" class="close-button">
+            <button @click="closeHandler(currentSlide)" class="close-button">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><title>e-remove</title><g stroke-width="1" fill="var(--white)" stroke="var(--white)"><line fill="none" stroke="var(--white)" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="13.5" y1="2.5" x2="2.5" y2="13.5"></line> <line fill="none" stroke="var(--white)" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="2.5" y1="2.5" x2="13.5" y2="13.5"></line></g></svg>
             </button>
           </chat>
@@ -66,8 +62,8 @@ export default {
     return {
       currentSlide: 1,
       worldWrapper: null,
-      sense: null,
-      modal: false,
+      sense: 'touch',
+      modal: true,
       modalTimeout: null,
       modelsLoaded: false
     }
@@ -101,6 +97,11 @@ export default {
     cameraHandler(slide) {
       cameraHandler(slide)
       clearTimeout(this.modalTimeout)
+    },
+    closeHandler(slide) {
+      this.modal = false
+      cameraHandler(slide)
+      this.setPopup(false)
     },
     loadedHandler() {
       this.modelsLoaded = true

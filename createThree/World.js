@@ -90,7 +90,8 @@ class World {
   }
 
   motionHandler(object, speed) {
-    gsap.to(camera.position, speed || 2, {
+    console.log('motion', object)
+    gsap.to(camera.position, speed, {
       x: object.position.x,
       y: object.position.y,
       z: 6 + object.position.z,
@@ -99,6 +100,7 @@ class World {
   }
 
   zoomOutHandler(object) {
+    console.log('zoom', object)
     gsap.to(camera.position, 10, {
       x: object.position.x - 5,
       y: object.position.y - 5,
@@ -165,32 +167,32 @@ class World {
   }
 
   /* BALL HANDLERS */
-  ball1Handler(arg) {
+  ball1Handler() {
     console.log('ball 1')
     this.zoomOutHandler(balls.ball1)
     ball1Function()
   }
-  ball2Handler(arg) {
+  ball2Handler() {
     console.log('ball 2')
     this.zoomOutHandler(balls.ball2)
     ball2Function()
   }
-  ball3Handler(arg) {
+  ball3Handler() {
     console.log('ball 3')
     this.zoomOutHandler(balls.ball3)
     ball3Function()
   }
-  ball4Handler(arg) {
+  ball4Handler() {
     console.log('ball 4')
     this.zoomOutHandler(balls.ball4)
     ball4Function()
   }
-  ball5Handler(arg) {
+  ball5Handler() {
     console.log('ball 4')
     this.zoomOutHandler(balls.ball5)
     ball5Function()
   }
-  ball6Handler(arg) {
+  ball6Handler() {
     console.log('ball 5')
     this.zoomOutHandler(balls.ball6)
     ball6Function()
