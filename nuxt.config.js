@@ -32,6 +32,7 @@ export default {
     { src: '~plugins/vue-fragment' },
     { src: "~plugins/components" },
     { src: "~plugins/global" },
+    { src: '~plugins/aos', ssr: false },
   ],
   buildModules: [
     'nuxt-purgecss'
@@ -39,7 +40,8 @@ export default {
   purgeCSS: {
     whitelist: [
       ...whitelister([
-        'assets/css/wtssb.css'
+        'assets/css/wtssb.css',
+        'assets/css/aos.css'
       ])
     ]
   },

@@ -1,5 +1,5 @@
 <template>
-  <div class="chat-window">
+  <div id="chat-wrapper" class="chat-window">
     <div class="chat-close flex-center-vert x-pad-single">
       <h6 class="white" v-html="sense"/>
       <slot/>
@@ -10,26 +10,20 @@
         :key="`ln-${i}`"
         class="chat-item"
       >
-        <div v-if="chat.acf_fc_layout === 'text'" class="text-wrapper">
-          <div class="chat-name flex-centered">
-            <span v-html="chat.name"/>
-          </div>
-          <div class="chat-text">
-            <p v-html="chat.text"/>
-          </div>
-        </div>
-        <div v-if="chat.acf_fc_layout === 'image'" class="image-wrapper">
-          <img :src="chat.image">
-        </div>
+        <chat-item :chat="chat"/>
       </li>
     </ul>
-    <!--<raw-displayer :value="chatData"/>-->
   </div>
 </template>
 
 <script>
+import ChatItem from './ChatItem'
+
 export default {
   name: "Chat",
+  components: {
+    ChatItem
+  },
   props: {
     chatData: {
       type: Array,
