@@ -57,6 +57,14 @@ export default {
     --nav-border: 2px solid white;
     --nav-left: 6rem;
   }
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to { 
+      transform: rotate(360deg);
+    }
+  }
   #nav-container {
     position: fixed;
     top: 6rem;
@@ -66,7 +74,9 @@ export default {
     height: var(--nav-wrapper);
     &.hide {
       opacity: 1;
-      // transform: rotate(90deg);
+    }
+    &.loading {
+      animation: spin 2000ms infinite;
     }
   }
   #nav-container:after {

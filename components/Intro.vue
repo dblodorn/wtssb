@@ -1,12 +1,19 @@
 <template>
   <section id="intro-wrapper" class="pad-single y-pad-top inner-page">
-    <p class="h1 white">loading / intro...</p>
+    <div class="video-wrapper">
+      <video playsinline muted autoplay loop :src="video"></video>
+    </div>
   </section>
 </template>
 
 <script>
 export default {
-  name: 'intro'
+  name: 'intro',
+  props: {
+    video: {
+      type: String
+    }
+  }
 }
 </script>
 
@@ -16,7 +23,7 @@ export default {
     height: 100%;
     top: 0;
     left: 0;
-    z-index: 12000;
+    z-index: 11000;
     position: absolute;
     background: var(--black);
   }

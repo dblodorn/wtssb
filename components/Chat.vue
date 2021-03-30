@@ -4,14 +4,14 @@
       <h6 class="white" v-html="sense"/>
       <slot/>
     </div>
-    <ul class="chat flex-column pad-single">
+    <ul class="chat flex-column">
       <li
         v-for="(chat, i) in chatData"
         :key="`ln-${i}`"
         class="chat-item"
       >
         <div v-if="chat.acf_fc_layout === 'text'" class="text-wrapper">
-          <div class="chat-name">
+          <div class="chat-name flex-centered">
             <span v-html="chat.name"/>
           </div>
           <div class="chat-text">
@@ -45,12 +45,16 @@ export default {
 
 <style lang="scss">
   :root {
-    --chat-width: 38rem;
-    --chat-bg: #999;
+    --chat-width: 42.5rem;
+    --chat-bg: #f6faf8;
     --close-height: 4rem;
     --chat-orange: #f37043;
     --chat-blue: #394792;
+    --chat-text-offset: 2rem;
+    --chat-text-width: 25rem;
     --chat-name-height: 3rem;
+    --chat-x-pad: 3rem;
+    --chat-y-pad: 1.5rem;
   }
   .chat-close {
     position: absolute;
@@ -86,35 +90,55 @@ export default {
     left: 0;
     overflow-y: scroll;
     overflow-x: hidden;
+    padding: var(--chat-y-pad) 0;
   }
   .chat-item {
+    padding: 0 var(--chat-x-pad) 2rem;
     &:nth-child(odd) {
       .chat-name {
         background-color: var(--chat-orange);
+      }
+      .chat-text {
+        margin-left: var(--chat-text-offset);
       }
     }
     &:nth-child(even) {
       .chat-name {
         background-color: var(--chat-blue);
+        right: 0;
         * {
           color: var(--white);
         }
       }
+      .chat-text {
+        float: right;
+        margin-right: var(--chat-text-offset);
+      }
     }
+  }
+  .text-wrapper {
+    position: relative;
+    margin-top: var(--chat-name-height);
   }
   .chat-text {
     padding: var(--pad-single);
-    background: var(--white);
+    background: var(--chat-bg);
     border-radius: calc(var(--chat-name-height) / 2);
-    width: 80%;
+    width: var(--chat-text-width);
+    filter: drop-shadow(0px 0px 15px rgba(0,0,0,.25));
+    z-index: 0;
   }
   .chat-name {
     padding: 0 var(--pad-single);
     height: var(--chat-name-height);
     border-radius: calc(var(--chat-name-height) / 2);
-    max-width: 18rem;
+    filter: drop-shadow(0px 0px 2px rgba(0,0,0,.05));
+    max-width: 12rem;
+    overflow-x: hidden;
+    width: 100%;
     z-index: 10;
-    transform: translateY(calc(var(--chat-name-height) / 2));
+    position: absolute;
+    top: calc((var(--chat-name-height) / 2) * -1);
     * {
       font-size: var(--sm-size);
     } 

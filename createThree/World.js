@@ -112,34 +112,16 @@ class World {
   cameraHandler(slide) {
     if (slide === 1) {
       this.motionHandler(balls.ball1, 7)
-      scene.remove(skyBox)
-      skyBox = new createSkybox({images: state.api.scene_1})
-      scene.add(skyBox)
     } else if (slide === 2) {
       this.motionHandler(balls.ball2, 6)
-      scene.remove(skyBox)
-      skyBox = new createSkybox({images: state.api.scene_2})
-      scene.add(skyBox)
     } else if (slide === 3) {
       this.motionHandler(balls.ball3, 4)
-      scene.remove(skyBox)
-      skyBox = new createSkybox({images: state.api.scene_3})
-      scene.add(skyBox)
     } else if (slide === 4) {
       this.motionHandler(balls.ball4, 5)
-      scene.remove(skyBox)
-      skyBox = new createSkybox({images: state.api.scene_4})
-      scene.add(skyBox)
     } else if (slide === 5) {
-      this.motionHandler(balls.ball5)
-      scene.remove(skyBox)
-      skyBox = new createSkybox({images: state.api.scene_5})
-      scene.add(skyBox)
+      this.motionHandler(balls.ball5, 5)
     } else if (slide === 6) {
-      this.motionHandler(balls.ball6)
-      scene.remove(skyBox)
-      skyBox = new createSkybox({images: state.api.scene_6})
-      scene.add(skyBox)
+      this.motionHandler(balls.ball6, 5)
     }
   }
 
@@ -215,14 +197,14 @@ class World {
   async init() {
     const models = await loadBalls(loop);
 
-    skyBox = new createSkybox({images: state.api.scene_2})
+    skyBox = new createSkybox({images: state.api.skybox_bg})
     scene.add(skyBox)
     
     onLoadFunction();
 
     balls = {
       ball1: setupBall({
-        wireframe: true,
+        wireframe: false,
         gltf: models.touchModel,
         ...state.api.model_config_1,
         name: state.api.ball_1.name

@@ -1,9 +1,12 @@
 <template>
   <viewport-wrapper :zIndex="1">
-    <intro v-if="!modelsLoaded"/>
     <navigation
-      v-if="modelsLoaded"
+      :class="!modelsLoaded && 'loading'"
       :cameraHandler="(slide) => cameraHandler(slide)"
+    />
+    <intro 
+      v-if="!modelsLoaded"
+      :video="data.intro_video"
     />
     <portal v-if="modal" to="modal">
       <viewport-wrapper :zIndex="10000">
@@ -168,20 +171,6 @@ export default {
 </script>
 
 <style lang="scss">
-  .video-wrapper {
-    z-index: 100;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    video {
-      object-fit: cover;
-      width: 100%;
-      height: 100%;
-      position: absolute;
-    }
-  }
   .close-button {
     width: 2.25rem;
     height: 2.25rem;

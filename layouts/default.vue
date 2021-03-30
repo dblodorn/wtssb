@@ -27,25 +27,15 @@ export default {
     this.setTouch()
     this.setScreenSize()
     window.addEventListener('resize', this.debouncedResize, { passive: true })
-    window.addEventListener('scroll', this.scroll, { passive: true })
-    window.addEventListener('mousemove', this.mouseMove, { passive: true })
+    // window.addEventListener('scroll', this.scroll, { passive: true })
+    // window.addEventListener('mousemove', this.mouseMove, { passive: true })
   },
   beforeDestroy () {
     window.removeEventListener('resize', this.debouncedResize, { passive: true })
-    window.removeEventListener('mousemove', this.mouseMove, { passive: true })
-    window.removeEventListener('mousemove', this.mouseMove, { passive: true })
+    // window.removeEventListener('mousemove', this.mouseMove, { passive: true })
+    // window.removeEventListener('mousemove', this.mouseMove, { passive: true })
   },
   methods: {
-    /*
-    async lambdaTest() {
-      try {
-        const res = await this.$axios.$get('/.netlify/functions/hello')
-        console.log('NETLIFY FUNCTION::', res)
-      } catch (e) {
-        console.log('NETLIFY FUNCTION::', e.response)
-      }
-    },
-    */
     async resize() {
       const size = await this.setScreenSize()
       this.$nextTick(() => this.$bus.$emit('resize', size))
@@ -74,3 +64,20 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+  .video-wrapper {
+    z-index: 100;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    video {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+  }
+</style>
