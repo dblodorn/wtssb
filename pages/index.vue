@@ -97,7 +97,7 @@ export default {
   mounted() {
     // SOUND
     this.bgSound = new Howl({
-      src: [this.data.planetary_ball_scene.ball_1],
+      src: [this.data.landing_page_audio],
       ...this.opts
     })
     // STARTUP
