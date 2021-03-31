@@ -3,11 +3,23 @@
     <navigation
       :class="!modelsLoaded && 'loading'"
       :cameraHandler="(slide) => cameraHandler(slide)"
+      :sounds="{scenes: data.planetary_ball_scene, hover: data.planetary_hover_sound, click: data.planetary_click_sound}"
     />
-    <intro 
-      v-if="!modelsLoaded"
+    <intro
+      v-if="intro"
       :video="data.intro_video"
-    />
+    >
+      <transition name="fade">
+        <button 
+          v-if="modelsLoaded" 
+          id="enter-button"
+          class="lozenge-button small"
+          @click="enterHandler"
+        >
+            <span>ENTER</span>
+        </button>
+      </transition>
+    </intro>
     <portal v-if="modal" to="modal">
       <viewport-wrapper :zIndex="10000">
         <div class="modal-inner pad-single">
@@ -43,6 +55,8 @@ import {
   cameraHandler
 } from './../createThree'
 
+import { Howl } from 'howler'
+
 import Navigation from '@/components/Navigation'
 import Intro from '@/components/Intro'
 import Chat from '@/components/Chat'
@@ -66,14 +80,27 @@ export default {
       currentSlide: 1,
       worldWrapper: null,
       sense: 'touch',
-      modal: true,
+      modal: false,
       video: false,
       modalTimeout: null,
       modelsLoaded: false,
-      currentChat: null
+      currentChat: null,
+      bgSound: null,
+      intro: true,
+      opts: {
+        autoplay: false,
+        loop: true,
+        volume: 0.5
+      }
     }
   },
   mounted() {
+    // SOUND
+    this.bgSound = new Howl({
+      src: [this.data.planetary_ball_scene.ball_1],
+      ...this.opts
+    })
+    // STARTUP
     this.worldWrapper = this.$refs.threeWorld
     this.video = this.data.video_1
     this.currentChat = this.data.scene_1_chat
@@ -95,12 +122,17 @@ export default {
   },
   beforeDestroy() {
     clearWorld()
+    this.bgSound.stop()
     clearTimeout(this.modalTimeout)
   },
   methods: {
     ...mapMutations({
       setPopup: 'setPopup'
     }),
+    enterHandler() {
+      this.intro = false
+      this.bgSound.play()
+    },
     cameraHandler(slide) {
       cameraHandler(slide)
       clearTimeout(this.modalTimeout)
@@ -208,5 +240,11 @@ export default {
   }
   canvas:focus {
     outline: 0!important;
+  }
+  #enter-button {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 1000;
   }
 </style>

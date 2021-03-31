@@ -4,7 +4,7 @@
       v-for="(item, index) in nav" 
       :key="`slide-button-${index}`"
       class="nav-button"
-      @click="cameraHandler(index + 1)"
+      @click="navHandler(index + 1)"
     >
       <span class="bezier-300">{{item.title}}</span>
     </button>
@@ -13,6 +13,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import { Howl } from 'howler'
 
 export default {
   name: "Navigation",
@@ -20,10 +21,14 @@ export default {
     cameraHandler: {
       type: Function,
       default: () => {console.log('click')}
+    },
+    sounds: {
+      type: Object
     }
   },
   data() {
     return {
+      bgSound: null,
       slides: [1,2,3,4,5,6],
       nav: [
         {
@@ -40,6 +45,49 @@ export default {
           title: 'Taste'
         }
       ]
+    }
+  },
+  methods: {
+    navHandler(index) {
+      this.cameraHandler(index)
+      if(this.bgSound !== null) {
+        this.bgSound.stop()
+      }
+      let sound;
+      switch (index) {
+        case 0:
+          console.log('Scene 1');
+          sound = this.sounds.scenes.ball_1
+          break;
+        case 1:
+          console.log('Scene 2');
+          sound = this.sounds.scenes.ball_2
+          break;
+        case 2:
+          console.log('Scene 3');
+          sound = this.sounds.scenes.ball_3
+          break;
+        case 3:
+          console.log('Scene 4');
+          sound = this.sounds.scenes.ball_4
+          break;
+        case 4:
+          console.log('Scene 5');
+          sound = this.sounds.scenes.ball_5
+          break;
+        case 5:
+          console.log('Scene 6');
+          sound = this.sounds.scenes.ball_6
+          break;
+        default:
+          console.log(`SCENE INDEx ${index}.`);
+      }
+      console.log(this.sounds)
+      this.bgSound = new Howl({
+        src: [sound],
+        ...this.opts
+      })
+      this.bgSound.play()
     }
   },
   computed: {

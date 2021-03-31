@@ -25,6 +25,7 @@
     "gsap": "^3.6.0",
     "gulp": "^4.0.2",
     "gulp-sftp-up4": "^0.1.8",
+    "howler": "^2.2.1",
     "intersection-observer": "^0.11.0",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.31",
