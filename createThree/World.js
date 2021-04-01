@@ -33,10 +33,11 @@ let ball4Function;
 let ball5Function;
 let ball6Function;
 let onLoadFunction;
+let loadedFunction;
 let skyBox;
 class World {
   
-  constructor({container, data, onLoad, ball1, ball2, ball3, ball4, ball5, ball6}) {
+  constructor({container, data, onLoad, ball1, ball2, ball3, ball4, ball5, ball6, loadedCallback}) {
     camera = createCamera(container);
     scene = createScene();
     renderer = createRenderer(container);
@@ -61,6 +62,7 @@ class World {
     ball5Function = ball5
     ball6Function = ball6
     onLoadFunction = onLoad
+    loadedFunction = loadedCallback
 
     this.ball1Handler = this.ball1Handler.bind(this);
     this.ball2Handler = this.ball2Handler.bind(this);
@@ -150,32 +152,26 @@ class World {
 
   /* BALL HANDLERS */
   ball1Handler() {
-    console.log('ball 1')
     this.zoomOutHandler(balls.ball1)
     ball1Function()
   }
   ball2Handler() {
-    console.log('ball 2')
     this.zoomOutHandler(balls.ball2)
     ball2Function()
   }
   ball3Handler() {
-    console.log('ball 3')
     this.zoomOutHandler(balls.ball3)
     ball3Function()
   }
   ball4Handler() {
-    console.log('ball 4')
     this.zoomOutHandler(balls.ball4)
     ball4Function()
   }
   ball5Handler() {
-    console.log('ball 4')
     this.zoomOutHandler(balls.ball5)
     ball5Function()
   }
   ball6Handler() {
-    console.log('ball 5')
     this.zoomOutHandler(balls.ball6)
     ball6Function()
   }
@@ -195,7 +191,7 @@ class World {
   }
 
   async init() {
-    const models = await loadBalls(loop);
+    const models = await loadBalls(loop, loadedFunction);
 
     skyBox = new createSkybox({images: state.api.skybox_bg})
     scene.add(skyBox)

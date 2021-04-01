@@ -1,9 +1,9 @@
 <template>
   <menu id="nav-container" :class="[popup && 'hide', 'bezier-300']">
     <button 
-      v-for="(item, index) in nav" 
+      v-for="(item, index) in scenes" 
       :key="`slide-button-${index}`"
-      class="nav-button"
+      :class="['nav-button', item.loaded ? 'loaded' : 'ball-loading', scene === (index + 1) && 'active']"
       @click="navHandler(index + 1)"
     >
       <span class="bezier-300">{{item.title}}</span>
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import { Howl } from 'howler'
 
 export default {
@@ -28,26 +28,13 @@ export default {
   },
   data() {
     return {
-      bgSound: null,
-      slides: [1,2,3,4,5,6],
-      nav: [
-        {
-          title: 'Touch'
-        },{
-          title: 'Synesthesia'
-        },{
-          title: 'Sight'
-        },{
-          title: 'Hearing'
-        },{
-          title: 'Smell'
-        },{
-          title: 'Taste'
-        }
-      ]
+      bgSound: null
     }
   },
   methods: {
+    ...mapMutations({
+      setScene: 'setScene'
+    }),
     navHandler(index) {
       this.cameraHandler(index)
       if(this.bgSound !== null) {
@@ -57,26 +44,32 @@ export default {
       switch (index) {
         case 0:
           console.log('Scene 1');
+          // this.setScene(1)
           sound = this.sounds.scenes.ball_1
           break;
         case 1:
           console.log('Scene 2');
+          //this.setScene(2)
           sound = this.sounds.scenes.ball_2
           break;
         case 2:
           console.log('Scene 3');
+          // this.setScene(3)
           sound = this.sounds.scenes.ball_3
           break;
         case 3:
           console.log('Scene 4');
+          // this.setScene(4)
           sound = this.sounds.scenes.ball_4
           break;
         case 4:
           console.log('Scene 5');
+          // this.setScene(5)
           sound = this.sounds.scenes.ball_5
           break;
         case 5:
           console.log('Scene 6');
+          // this.setScene(6)
           sound = this.sounds.scenes.ball_6
           break;
         default:
@@ -92,7 +85,9 @@ export default {
   },
   computed: {
     ...mapState({
-      popup: 'popup'
+      popup: 'popup',
+      scenes: 'scenes',
+      scene: 'scene'
     })
   }
 }
@@ -111,6 +106,14 @@ export default {
     }
     to { 
       transform: rotate(360deg);
+    }
+  }
+  @keyframes pulseOpacity {
+    from {
+      opacity: 0;
+    }
+    to { 
+      opacity: .5;
     }
   }
   #nav-container {
@@ -145,18 +148,29 @@ export default {
     border-radius: calc(var(--nav-dot) / 2);
     position: absolute;
     z-index: 1;
-  }
-  .nav-button span {
-    position: fixed;
     opacity: 0;
-    width: var(--nav-wrapper);
-    text-align: center;
-    top:  2rem;
-    left: var(--nav-left);
-    color: white;
-    font-family: var(--font-a);
-    font-size: 1.5rem;
-    padding-left: .5rem;
+    &.active {
+      background-color: var(--white);
+    }
+    span {
+      position: fixed;
+      opacity: 0;
+      width: var(--nav-wrapper);
+      text-align: center;
+      top:  2rem;
+      left: var(--nav-left);
+      color: white;
+      font-family: var(--font-a);
+      font-size: 1.5rem;
+      padding-left: .5rem;
+    }
+    &.ball-loading {
+      span { display: none; }
+      animation: pulseOpacity 1000ms infinite;
+    }
+    &.loaded {
+      opacity: 1;
+    }
   }
   @media (hover:hover) {
     .nav-button:hover {

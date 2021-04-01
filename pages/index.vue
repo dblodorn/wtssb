@@ -1,25 +1,28 @@
 <template>
   <viewport-wrapper :zIndex="1">
-    <navigation
-      :class="!modelsLoaded && 'loading'"
-      :cameraHandler="(slide) => cameraHandler(slide)"
-      :sounds="{scenes: data.planetary_ball_scene, hover: data.planetary_hover_sound, click: data.planetary_click_sound}"
-    />
-    <intro
-      v-if="intro"
-      :video="data.intro_video"
-    >
-      <transition name="fade">
-        <button 
-          v-if="modelsLoaded" 
-          id="enter-button"
-          class="lozenge-button small"
-          @click="enterHandler"
-        >
-            <span>ENTER</span>
-        </button>
-      </transition>
-    </intro>
+    <portal to="navigation">
+      <navigation
+        :class="!modelsLoaded && 'loading'"
+        :cameraHandler="(slide) => cameraHandler(slide)"
+        :sounds="{scenes: data.planetary_ball_scene, hover: data.planetary_hover_sound, click: data.planetary_click_sound}"
+      />
+    </portal>
+    <portal v-if="intro" to="intro">
+      <viewport-wrapper :zIndex="10">
+        <intro :video="data.intro_video">
+          <transition name="fade">
+            <button 
+              v-if="modelsLoaded" 
+              id="enter-button"
+              class="lozenge-button small"
+              @click="enterHandler"
+            >
+                <span>ENTER</span>
+            </button>
+          </transition>
+        </intro>
+      </viewport-wrapper>
+    </portal>
     <portal v-if="modal" to="modal">
       <viewport-wrapper :zIndex="10000">
         <div class="modal-inner pad-single">
@@ -47,7 +50,7 @@
 
 <script>
 import axios from 'axios'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapActions } from 'vuex'
 
 import { 
   startWorld, 
@@ -116,6 +119,7 @@ export default {
           ball4: () => {this.ball4Handler()},
           ball5: () => {this.ball5Handler()},
           ball6: () => {this.ball6Handler()},
+          loadedCallback: (arg) => {this.modelLoadedHandler(arg)}
         })
       }, 50)
     })
@@ -127,8 +131,13 @@ export default {
   },
   methods: {
     ...mapMutations({
-      setPopup: 'setPopup'
+      setPopup: 'setPopup',
+      ballLoaded: 'ballLoaded',
+      setScene: 'setScene'
     }),
+    modelLoadedHandler(ball) {
+      this.ballLoaded(ball)
+    },
     enterHandler() {
       this.intro = false
       this.bgSound.play()
@@ -141,6 +150,7 @@ export default {
       this.modal = false
       cameraHandler(slide)
       this.setPopup(false)
+      this.setScene(false)
     },
     loadedHandler() {
       this.modelsLoaded = true
@@ -156,12 +166,14 @@ export default {
       this.modalPop()
       this.currentSlide = 1
       this.video = this.data.video_1
+      this.setScene(1)
       this.currentChat = this.data.scene_1_chat
     },
     ball2Handler() {
       this.sense = 'synesthesia'
       this.modalPop()
       this.currentSlide = 2
+      this.setScene(2)
       this.video = this.data.video_2
       this.currentChat = this.data.scene_2_chat
     },
@@ -169,6 +181,7 @@ export default {
       this.sense = 'sight'
       this.modalPop()
       this.currentSlide = 3
+      this.setScene(3)
       this.video = this.data.video_3
       this.currentChat = this.data.scene_3_chat
     },
@@ -176,6 +189,7 @@ export default {
       this.sense = 'hearing'
       this.modalPop()
       this.currentSlide = 4
+      this.setScene(4)
       this.video = this.data.video_4
       this.currentChat = this.data.scene_4_chat
     },
@@ -183,6 +197,7 @@ export default {
       this.sense = 'smell'
       this.modalPop()
       this.currentSlide = 5
+      this.setScene(5)
       this.video = this.data.video_5
       this.currentChat = this.data.scene_5_chat
     },
@@ -190,6 +205,7 @@ export default {
       this.sense = 'taste'
       this.modalPop()
       this.currentSlide = 6
+      this.setScene(6)
       this.video = this.data.video_6
       this.currentChat = this.data.scene_6_chat
     }
