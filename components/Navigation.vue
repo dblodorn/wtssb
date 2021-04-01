@@ -4,7 +4,8 @@
       v-for="(item, index) in scenes" 
       :key="`slide-button-${index}`"
       :class="['nav-button', item.loaded ? 'loaded' : 'ball-loading', scene === (index + 1) && 'active']"
-      @click="navHandler(index + 1)"
+      @click="navHandler(index)"
+      @mouseenter="hoverHandler"
     >
       <span class="bezier-300">{{item.title}}</span>
     </button>
@@ -28,48 +29,67 @@ export default {
   },
   data() {
     return {
-      bgSound: null
+      bgSound: null,
+      hoverSound: null,
+      clickSound: null,
+      opts: {
+        autoplay: false,
+        loop: true,
+        volume: 0.45
+      }
     }
+  },
+  mounted() {
+    this.hoverSound = new Howl({
+      src: [this.sounds.hover],
+      autoplay: false,
+      loop: false,
+      volume: 0.35
+    })
+    this.clickSound = new Howl({
+      src: [this.sounds.click],
+      autoplay: false,
+      loop: false,
+      volume: 0.35
+    })
   },
   methods: {
     ...mapMutations({
       setScene: 'setScene'
     }),
+    hoverHandler() {
+      this.hoverSound.play()
+    },
     navHandler(index) {
       this.cameraHandler(index)
+      this.clickSound.play()
       if(this.bgSound !== null) {
         this.bgSound.stop()
       }
       let sound;
       switch (index) {
         case 0:
-          console.log('Scene 1');
-          // this.setScene(1)
+          this.setScene(1)
           sound = this.sounds.scenes.ball_1
           break;
         case 1:
-          console.log('Scene 2');
-          //this.setScene(2)
+          this.setScene(2)
           sound = this.sounds.scenes.ball_2
           break;
         case 2:
-          console.log('Scene 3');
-          // this.setScene(3)
+          this.setScene(3)
           sound = this.sounds.scenes.ball_3
           break;
         case 3:
-          console.log('Scene 4');
-          // this.setScene(4)
+          this.setScene(4)
           sound = this.sounds.scenes.ball_4
           break;
         case 4:
-          console.log('Scene 5');
-          // this.setScene(5)
+          this.setScene(5)
           sound = this.sounds.scenes.ball_5
           break;
         case 5:
-          console.log('Scene 6');
-          // this.setScene(6)
+          this.setScene(6)
           sound = this.sounds.scenes.ball_6
           break;
         default:

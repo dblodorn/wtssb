@@ -4,7 +4,7 @@
       <navigation
         :class="!modelsLoaded && 'loading'"
         :cameraHandler="(slide) => cameraHandler(slide)"
-        :sounds="{scenes: data.planetary_ball_scene, hover: data.planetary_hover_sound, click: data.planetary_click_sound}"
+        :sounds="{scenes: data.planetary_ball_scene, hover: data.nav_hover_sound, click: data.nav_click_sound}"
       />
     </portal>
     <portal v-if="intro" to="intro">
@@ -90,10 +90,12 @@ export default {
       currentChat: null,
       bgSound: null,
       intro: true,
+      hoverSound: null,
+      clickSound: null,
       opts: {
         autoplay: false,
         loop: true,
-        volume: 0.5
+        volume: 0.25
       }
     }
   },
@@ -102,6 +104,18 @@ export default {
     this.bgSound = new Howl({
       src: [this.data.landing_page_audio],
       ...this.opts
+    })
+    this.hoverSound = new Howl({
+      src: [this.data.planetary_hover_sound],
+      autoplay: false,
+      loop: false,
+      volume: 0.35
+    })
+    this.clickSound = new Howl({
+      src: [this.data.planetary_click_sound],
+      autoplay: false,
+      loop: false,
+      volume: 0.35
     })
     // STARTUP
     this.worldWrapper = this.$refs.threeWorld
@@ -167,6 +181,7 @@ export default {
       this.currentSlide = 1
       this.video = this.data.video_1
       this.setScene(1)
+      this.clickSound.play()
       this.currentChat = this.data.scene_1_chat
     },
     ball2Handler() {
@@ -174,6 +189,7 @@ export default {
       this.modalPop()
       this.currentSlide = 2
       this.setScene(2)
+      this.clickSound.play()
       this.video = this.data.video_2
       this.currentChat = this.data.scene_2_chat
     },
@@ -182,6 +198,7 @@ export default {
       this.modalPop()
       this.currentSlide = 3
       this.setScene(3)
+      this.clickSound.play()
       this.video = this.data.video_3
       this.currentChat = this.data.scene_3_chat
     },
@@ -190,6 +207,7 @@ export default {
       this.modalPop()
       this.currentSlide = 4
       this.setScene(4)
+      this.clickSound.play()
       this.video = this.data.video_4
       this.currentChat = this.data.scene_4_chat
     },
@@ -198,6 +216,7 @@ export default {
       this.modalPop()
       this.currentSlide = 5
       this.setScene(5)
+      this.clickSound.play()
       this.video = this.data.video_5
       this.currentChat = this.data.scene_5_chat
     },
@@ -206,6 +225,7 @@ export default {
       this.modalPop()
       this.currentSlide = 6
       this.setScene(6)
+      this.clickSound.play()
       this.video = this.data.video_6
       this.currentChat = this.data.scene_6_chat
     }
