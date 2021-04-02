@@ -149,27 +149,27 @@ class World {
 
   /* BALL HANDLERS */
   ball1Handler() {
-    this.zoomOutHandler(balls.ball1)
+    // this.zoomOutHandler(balls.ball1)
     ball1Function()
   }
   ball2Handler() {
-    this.zoomOutHandler(balls.ball2)
+    // this.zoomOutHandler(balls.ball2)
     ball2Function()
   }
   ball3Handler() {
-    this.zoomOutHandler(balls.ball3)
+    // this.zoomOutHandler(balls.ball3)
     ball3Function()
   }
   ball4Handler() {
-    this.zoomOutHandler(balls.ball4)
+    // this.zoomOutHandler(balls.ball4)
     ball4Function()
   }
   ball5Handler() {
-    this.zoomOutHandler(balls.ball5)
+    // this.zoomOutHandler(balls.ball5)
     ball5Function()
   }
   ball6Handler() {
-    this.zoomOutHandler(balls.ball6)
+    // this.zoomOutHandler(balls.ball6)
     ball6Function()
   }
   

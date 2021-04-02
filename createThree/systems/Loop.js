@@ -14,8 +14,10 @@ class Loop {
   }
 
   start() {
-    this.controls.enableRotate = false
+    this.controls.enableRotate = true
     this.controls.autoRotate = true
+    // this.controls.minDistance = -30
+    // this.controls.maxDistance = 10000
     this.controls.autoRotateSpeed = 0.5
     this.renderer.setAnimationLoop(() => {
       this.tick();
