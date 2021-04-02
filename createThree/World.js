@@ -129,7 +129,6 @@ class World {
 
   nextHandler() {
     state.clicks = state.clicks + 1
-    console.log('next', state.currentSlide)
     if (state.currentSlide < state.slideCount) {
       state.currentSlide = state.currentSlide + 1
     } else if (state.currentSlide === 6) {
@@ -140,10 +139,8 @@ class World {
 
   prevHandler() { 
     state.clicks = state.clicks + 1
-    console.log('prev')
     if (state.currentSlide > 1) {
       state.currentSlide = state.currentSlide - 1
-      console.log('prev', state.currentSlide)
     } else if (state.currentSlide === 1) {
       state.currentSlide = 6
     }
@@ -275,7 +272,6 @@ class World {
     });
 
     // HOVER FUNCTIONS
-    /*
     balls.ball1.addEventListener('mouseover', (event) => {
       event.stopPropagation();
       console.log('ball 1 hover')
@@ -305,10 +301,11 @@ class World {
       event.stopPropagation();
       console.log('ball 6 hover')
     });
-    */
+    /*
     setTimeout(() => {
       this.cameraHandler(1)
     }, 50)
+    */
   }
 }
 
