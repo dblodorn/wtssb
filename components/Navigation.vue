@@ -95,7 +95,6 @@ export default {
         default:
           console.log(`SCENE INDEx ${index}.`);
       }
-      console.log(this.sounds)
       this.bgSound = new Howl({
         src: [sound],
         ...this.opts

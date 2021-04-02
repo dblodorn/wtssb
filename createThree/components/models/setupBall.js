@@ -23,7 +23,7 @@ export default function({wireframe, gltf, x, y, z, scale, speed, animation_speed
   model.scale.set(scale, scale, scale)
 
   model.position.set(x, y, z);
-  model.name = name || 'ball'
+  model.name = name
 
   const toggleWireframe = (state) => {
     if (state === true) {
