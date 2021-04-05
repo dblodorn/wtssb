@@ -5,23 +5,18 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 const clock = new Clock();
 
 class Loop {
-  constructor(camera, scene, renderer, updatables) {
+  constructor(camera, scene, renderer, interactionManager, updatables) {
     this.camera = camera;
     this.scene = scene;
     this.renderer = renderer;
     this.updatables = [];
-    // this.controls = new OrbitControls(camera, renderer.domElement);
+    this.interactionManager = interactionManager;
   }
 
   start() {
-    // this.controls.enableRotate = true
-    // this.controls.autoRotate = true
-    // this.controls.minDistance = -30
-    // this.controls.maxDistance = 10000
-    // this.controls.autoRotateSpeed = 0.5
     this.renderer.setAnimationLoop(() => {
       this.tick();
-      // this.controls.update();
+      this.interactionManager.update();
       this.renderer.render(this.scene, this.camera);
     });
   }

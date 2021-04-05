@@ -126,12 +126,7 @@ export default {
           container: this.worldWrapper,
           data: this.data,
           onLoad: () => {this.loadedHandler()},
-          ball1: () => {this.ball1Handler()},
-          ball2: () => {this.ball2Handler()},
-          ball3: () => {this.ball3Handler()},
-          ball4: () => {this.ball4Handler()},
-          ball5: () => {this.ball5Handler()},
-          ball6: () => {this.ball6Handler()},
+          ballFunction: (name, index) => this.ballHandler(name, index),
           loadedCallback: (arg) => {this.modelLoadedHandler(arg)}
         })
       }, 50)
@@ -173,59 +168,41 @@ export default {
         this.modal = true
       }, 50)
     },
-    ball1Handler() {
-      this.sense = 'touch'
+    ballHandler(name, index) {
+      console.log(name, index)
+      const scene = index + 1
+      this.sense = name
       this.modalPop()
-      this.currentSlide = 1
-      this.video = this.data.video_1
-      this.setScene(1)
-      this.clickSound.play()
-      this.currentChat = this.data.scene_1_chat
-    },
-    ball2Handler() {
-      this.sense = 'synesthesia'
-      this.modalPop()
-      this.currentSlide = 2
-      this.setScene(2)
-      this.clickSound.play()
-      this.video = this.data.video_2
-      this.currentChat = this.data.scene_2_chat
-    },
-    ball3Handler() {
-      this.sense = 'sight'
-      this.modalPop()
-      this.currentSlide = 3
-      this.setScene(3)
-      this.clickSound.play()
-      this.video = this.data.video_3
-      this.currentChat = this.data.scene_3_chat
-    },
-    ball4Handler() {
-      this.sense = 'hearing'
-      this.modalPop()
-      this.currentSlide = 4
-      this.setScene(4)
-      this.clickSound.play()
-      this.video = this.data.video_4
-      this.currentChat = this.data.scene_4_chat
-    },
-    ball5Handler() {
-      this.sense = 'smell'
-      this.modalPop()
-      this.currentSlide = 5
-      this.setScene(5)
-      this.clickSound.play()
-      this.video = this.data.video_5
-      this.currentChat = this.data.scene_5_chat
-    },
-    ball6Handler() {
-      this.sense = 'taste'
-      this.modalPop()
-      this.currentSlide = 6
-      this.setScene(6)
-      this.clickSound.play()
-      this.video = this.data.video_6
-      this.currentChat = this.data.scene_6_chat
+      this.currentSlide = scene
+      this.setScene(scene)
+      switch (scene) {
+        case 1:
+          this.video = this.data.video_1
+          this.currentChat = this.data.scene_1_chat
+          break;
+        case 2:
+          this.video = this.data.video_2
+          this.currentChat = this.data.scene_2_chat
+          break;
+        case 3:
+          this.video = this.data.video_3
+          this.currentChat = this.data.scene_3_chat
+          break;
+        case 4:
+          this.video = this.data.video_4
+          this.currentChat = this.data.scene_4_chat
+          break;
+        case 5:
+          this.video = this.data.video_5
+          this.currentChat = this.data.scene_5_chat
+          break;
+        case 6:
+          this.video = this.data.video_6
+          this.currentChat = this.data.scene_6_chat
+          break;
+        default:
+          console.log(`SCENE INDEx ${index}.`);
+      }
     }
   },
   head () {

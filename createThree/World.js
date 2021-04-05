@@ -27,41 +27,30 @@ let scene;
 let loop;
 let interactionManager;
 let balls;
-let ball1Function;
-let ball2Function;
-let ball3Function;
-let ball4Function;
-let ball5Function;
-let ball6Function;
+let ballClickFunction;
 let onLoadFunction;
 let loadedFunction;
 let skyBox;
 class World {
   
-  constructor({container, data, onLoad, ball1, ball2, ball3, ball4, ball5, ball6, loadedCallback}) {
+  constructor({container, data, onLoad, ballFunction, loadedCallback}) {
     camera = createCamera(container);
     scene = createScene();
     renderer = createRenderer(container);
     controls = createControls(camera, renderer);
-    loop = new Loop(camera, scene, renderer);
-    state.api = data
-    
     interactionManager = new InteractionManager(
       renderer,
       camera,
       renderer.domElement
     );
+    loop = new Loop(camera, scene, renderer, interactionManager);
+    state.api = data
 
     this.cameraHandler = this.cameraHandler.bind(this);
     this.motionHandler = this.motionHandler.bind(this);
     this.zoomOutHandler = this.zoomOutHandler.bind(this);
 
-    ball1Function = ball1
-    ball2Function = ball2
-    ball3Function = ball3
-    ball4Function = ball4
-    ball5Function = ball5
-    ball6Function = ball6
+    ballClickFunction = ballFunction
     onLoadFunction = onLoad
     loadedFunction = loadedCallback
 
@@ -150,113 +139,66 @@ class World {
         wireframe: false,
         gltf: models.touchModel,
         ...state.api.model_config_1,
-        name: 'Ball1'
+        name: 'Touch'
       }),
       ball2: setupBall({
         wireframe: false,
         gltf: models.synesthesiaModel, 
         ...state.api.model_config_2,
-        name: 'Ball2'
+        name: 'Synesthesia'
       }),
       ball3: setupBall({
         wireframe: false,
         gltf: models.sightModel,
         ...state.api.model_config_3,
-        name: 'Ball3'
+        name: 'Sight'
       }),
       ball4: setupBall({
         wireframe: false,
         gltf: models.hearingModel,
         ...state.api.model_config_4,
-        name: 'Ball4'
+        name: 'Hearing'
       }),
       ball5: setupBall({
         wireframe: false,
         gltf: models.smellModel,
         ...state.api.model_config_5,
-        name: 'Ball5'
+        name: 'Smell'
       }),
       ball6: setupBall({
         wireframe: false,
         gltf: models.tasteModel,
         ...state.api.model_config_6,
-        name: 'Ball6'
+        name: 'Taste'
       }),
     }
-
-    for (const [name, object] of Object.entries(balls)) {
+    
+    // ADD BALLS
+    Object.entries(balls).forEach(([name, object], index) => {
       interactionManager.add(object);
       loop.updatables.push(object);
       scene.add(object);
-    }
-
-    // CLICK FUNCTIONS
-    balls.ball1.addEventListener('click', (event) => {
-      event.stopPropagation();
-      ball1Function()
+      // INTERACTION:
+      object.addEventListener('click', (event) => {
+        event.stopPropagation();
+        ballClickFunction(object.name, index);
+      });
+      object.addEventListener('mouseover', (event) => {
+        event.stopPropagation();
+        document.body.style.cursor = "pointer";
+        console.log(`${object.name} HOVER IN`)
+      });
+      object.addEventListener('mouseout', (event) => {
+        event.stopPropagation();
+        document.body.style.cursor = "default";
+        console.log(`${object.name} HOVER OUT`)
+      });
+      console.log(`OBJECT NAME: ${object.name} LOADED`);
     });
 
-    balls.ball2.addEventListener('click', (event) => {
-      event.stopPropagation();
-      ball2Function()
-    });
-
-    balls.ball3.addEventListener('click', (event) => {
-      event.stopPropagation();
-      ball3Function()
-    });
-
-    balls.ball4.addEventListener('click', (event) => {
-      event.stopPropagation();
-      ball4Function()
-    });
-
-    balls.ball5.addEventListener('click', (event) => {
-      event.stopPropagation();
-      ball5Function()
-    });
-
-    balls.ball6.addEventListener('click', (event) => {
-      event.stopPropagation();
-      ball6Function()
-    });
-
-    // HOVER FUNCTIONS
-    /*
-    balls.ball1.addEventListener('mouseover', (event) => {
-      event.stopPropagation();
-      console.log('ball 1 hover')
-    });
-
-    balls.ball2.addEventListener('mouseover', (event) => {
-      event.stopPropagation();
-      console.log('ball 2 hover')
-    });
-
-    balls.ball3.addEventListener('mouseover', (event) => {
-      event.stopPropagation();
-      console.log('ball 3 hover')
-    });
-
-    balls.ball4.addEventListener('mouseover', (event) => {
-      event.stopPropagation();
-      console.log('ball 4 hover')
-    });
-
-    balls.ball5.addEventListener('mouseover', (event) => {
-      event.stopPropagation();
-      console.log('ball 5 hover')
-    });
-
-    balls.ball6.addEventListener('mouseover', (event) => {
-      event.stopPropagation();
-      console.log('ball 6 hover')
-    });
-    */
-    
     setTimeout(() => {
-      this.cameraHandler(1)
-    }, 50)
+      this.cameraHandler(0)
+    }, 150)
   }
 }
 
