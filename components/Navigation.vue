@@ -1,13 +1,13 @@
 <template>
-  <menu id="nav-container" :class="'bezier-300'">
+  <menu id="nav-container" :class="[popup && 'hide', 'bezier-300']">
     <button 
       v-for="(item, index) in scenes" 
       :key="`slide-button-${index}`"
-      :class="['nav-button', item.loaded ? 'loaded' : 'ball-loading', scene === (index + 1) && 'active']"
+      :class="['nav-button', item.loaded ? 'loaded' : 'ball-loading', currentScene === (index + 1) && 'active']"
       @click="navHandler(index)"
       @mouseenter="hoverHandler"
     >
-      <span class="bezier-300">{{item.title}}</span>
+      <span :class="['bezier-300', item.title]">{{item.title}}</span>
     </button>
   </menu>
 </template>
@@ -32,6 +32,7 @@ export default {
       bgSound: null,
       hoverSound: null,
       clickSound: null,
+      currentScene: 0,
       opts: {
         autoplay: false,
         loop: true,
@@ -44,13 +45,13 @@ export default {
       src: [this.sounds.hover],
       autoplay: false,
       loop: false,
-      volume: 0.35
+      volume: 0.15
     })
     this.clickSound = new Howl({
       src: [this.sounds.click],
       autoplay: false,
       loop: false,
-      volume: 0.35
+      volume: 0.15
     })
   },
   methods: {
@@ -63,34 +64,26 @@ export default {
     navHandler(index) {
       this.cameraHandler(index)
       this.clickSound.play()
-      if(this.bgSound !== null) {
-        this.bgSound.stop()
-      }
+      
       let sound;
       switch (index) {
         case 0:
-          this.setScene(1)
-          sound = this.sounds.scenes.ball_1
+          this.currentScene = 1
           break;
         case 1:
-          this.setScene(2)
-          sound = this.sounds.scenes.ball_2
+          this.currentScene = 2
           break;
         case 2:
-          this.setScene(3)
-          sound = this.sounds.scenes.ball_3
+          this.currentScene = 3
           break;
         case 3:
-          this.setScene(4)
-          sound = this.sounds.scenes.ball_4
+          this.currentScene = 4
           break;
         case 4:
-          this.setScene(5)
-          sound = this.sounds.scenes.ball_5
+          this.currentScene = 5
           break;
         case 5:
-          this.setScene(6)
-          sound = this.sounds.scenes.ball_6
+          this.currentScene = 6
           break;
         default:
           console.log(`SCENE INDEx ${index}.`);
@@ -114,10 +107,10 @@ export default {
 
 <style lang="scss">
   :root {
-    --nav-wrapper: 12rem;
-    --nav-dot: 2.5rem; 
+    --nav-wrapper: 15rem;
+    --nav-dot: 2.75rem; 
     --nav-border: 2px solid white;
-    --nav-left: 6rem;
+    --nav-left: 10vmin;
   }
   @keyframes spin {
     from {
@@ -127,25 +120,40 @@ export default {
       transform: rotate(360deg);
     }
   }
-  @keyframes pulseOpacity {
-    from {
-      opacity: 0;
-    }
-    to { 
-      opacity: .5;
-    }
-  }
   #nav-container {
     position: fixed;
-    top: 6rem;
+    bottom: 5vmin;
+    bottom: 5vmin;
     left: var(--nav-left);
     z-index: 12000;
     width: var(--nav-wrapper);
     height: var(--nav-wrapper);
-    opacity: 0;
-    display: none;
-    &.show {
-      display: block;
+    &.hide {
+      pointer-events: none;
+      opacity: 0;
+    }
+    &.intro {
+      pointer-events: none;
+    }
+    &.loading {
+      animation: spin 2000ms infinite;
+    }
+    &.Touch .Touch {
+      opacity: 1;
+    }
+    &.Taste .Taste {
+      opacity: 1;
+    }
+    &.Sight .Sight {
+      opacity: 1;
+    }
+    &.Hearing .Hearing {
+      opacity: 1;
+    }
+    &.Smell .Smell {
+      opacity: 1;
+    }
+    &.Synesthesia .Synesthesia {
       opacity: 1;
     }
   }
@@ -157,7 +165,8 @@ export default {
     width: 100%;
     height: 100%;
     border-radius: calc(var(--nav-wrapper) / 2);
-    border: 1px solid blue;
+    border: 1px solid rgba(255, 255, 255, .8);
+    border-style: dashed;
     z-index: 0;
   }
   .nav-button {
@@ -176,7 +185,7 @@ export default {
       opacity: 0;
       width: var(--nav-wrapper);
       text-align: center;
-      top:  2rem;
+      bottom:  calc(5vmin + var(--nav-wrapper) + 2rem);
       left: var(--nav-left);
       color: white;
       font-family: var(--font-a);
@@ -185,7 +194,7 @@ export default {
     }
     &.ball-loading {
       span { display: none; }
-      animation: pulseOpacity 1000ms infinite;
+      animation: pulseAlpha 2000ms infinite;
     }
     &.loaded {
       opacity: 1;

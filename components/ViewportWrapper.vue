@@ -36,6 +36,7 @@ export default {
   position: fixed;
   overflow-x: hidden;
   overflow-y: scroll;
+  backface-visibility: hidden;
 }
 @media (--lg) {
   .viewport-wrapper {

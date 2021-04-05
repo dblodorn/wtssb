@@ -27,13 +27,14 @@ let scene;
 let loop;
 let interactionManager;
 let balls;
-let ballClickFunction;
+let clickHandler;
+let mouseOverHandler;
+let mouseOutHandler;
 let onLoadFunction;
 let loadedFunction;
 let skyBox;
 class World {
-  
-  constructor({container, data, onLoad, ballFunction, loadedCallback}) {
+  constructor({container, data, onLoad, ballFunction, mouseOverFunction, mouseOutFunction,  loadedCallback}) {
     camera = createCamera(container);
     scene = createScene();
     renderer = createRenderer(container);
@@ -50,7 +51,9 @@ class World {
     this.motionHandler = this.motionHandler.bind(this);
     this.zoomOutHandler = this.zoomOutHandler.bind(this);
 
-    ballClickFunction = ballFunction
+    clickHandler = ballFunction
+    mouseOutHandler = mouseOutFunction
+    mouseOverHandler = mouseOverFunction
     onLoadFunction = onLoad
     loadedFunction = loadedCallback
 
@@ -181,24 +184,20 @@ class World {
       // INTERACTION:
       object.addEventListener('click', (event) => {
         event.stopPropagation();
-        ballClickFunction(object.name, index);
+        clickHandler(object.name, index);
       });
       object.addEventListener('mouseover', (event) => {
         event.stopPropagation();
         document.body.style.cursor = "pointer";
-        console.log(`${object.name} HOVER IN`)
+        mouseOverHandler(object.name)
       });
       object.addEventListener('mouseout', (event) => {
         event.stopPropagation();
         document.body.style.cursor = "default";
-        console.log(`${object.name} HOVER OUT`)
+        mouseOutHandler(object.name)
       });
       console.log(`OBJECT NAME: ${object.name} LOADED`);
     });
-
-    setTimeout(() => {
-      this.cameraHandler(0)
-    }, 150)
   }
 }
 

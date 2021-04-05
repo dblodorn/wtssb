@@ -49,6 +49,17 @@ export default {
 </script>
 
 <style lang="scss">
+  @keyframes pulseAlpha {
+    0% {
+      opacity: 0.25;
+    }
+    50% { 
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.25;
+    }
+  }
   .video-wrapper {
     z-index: 100;
     position: absolute;
@@ -56,6 +67,7 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
+    pointer-events: none;
     img,
     video {
       object-fit: cover;
