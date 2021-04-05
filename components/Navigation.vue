@@ -1,5 +1,5 @@
 <template>
-  <menu id="nav-container" :class="[popup && 'hide', 'bezier-300']">
+  <menu id="nav-container" :class="'bezier-300'">
     <button 
       v-for="(item, index) in scenes" 
       :key="`slide-button-${index}`"
@@ -142,11 +142,11 @@ export default {
     z-index: 12000;
     width: var(--nav-wrapper);
     height: var(--nav-wrapper);
-    &.hide {
+    opacity: 0;
+    display: none;
+    &.show {
+      display: block;
       opacity: 1;
-    }
-    &.loading {
-      animation: spin 2000ms infinite;
     }
   }
   #nav-container:after {

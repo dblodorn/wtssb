@@ -253,11 +253,10 @@ class World {
       console.log('ball 6 hover')
     });
     */
-    /*
+    
     setTimeout(() => {
       this.cameraHandler(1)
     }, 50)
-    */
   }
 }
 

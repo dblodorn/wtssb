@@ -2,24 +2,24 @@
   <viewport-wrapper :zIndex="1">
     <portal to="navigation">
       <navigation
-        :class="!modelsLoaded && 'loading'"
+        :class="!intro && 'show'"
         :cameraHandler="(slide) => cameraHandler(slide)"
         :sounds="{scenes: data.planetary_ball_scene, hover: data.nav_hover_sound, click: data.nav_click_sound}"
       />
     </portal>
     <portal v-if="intro" to="intro">
       <viewport-wrapper :zIndex="10">
-        <intro :video="data.intro_video">
-          <transition name="fade">
-            <button 
-              v-if="modelsLoaded" 
-              id="enter-button"
-              class="lozenge-button small"
-              @click="enterHandler"
-            >
-                <span>ENTER</span>
-            </button>
-          </transition>
+        <intro 
+          :video="data.intro_video"
+          :copy="data.intro_copy"
+        >
+          <button 
+            :class="['button-wrapper bezier-300', modelsLoaded ? 'loaded' : 'loading']"
+            @click="enterHandler"
+          >
+            <span class="loading-text h1 bezier-300 white">LOADING</span>
+            <span class="launch-text h1 bezier-300 black">LAUNCH</span>
+          </button>
         </intro>
       </viewport-wrapper>
     </portal>
@@ -30,12 +30,12 @@
             :chatData="currentChat"
             :sense="sense"
           >
-            <button @click="closeHandler(currentSlide)" class="close-button">
+            <button @click="closeHandler" class="close-button">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><title>e-remove</title><g stroke-width="1" fill="var(--white)" stroke="var(--white)"><line fill="none" stroke="var(--white)" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="13.5" y1="2.5" x2="2.5" y2="13.5"></line> <line fill="none" stroke="var(--white)" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="2.5" y1="2.5" x2="13.5" y2="13.5"></line></g></svg>
             </button>
           </chat>
           <div class="video-wrapper">
-            <video v-if="video" playsinline muted autoplay loop src="/Smell_Scene_v1d-Arnold.mp4"></video>
+            <video v-if="video" playsinline muted autoplay loop :src="video"></video>
           </div>
         </div>
       </viewport-wrapper>
@@ -50,7 +50,7 @@
 
 <script>
 import axios from 'axios'
-import { mapMutations, mapActions } from 'vuex'
+import { mapMutations } from 'vuex'
 
 import { 
   startWorld, 
@@ -63,7 +63,6 @@ import { Howl } from 'howler'
 import Navigation from '@/components/Navigation'
 import Intro from '@/components/Intro'
 import Chat from '@/components/Chat'
-
 
 export default {
   layout: 'threelanding',
@@ -160,9 +159,8 @@ export default {
       cameraHandler(slide)
       clearTimeout(this.modalTimeout)
     },
-    closeHandler(slide) {
+    closeHandler() {
       this.modal = false
-      cameraHandler(slide)
       this.setPopup(false)
       this.setScene(false)
     },
@@ -282,5 +280,65 @@ export default {
     bottom: 2rem;
     right: 2rem;
     z-index: 1000;
+  }
+  // LOADING
+  @keyframes pulseBorder {
+    0% {
+      border-color: rgba(255,255,255, 0.25);
+    }
+    50% { 
+      border-color: rgba(255,255,255, 1);
+    }
+    100% {
+      border-color: rgba(255,255,255, 0.25);
+    }
+  }
+  .button-wrapper {
+    position: fixed;
+    z-index: 10000;
+    left: 10vmin;
+    bottom: 5vmin;
+    border-radius: 50%;
+    padding: 2.5vmin 7vmin;
+    height: 7vmin;
+    width: 32vmin;
+    span {
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: 100%;
+      height: 4vmin;
+      top: 0;
+      bottom: 0;
+    }
+    &.loading {
+      border: 2px solid;
+      animation: pulseBorder 1000ms infinite;
+      background-color: rgba(255,255,255,0);
+      pointer-events: none;
+      .loading-text {
+        opacity: 1;
+      }
+      .launch-text {
+        opacity: 0;
+      }
+    }
+    &.loaded {
+      border: 2px solid var(--white);
+      background-color: rgba(255,255,255,1);
+      .loading-text {
+        opacity: 0;
+      }
+      .launch-text {
+        opacity: 1;
+      }
+      &:hover {
+        background-color: var(--black);
+        span {
+          color: var(--white)!important;
+        }
+      }
+    }
   }
 </style>
