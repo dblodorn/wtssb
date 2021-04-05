@@ -1,0 +1,18 @@
+.nav-container.Touch > .Touch {
+  opacity: 1!important;
+}
+.nav-container.Taste > .Taste {
+  opacity: 1!important;
+}
+.nav-container.Sight > .Sight {
+  opacity: 1!important;
+}
+.nav-container.Hearing > .Hearing {
+  opacity: 1!important;
+}
+.nav-container.Smell > .Smell {
+  opacity: 1!important;
+}
+.nav-container.Synesthesia > .Synesthesia {
+  opacity: 1!important;
+}
