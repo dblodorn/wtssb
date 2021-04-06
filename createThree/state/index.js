@@ -7,11 +7,11 @@ export default {
   wireFrame: false,
   lights: {
     addLights: true,
-    exposure: 2.0,
+    exposure: 1.0,
     textureEncoding: 'sRGB',
     ambientIntensity: 1,
     ambientColor: 0xFFFFFF,
-    directIntensity: 3,
+    directIntensity: 2,
     directColor: 0xFFFFFF,
     bgColor1: "#f5fcfa",
     bgColor2: "#ff8b54",

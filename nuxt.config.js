@@ -25,7 +25,8 @@ export default {
     color: '#fff'
   },
   css: [
-    '~assets/css/main.css'
+    '~assets/css/main.css',
+    '~assets/css/wtssb.css'
   ],
   plugins: [
     { src: '~plugins/event-bus' },
@@ -40,8 +41,7 @@ export default {
   purgeCSS: {
     whitelist: [
       ...whitelister([
-        'assets/css/wtssb.css',
-        'assets/css/aos.css'
+        'assets/css/wtssb.css'
       ])
     ]
   },

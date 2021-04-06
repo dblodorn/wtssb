@@ -138,24 +138,7 @@ export default {
     &.loading {
       animation: spin 2000ms infinite;
     }
-    &.Touch .Touch {
-      opacity: 1;
-    }
-    &.Taste .Taste {
-      opacity: 1;
-    }
-    &.Sight .Sight {
-      opacity: 1;
-    }
-    &.Hearing .Hearing {
-      opacity: 1;
-    }
-    &.Smell .Smell {
-      opacity: 1;
-    }
-    &.Synesthesia .Synesthesia {
-      opacity: 1;
-    }
+    
   }
   #nav-container:after {
     content: "";
