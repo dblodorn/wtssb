@@ -22,6 +22,14 @@ export const clearWorld = () => {
   world.stop();
 }
 
+export const enterWorld = () => {
+  world.enterWorld();
+}
+
+export const closeFunction = (scene) => {
+  world.closeHandler(scene);
+}
+
 export const cameraHandler = (slide) => {
   world.cameraHandler(slide);
 }

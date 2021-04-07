@@ -5,11 +5,12 @@ import gsap from 'gsap';
 import state from './state'
 import loadBalls from './components/models/loadBalls';
 import setupBall from './components/models/setupBall';
-import createSkybox from './components/createSkybox'
+import * as wireframe from './components/models/makeWireframe';
+import createSkybox from './components/createSkybox';
 
 import { createCamera } from './components/camera';
 import { createScene } from './components/scene';
-import { createControls } from './components/controls'
+import { createControls } from './components/controls';
 
 import { createPointLights } from './components/lights/pointLights';
 import { createAmbientLights } from './components/lights/ambientLights';
@@ -33,6 +34,8 @@ let mouseOutHandler;
 let onLoadFunction;
 let loadedFunction;
 let skyBox;
+
+let zoomed = false;
 class World {
   constructor({container, data, onLoad, ballFunction, mouseOverFunction, mouseOutFunction,  loadedCallback}) {
     camera = createCamera(container);
@@ -48,6 +51,7 @@ class World {
     state.api = data
 
     this.cameraHandler = this.cameraHandler.bind(this);
+    this.closeHandler = this.closeHandler.bind(this);
     this.motionHandler = this.motionHandler.bind(this);
     this.zoomOutHandler = this.zoomOutHandler.bind(this);
 
@@ -137,6 +141,33 @@ class World {
     }
   }
 
+  closeHandler(scene) {
+    zoomed = false;
+    this.cameraHandler('center')
+    switch (scene) {
+      case 'Touch':
+        wireframe.click(balls.ball1, 'close')
+        break;
+      case 'Synesthesia':
+        wireframe.click(balls.ball2, 'close')
+        break;
+      case 'Sight':
+        wireframe.click(balls.ball3, 'close')
+        break;
+      case 'Hearing':
+        wireframe.click(balls.ball4, 'close')
+        break;
+      case 'Smell':
+        wireframe.click(balls.ball5, 'close')
+        break;
+      case 'Taste':
+        wireframe.click(balls.ball6, 'close')
+        break;
+      default:
+        console.log(`NO SCENE`);
+    }
+  }
+
   /* RENDER */
   render() {
     renderer.render(scene, camera);
@@ -149,6 +180,23 @@ class World {
   stop() {
     loop.stop();
     renderer.dispose();
+  }
+
+  enterWorld() {
+    /*
+    gsap.to(controls.target, 15, {
+      x: 0,
+      y: 0,
+      z: 0,
+      ease: 'expo.out',
+    })
+    gsap.to(camera.position, 15, {
+      x: 0,
+      y: 200,
+      z: -200,
+      ease: 'expo.out',
+    })
+    */
   }
 
   async init() {
@@ -207,24 +255,27 @@ class World {
       object.addEventListener('click', (event) => {
         event.stopPropagation();
         clickHandler(object.name, index);
-        this.zoomOutHandler(object)
+        wireframe.click(object, 'open')
+        zoomed = true;
       });
       object.addEventListener('mouseover', (event) => {
         event.stopPropagation();
         document.body.style.cursor = "pointer";
-        mouseOverHandler(object.name)
+        if (!zoomed) {
+          mouseOverHandler(object.name)
+          wireframe.hoverIn(object)
+        }
       });
       object.addEventListener('mouseout', (event) => {
         event.stopPropagation();
         document.body.style.cursor = "default";
-        mouseOutHandler(object.name)
+        if (!zoomed) {
+          mouseOutHandler(object.name)
+          wireframe.hoverOut(object)
+        }
       });
       console.log(`OBJECT NAME: ${object.name} LOADED`);
     });
-    
-    setTimeout(() => {
-      this.cameraHandler('center');
-    }, 500);
   }
 }
 

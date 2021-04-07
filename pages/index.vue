@@ -9,7 +9,7 @@
     </portal>
     <portal v-if="intro" to="intro">
       <viewport-wrapper :zIndex="10">
-        <intro 
+        <intro
           :video="data.intro_video"
           :copy="data.intro_copy"
         >
@@ -30,7 +30,7 @@
           sense: sense,
           video: video
         }"
-        :closeHandler="closeHandler"
+        :closeHandler="(scene) => closeHandler(scene)"
       />
     </portal>
     <section 
@@ -48,7 +48,9 @@ import { mapMutations } from 'vuex'
 import { 
   startWorld, 
   clearWorld,
-  cameraHandler
+  cameraHandler,
+  enterWorld,
+  closeFunction
 } from './../createThree'
 
 import { Howl } from 'howler'
@@ -146,16 +148,17 @@ export default {
     enterHandler() {
       this.intro = false
       this.bgSound.play()
+      enterWorld()
     },
     cameraHandler(slide) {
       cameraHandler(slide)
       clearTimeout(this.modalTimeout)
     },
-    closeHandler() {
+    closeHandler(scene) {
       this.modal = false
-      cameraHandler('center')
+      closeFunction(scene)
       this.setPopup(false)
-      this.setScene(false)
+      this.setScene('center')
       this.sceneSound.stop()
     },
     loadedHandler() {
@@ -267,7 +270,7 @@ export default {
     pointer-events: none;
   }
   .modal-inner {
-    background-color: rgba(0,0,0,.75);
+    background-color: rgba(0,0,0,.15);
   }
   #three-world {
     opacity: 0;

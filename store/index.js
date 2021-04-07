@@ -1,7 +1,7 @@
 export const state = () => ({
   api: false,
   popup: false,
-  scene: false,
+  currentScene: 'center',
   scenes: [
     {
       title: 'Touch',
@@ -49,7 +49,7 @@ export const mutations = {
     state.popup = bool
   },
   setScene(state, number) {
-    state.scene = number
+    state.currentScene = number
   },
   ballLoaded(state, ball) {
     switch (ball) {

@@ -25,21 +25,18 @@ export default function({wireframe, gltf, x, y, z, scale, speed, animation_speed
   model.position.set(x, y, z);
   model.name = name
 
-  const toggleWireframe = (state) => {
-    if (state === true) {
-      model.traverse(function(child) {
-        if (child.isMesh) {
-          const wireframeGeometry = new WireframeGeometry(child.geometry);
-          const wireframeMaterial = new LineBasicMaterial({color: 0x000000});
-          const wireframe = new LineSegments(wireframeGeometry, wireframeMaterial);
-          wireframe.name = 'wireframe';
-          child.add(wireframe);
-        }
+  model.traverse(function(child) {
+    if (child.isMesh) {
+      const wireframeGeometry = new WireframeGeometry(child.geometry);
+      const wireframeMaterial = new LineBasicMaterial({
+        color: 0xFFFFFF
       });
+      const wireframe = new LineSegments(wireframeGeometry, wireframeMaterial);
+      wireframe.name = 'wireframe';
+      child.add(wireframe);
+      child.children[0].visible = false
     }
-  }
-
-  toggleWireframe(wireframe)
+  });
 
   const mixer = new AnimationMixer(model);
   const action = mixer.clipAction(clip);

@@ -38,7 +38,7 @@ export default {
       bgSound: null,
       hoverSound: null,
       clickSound: null,
-      currentScene: 'center',
+      // currentScene: 'center',
       opts: {
         autoplay: false,
         loop: true,
@@ -74,25 +74,32 @@ export default {
       let sound;
       switch (index) {
         case 0:
-          this.currentScene = 1
+          // this.currentScene = 1
+          this.setScene(1)
           break;
         case 1:
-          this.currentScene = 2
+          // this.currentScene = 2
+          this.setScene(2)
           break;
         case 2:
-          this.currentScene = 3
+          // this.currentScene = 3
+          this.setScene(3)
           break;
         case 3:
-          this.currentScene = 4
+          // this.currentScene = 4
+          this.setScene(4)
           break;
         case 4:
-          this.currentScene = 5
+          // this.currentScene = 5
+          this.setScene(5)
           break;
         case 5:
-          this.currentScene = 6
+          // this.currentScene = 6
+          this.setScene(6)
           break;
         case 'center':
-          this.currentScene = 'center'
+          // this.currentScene = 'center'
+          this.setScene('center')
           break;
         default:
           console.log(`SCENE INDEx ${index}.`);
@@ -108,7 +115,7 @@ export default {
     ...mapState({
       popup: 'popup',
       scenes: 'scenes',
-      scene: 'scene'
+      currentScene: 'currentScene'
     })
   }
 }
