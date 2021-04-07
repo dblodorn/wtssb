@@ -56,11 +56,13 @@ export default {
   .intro-copy {
     position: fixed;
     z-index: 10000;
-    width: 70%;
+    width: 90vmin;
     top: 5vmin;
     left: 10vmin;
     * {
       color: var(--white);
+      font-family: var(--cirka);
+      font-weight: 300;
       font-size: 6vmin;
       line-height: 1.2;
     }

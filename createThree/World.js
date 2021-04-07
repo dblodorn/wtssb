@@ -77,14 +77,16 @@ class World {
   }
 
   motionHandler(object, speed) {
-    console.log('motion', object.name, controls.target, {x: object.position.x,
-    y: object.position.y,
-    z: object.position.z})
-    
+    gsap.to(camera.position, speed / 5, {
+      x: object.position.x,
+      y: object.position.y,
+      z: object.position.z - 40,
+      ease: 'expo.out',
+    })
     gsap.to(controls.target, speed, {
       x: object.position.x,
       y: object.position.y,
-      z: object.position.z - 10,
+      z: object.position.z,
       ease: 'expo.out',
     })
   }
@@ -100,6 +102,7 @@ class World {
   }
 
   cameraHandler(slide) {
+    console.log(slide)
     if (slide === 0) {
       this.motionHandler(balls.ball1, 6)
     } else if (slide === 1) {
@@ -112,6 +115,19 @@ class World {
       this.motionHandler(balls.ball5, 6)
     } else if (slide === 5) {
       this.motionHandler(balls.ball6, 6)
+    } else if (slide === 'center') {
+      gsap.to(controls.target, 5, {
+        x: 0,
+        y: 0,
+        z: 0,
+        ease: 'expo.out',
+      })
+      gsap.to(camera.position, 5, {
+        x: 0,
+        y: 200,
+        z: -180,
+        ease: 'expo.out',
+      })
     }
   }
 
@@ -198,6 +214,10 @@ class World {
       });
       console.log(`OBJECT NAME: ${object.name} LOADED`);
     });
+    
+    setTimeout(() => {
+      this.cameraHandler('center');
+    }, 500);
   }
 }
 

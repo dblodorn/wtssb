@@ -17,8 +17,8 @@
             :class="['button-wrapper bezier-300', modelsLoaded ? 'loaded' : 'loading']"
             @click="enterHandler"
           >
-            <span class="loading-text sm-size font-b bezier-300 white">LOADING</span>
-            <span class="launch-text sm-size font-b bezier-300 white">LAUNCH</span>
+            <span class="loading-text sm-size font-a bezier-300">LOADING</span>
+            <span class="launch-text sm-size font-a bezier-300">LAUNCH</span>
           </button>
         </intro>
       </viewport-wrapper>
@@ -289,21 +289,22 @@ export default {
   .button-wrapper {
     position: fixed;
     z-index: 10000;
-    left: 10vmin;
+    left: var(--nav-left);
     bottom: 5vmin;
     height: var(--nav-wrapper);
     width: var(--nav-wrapper);
-    border-radius: calc(var(--nav-wrapper) / 2);
+    border-radius: 50rem;
     span {
       position: absolute;
       left: 0;
       right: 0;
       margin: auto;
-      width: 100%;
+      width: 6.5rem;
       height: 1.65rem;
       line-height: 1;
       top: 0;
       bottom: 0;
+      color: var(--nav-green);
     }
     &.loading {
       pointer-events: none;
@@ -316,16 +317,21 @@ export default {
       }
     }
     &.loaded {
+      background-color: var(--nav-bg-blue);
       .loading-text {
         opacity: 0;
       }
       .launch-text {
         opacity: 1;
-      }
-      &:hover {
-        background-color: var(--black);
-        span {
-          color: var(--white)!important;
+        &:after {
+          content: '';
+          width: 100%;
+          position: absolute;
+          left: 0;
+          right: 0;
+          margin: auto;
+          bottom: -3px;
+          border-bottom: 1px solid var(--nav-green);
         }
       }
     }

@@ -9,6 +9,12 @@
     >
       <span :class="['bezier-300', item.title]">{{item.title}}</span>
     </button>
+    <button
+      :class="['nav-button center-nav loaded', currentScene === 'center' && 'active']"
+      @click="navHandler('center')"
+    >
+      <span>Center</span>
+    </button>
   </menu>
 </template>
 
@@ -32,7 +38,7 @@ export default {
       bgSound: null,
       hoverSound: null,
       clickSound: null,
-      currentScene: 0,
+      currentScene: 'center',
       opts: {
         autoplay: false,
         loop: true,
@@ -85,6 +91,9 @@ export default {
         case 5:
           this.currentScene = 6
           break;
+        case 'center':
+          this.currentScene = 'center'
+          break;
         default:
           console.log(`SCENE INDEx ${index}.`);
       }
@@ -108,9 +117,14 @@ export default {
 <style lang="scss">
   :root {
     --nav-wrapper: 15rem;
-    --nav-dot: 2.75rem; 
-    --nav-border: 2px solid white;
+    --nav-dot: 3rem; 
+    --nav-border: var(--border-weight) solid white;
+    --border-weight: 1.5px;
+    --nav-fill: rgba(255,255,255,0.5);
     --nav-left: 10vmin;
+    --nav-green: #02f500;
+    --nav-blue: #0000ff;
+    --nav-bg-blue: #00006f;
   }
   @keyframes spin {
     from {
@@ -123,7 +137,6 @@ export default {
   #nav-container {
     position: fixed;
     bottom: 5vmin;
-    bottom: 5vmin;
     left: var(--nav-left);
     z-index: 12000;
     width: var(--nav-wrapper);
@@ -134,22 +147,23 @@ export default {
     }
     &.intro {
       pointer-events: none;
+      .center-nav {
+        display: none;
+      }
     }
     &.loading {
       animation: spin 2000ms infinite;
-    }
-    
+    }  
   }
   #nav-container:after {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
+    top: calc(var(--border-weight) * -1);
+    left: calc(var(--border-weight) * -1);
     width: 100%;
     height: 100%;
-    border-radius: calc(var(--nav-wrapper) / 2);
-    border: 1px solid rgba(255, 255, 255, .8);
-    border-style: dashed;
+    border-radius: 50rem;
+    border: var(--border-weight) solid var(--nav-blue);
     z-index: 0;
   }
   .nav-button {
@@ -161,7 +175,22 @@ export default {
     z-index: 1;
     opacity: 0;
     &.active {
-      background-color: var(--white);
+      background: var(--nav-fill);
+      pointer-events: none;
+    }
+    &.center-nav {
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      border-style: dashed;
+      border-color: var(--nav-green);
+      &:hover,
+      &.active {
+        background-color: var(--nav-green);
+        border-style: solid;
+      }
     }
     span {
       position: fixed;
@@ -185,7 +214,7 @@ export default {
   }
   @media (hover:hover) {
     .nav-button:hover {
-      background: var(--white);
+      background: var(--nav-fill);
     }
     .nav-button:hover span {
       opacity: 1;
