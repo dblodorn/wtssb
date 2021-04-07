@@ -93,10 +93,16 @@ class World {
 
   zoomOutHandler(object) {
     console.log('zoom', object)
-    gsap.to(controls.target, 10, {
-      x: object.position.x - 15,
-      y: object.position.y - 15,
-      z: object.position.z - 15,
+    gsap.to(camera.position, 2, {
+      x: object.position.x,
+      y: object.position.y,
+      z: object.position.z + 140,
+      ease: 'expo.out',
+    })
+    gsap.to(controls.target, 2, {
+      x: object.position.x,
+      y: object.position.y,
+      z: object.position.z,
       ease: 'expo.out',
     })
   }
@@ -201,6 +207,7 @@ class World {
       object.addEventListener('click', (event) => {
         event.stopPropagation();
         clickHandler(object.name, index);
+        this.zoomOutHandler(object)
       });
       object.addEventListener('mouseover', (event) => {
         event.stopPropagation();

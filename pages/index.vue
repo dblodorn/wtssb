@@ -153,6 +153,7 @@ export default {
     },
     closeHandler() {
       this.modal = false
+      cameraHandler('center')
       this.setPopup(false)
       this.setScene(false)
       this.sceneSound.stop()
@@ -164,7 +165,7 @@ export default {
       this.setPopup(true)
       this.modalTimeout = setTimeout(() => {
         this.modal = true
-      }, 50)
+      }, 500)
     },
     mouseOverHandler(name) {
       console.log(`${name} Over Handler`)
