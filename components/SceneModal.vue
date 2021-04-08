@@ -13,6 +13,7 @@
         <video v-if="sceneData.video" playsinline muted autoplay loop :src="sceneData.video"></video>
       </div>
     </div>
+    <div class="modal-background" @click="closeHandler(sceneData.sense)"/>
   </viewport-wrapper>
 </template>
 
@@ -39,6 +40,14 @@ export default {
 <style lang="scss">
   :root {
     --img-wrapper-size: 95vh;
+  }
+  .modal-background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
   }
   .scene-image-wrapper {
     z-index: 100;

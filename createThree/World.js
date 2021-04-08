@@ -183,20 +183,20 @@ class World {
   }
 
   enterWorld() {
-    /*
-    gsap.to(controls.target, 15, {
+    gsap.to(controls.target, 5, {
       x: 0,
       y: 0,
       z: 0,
       ease: 'expo.out',
+      onComplete: () => console.log('enter-done-controls')
     })
-    gsap.to(camera.position, 15, {
+    gsap.to(camera.position, 5, {
       x: 0,
       y: 200,
       z: -200,
       ease: 'expo.out',
+      onComplete: () => console.log('enter-done-camera')
     })
-    */
   }
 
   async init() {

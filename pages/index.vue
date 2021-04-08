@@ -269,9 +269,6 @@ export default {
   #three-world.loading {
     pointer-events: none;
   }
-  .modal-inner {
-    background-color: rgba(0,0,0,.15);
-  }
   #three-world {
     opacity: 0;
     pointer-events: none;
