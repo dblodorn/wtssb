@@ -10,10 +10,12 @@
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><title>e-remove</title><g stroke-width="1" fill="var(--white)" stroke="var(--white)"><line fill="none" stroke="var(--white)" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="13.5" y1="2.5" x2="2.5" y2="13.5"></line> <line fill="none" stroke="var(--white)" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="2.5" y1="2.5" x2="13.5" y2="13.5"></line></g></svg>
         </button>
       </chat>
-      <div class="scene-image-wrapper">
-        <video v-if="currentAsset.type === 'video'" playsinline muted autoplay loop :src="currentAsset.file"/>
-        <img v-else :src="currentAsset.file">
-      </div>
+      <transition name="fade" mode="out-in">
+        <div class="scene-image-wrapper" :key="currentAsset.file">
+          <video v-if="currentAsset.type === 'video'" playsinline muted autoplay loop :src="currentAsset.file"/>
+          <img v-else :src="currentAsset.file">
+        </div>
+      </transition>
     </div>
     <div class="modal-background" @click="closeHandler(sceneData.sense)"/>
   </viewport-wrapper>
