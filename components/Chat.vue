@@ -10,7 +10,10 @@
         :key="`ln-${i}`"
         class="chat-item"
       >
-        <chat-item :chat="chat"/>
+        <chat-item 
+          :chat="chat"
+          :imageHandler="(arg) =>  imageCallback(arg)"
+        />
       </li>
     </ul>
   </div>
@@ -32,6 +35,10 @@ export default {
     sense: {
       type: String,
       default: 'Sense'
+    },
+    imageCallback: {
+      type: Function,
+      default: (arg) => console.log(arg)
     }
   }
 }

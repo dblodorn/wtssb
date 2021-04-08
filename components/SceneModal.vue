@@ -4,13 +4,15 @@
       <chat 
         :chatData="sceneData.currentChat"
         :sense="sceneData.sense"
+        :imageCallback="(arg) =>  imageCallback(arg)"
       >
         <button @click="closeHandler(sceneData.sense)" class="close-button">
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"><title>e-remove</title><g stroke-width="1" fill="var(--white)" stroke="var(--white)"><line fill="none" stroke="var(--white)" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="13.5" y1="2.5" x2="2.5" y2="13.5"></line> <line fill="none" stroke="var(--white)" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" x1="2.5" y1="2.5" x2="13.5" y2="13.5"></line></g></svg>
         </button>
       </chat>
       <div class="scene-image-wrapper">
-        <video v-if="sceneData.video" playsinline muted autoplay loop :src="sceneData.video"></video>
+        <video v-if="currentAsset.type === 'video'" playsinline muted autoplay loop :src="currentAsset.file"/>
+        <img v-else :src="currentAsset.file">
       </div>
     </div>
     <div class="modal-background" @click="closeHandler(sceneData.sense)"/>
@@ -31,7 +33,23 @@ export default {
     },
     closeHandler: {
       type: Function,
-      default: () => {console.log('click')}
+      default: () => {}
+    }
+  },
+  data() {
+    return {
+      currentAsset: {
+        file: this.sceneData.video,
+        type: 'video'
+      }
+    }
+  },
+  methods: {
+    imageCallback(arg) {
+      this.currentAsset = {
+        file: arg,
+        type: 'image'
+      }
     }
   }
 }

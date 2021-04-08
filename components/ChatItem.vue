@@ -11,9 +11,11 @@
         <p v-html="chat.text"/>
       </div>
     </div>
+    <!--
     <div v-if="chat.acf_fc_layout === 'image'" class="image-wrapper">
       <img :src="chat.image">
     </div>
+    -->
   </div>
 </template>
 
@@ -23,6 +25,10 @@ export default {
   props: {
     chat: {
       type: Object
+    },
+    imageHandler: {
+      type: Function,
+      default: (arg) => console.log(arg)
     }
   },
   data () {
@@ -43,8 +49,11 @@ export default {
       if (container.isIntersecting) {
         this.intersected = true
         // this.in()
+        if (this.chat.acf_fc_layout === 'image') {
+          this.imageHandler(this.chat.image)
+        }
       } else {
-        // this.out()
+        // this.intersected = false
       }
     }, this.config)
     this.observer.observe(this.$el)
