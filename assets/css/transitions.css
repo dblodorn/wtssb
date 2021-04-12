@@ -6,3 +6,12 @@
 .fade-leave-to {
   opacity: 0;
 }
+
+.dissolve-enter-active,
+.dissolve-leave-active {
+  transition: opacity 500ms;
+}
+.dissolve-enter,
+.dissolve-leave-to {
+  opacity: 0;
+}

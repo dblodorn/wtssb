@@ -163,6 +163,34 @@ export default {
     },
     loadedHandler() {
       this.modelsLoaded = true
+      this.loadImages(() => console.log('images loaded'))
+    },
+    loadImages(callback) {
+      let imageArray = []
+
+      const chats = [
+        this.data.scene_1_chat, 
+        this.data.scene_2_chat,
+        this.data.scene_3_chat,
+        this.data.scene_4_chat,
+        this.data.scene_5_chat,
+        this.data.scene_6_chat
+      ]
+      
+      chats.forEach(chat => {
+        if (chat) {
+          chat.forEach(item => {
+            if (item.acf_fc_layout === 'image') {
+              console.log(item.image)
+              imageArray.push(item.image)
+            }
+          });
+        }
+      });
+      
+      this.$preloadAll(imageArray)
+        .then(images => callback(images))
+        .catch(err => callback(err))
     },
     modalPop() {
       this.setPopup(true)
@@ -265,6 +293,7 @@ export default {
     position: absolute;
     top: 0;
     left: 0;
+    overflow: hidden;
   }
   #three-world.loading {
     pointer-events: none;

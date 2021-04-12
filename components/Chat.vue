@@ -4,7 +4,7 @@
       <h6 class="white" v-html="sense"/>
       <slot/>
     </div>
-    <ul class="chat flex-column">
+    <ul class="chat flex-column" ref="chat">
       <li
         v-for="(chat, i) in chatData"
         :key="`ln-${i}`"
@@ -39,6 +39,32 @@ export default {
     imageCallback: {
       type: Function,
       default: (arg) => console.log(arg)
+    }
+  },
+  data() {
+    return {
+      rotate: 0
+    }
+  },
+  mounted() {
+    console.log('open chat')
+    console.log(this.$refs.chat.offsetHeight)
+    this.$refs.chat.addEventListener('scroll', 
+      (event) => this.scroll(event), { passive: true }
+    )
+  },
+  beforeDestroy() {
+    console.log('close chat')
+    this.$refs.chat.removeEventListener('scroll',
+      (event) => this.scroll(event), { passive: true }
+    )
+  },
+  methods: {
+    scroll(event) {
+      document.body.style.setProperty(
+        "--scroll",
+        event.target.scrollTop / (this.$refs.chat.offsetHeight - window.innerHeight)
+      );
     }
   }
 }

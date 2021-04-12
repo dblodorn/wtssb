@@ -34,6 +34,7 @@ export default {
     { src: "~plugins/components" },
     { src: "~plugins/global" },
     { src: '~plugins/aos', ssr: false },
+    { src: "~plugins/preloadAll" }
   ],
   buildModules: [
     'nuxt-purgecss'
