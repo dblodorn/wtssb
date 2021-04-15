@@ -58,6 +58,7 @@ class World {
     this.motionHandler = this.motionHandler.bind(this);
     this.startAnimation = this.startAnimation.bind(this);
     this.endAnimation = this.endAnimation.bind(this);
+    this.addInteraction = this.addInteraction.bind(this);
 
     clickHandler = ballFunction
     mouseOutHandler = mouseOutFunction
@@ -150,7 +151,6 @@ class World {
     zoomed = false;
     this.cameraHandler('center')
     marsBox.material.forEach(element => {
-      // element.opacity = 0
       gsap.to(element, 2, {
         opacity: 0,
         ease: 'expo.out',
@@ -192,6 +192,43 @@ class World {
   stop() {
     loop.stop();
     renderer.dispose();
+  }
+
+  // ADD INTERACTION
+  addInteraction() {
+    this.endAnimation('intro end')
+    Object.entries(balls).forEach(([name, object], index) => {
+      interactionManager.add(object);
+      // INTERACTION:
+      object.addEventListener('click', (event) => {
+        event.stopPropagation();
+        clickHandler(object.name, index);
+        marsBox.material.forEach(element => {
+          gsap.to(element, 2, {
+            opacity: 1,
+            ease: 'expo.out',
+          })
+        });
+        wireframe.click(object, 'open')
+        zoomed = true;
+      });
+      object.addEventListener('mouseover', (event) => {
+        event.stopPropagation();
+        document.body.style.cursor = "pointer";
+        if (!zoomed) {
+          wireframe.hoverIn(object)
+          mouseOverHandler(object.name)
+        }
+      });
+      object.addEventListener('mouseout', (event) => {
+        event.stopPropagation();
+        document.body.style.cursor = "default";
+        if (!zoomed ) {
+          wireframe.hoverOut(object)
+          mouseOutHandler(object.name)
+        }
+      });
+    });
   }
 
   enterWorld() {
@@ -286,7 +323,7 @@ class World {
       y: 200,
       z: -200,
       ease: 'expo.out',
-      onComplete: () => {this.endAnimation('intro end')}
+      onComplete: () => {this.addInteraction()}
     })
     tl.to(controls.target, 2, {
       x: 0,
@@ -353,39 +390,11 @@ class World {
     
     // ADD BALLS
     Object.entries(balls).forEach(([name, object], index) => {
-      interactionManager.add(object);
-      loop.updatables.push(object);
       scene.add(object);
-      // INTERACTION:
-      object.addEventListener('click', (event) => {
-        event.stopPropagation();
-        clickHandler(object.name, index);
-        marsBox.material.forEach(element => {
-          gsap.to(element, 2, {
-            opacity: 1,
-            ease: 'expo.out',
-          })
-        });
-        wireframe.click(object, 'open')
-        zoomed = true;
-      });
-      object.addEventListener('mouseover', (event) => {
-        event.stopPropagation();
-        document.body.style.cursor = "pointer";
-        if (!zoomed) {
-          wireframe.hoverIn(object)
-          mouseOverHandler(object.name)
-        }
-      });
-      object.addEventListener('mouseout', (event) => {
-        event.stopPropagation();
-        document.body.style.cursor = "default";
-        if (!zoomed ) {
-          wireframe.hoverOut(object)
-          mouseOutHandler(object.name)
-        }
-      });
+      loop.updatables.push(object);
     });
+
+    
   }
 }
 

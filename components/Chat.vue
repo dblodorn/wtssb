@@ -83,6 +83,14 @@ export default {
     --chat-x-pad: 3rem;
     --chat-y-pad: 1.5rem;
   }
+  @keyframes slideIn {
+    from {
+      transform: translateX(calc(var(--chat-width) * -1));
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
   .chat-close {
     position: absolute;
     top: 0;
@@ -103,6 +111,8 @@ export default {
     z-index: 1000;
     overflow: hidden;
     filter: drop-shadow(0px 0px 15px rgba(0,0,0,.25));
+    animation: slideIn 250ms once;
+    animation-fill-mode: both;
     * {
       font-family: var(--font-a);
       font-style: normal;
@@ -118,7 +128,7 @@ export default {
     overflow-x: hidden;
     padding: var(--chat-y-pad) 0;
   }
-  .chat-item {
+  .text {
     padding: 0 var(--chat-x-pad) 2rem;
     &:nth-child(odd) {
       .chat-name {
