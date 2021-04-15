@@ -7,25 +7,20 @@ export const state = () => ({
     {
       title: 'Touch',
       loaded: false
-    },
-    {
-      title: 'Synesthesia',
+    },{
+      title: 'Taste',
       loaded: false
-    },
-    {
-      title: 'Sight',
-      loaded: false
-    },
-    {
-      title: 'Hearing',
-      loaded: false
-    },
-    {
+    },{
       title: 'Smell',
       loaded: false
-    },
-    {
-      title: 'Taste',
+    },{
+      title: 'Hearing',
+      loaded: false
+    },{
+      title: 'Sight',
+      loaded: false
+    },{
+      title: 'Synesthesia',
       loaded: false
     }
   ]

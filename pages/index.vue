@@ -84,6 +84,7 @@ export default {
       currentChat: null,
       bgSound: null,
       sceneSound: null,
+      flythroughSound: null,
       intro: true,
       hoverSound: null,
       clickSound: null,
@@ -100,6 +101,12 @@ export default {
     this.bgSound = new Howl({
       src: [this.data.landing_page_audio],
       ...this.opts
+    })
+    this.flythroughSound = new Howl({
+      src: [this.data.flythrough_sound],
+      autoplay: false,
+      loop: false,
+      volume: 0.35
     })
     this.hoverSound = new Howl({
       src: [this.data.planetary_hover_sound],
@@ -159,6 +166,7 @@ export default {
     enterHandler() {
       this.intro = false
       this.bgSound.play()
+      this.flythroughSound.play()
       enterWorld()
     },
     cameraHandler(slide) {
