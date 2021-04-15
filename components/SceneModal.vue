@@ -197,11 +197,11 @@ export default {
     overflow-x: hidden;
     padding: 0 0 2rem;
   }
-  .chat-item {
+  .chat-item.image {
+    padding: 0!important;
+  }
+  .text {
     padding: 0 var(--chat-x-pad) 2rem;
-    &.image {
-      padding: 0!important;
-    }
     &:nth-child(odd) {
       .chat-name {
         background-color: var(--chat-orange);
