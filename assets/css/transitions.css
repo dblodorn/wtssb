@@ -9,7 +9,7 @@
 
 .dissolve-enter-active,
 .dissolve-leave-active {
-  transition: opacity 200ms;
+  transition: opacity 350ms;
 }
 .dissolve-enter,
 .dissolve-leave-to {

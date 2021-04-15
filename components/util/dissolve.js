@@ -6,7 +6,7 @@ export default Vue.component('dissolve', {
     var data = {
       props: {
         name: 'dissolve',
-        mode: 'in-out'
+        mode: 'out-in'
       },
       on: {
         beforeEnter: function (el) {},

@@ -12,7 +12,7 @@
           <li
             v-for="(chat, i) in sceneData.currentChat"
             :key="`ln-${i}`"
-            :class="['chat-item', chat.acf_fc_layout]"
+            :class="['chat-item', chat.acf_fc_layout, chat.feature_image && 'feature-image']"
           >
             <chat-item 
               :chat="chat"
@@ -35,13 +35,11 @@
 </template>
 
 <script>
-import Chat from './Chat'
 import ChatItem from './ChatItem'
 
 export default {
   name: 'SceneModal',
   components: {
-    Chat,
     ChatItem
   },
   props: {
@@ -64,6 +62,7 @@ export default {
     }
   },
   mounted() {
+    console.log('SCENE MOUNTED')
     const children = Array.from(this.$refs.chat.children)
     children.forEach(element => {
       this.chatHeight = this.chatHeight + element.children[0].scrollHeight
@@ -98,9 +97,9 @@ export default {
       transform: rotate(360deg);
     }
   }
-  @keyframes slideIn {
+  @keyframes slide {
     from {
-      transform: translateX(calc(var(--chat-width) * -1));
+      transform: translateX(var(--chat-width));
     }
     to {
       transform: translateX(0);
@@ -180,8 +179,10 @@ export default {
     z-index: 1000;
     overflow: hidden;
     filter: drop-shadow(0px 0px 15px rgba(0,0,0,.25));
-    animation: slideIn 250ms once;
+    animation: slide 350ms;
+    animation-delay: 1s;
     animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
     * {
       font-family: var(--font-a);
       font-style: normal;
@@ -198,11 +199,15 @@ export default {
     padding: 0 0 2rem;
   }
   .chat-item.image {
+    padding: 0 var(--chat-x-pad) 2rem;
+  }
+  .chat-item.image.feature-image {
     padding: 0!important;
+    display: none;
   }
   .text {
     padding: 0 var(--chat-x-pad) 2rem;
-    &:nth-child(odd) {
+    &:nth-of-type(1n) {
       .chat-name {
         background-color: var(--chat-orange);
       }
@@ -210,7 +215,7 @@ export default {
         margin-left: var(--chat-text-offset);
       }
     }
-    &:nth-child(even) {
+    &:nth-of-type(2n) {
       .chat-name {
         background-color: var(--chat-blue);
         right: 0;

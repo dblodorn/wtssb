@@ -59,6 +59,7 @@ class World {
     this.startAnimation = this.startAnimation.bind(this);
     this.endAnimation = this.endAnimation.bind(this);
     this.addInteraction = this.addInteraction.bind(this);
+    this.panSkybox = this.panSkybox.bind(this);
 
     clickHandler = ballFunction
     mouseOutHandler = mouseOutFunction
@@ -210,6 +211,7 @@ class World {
           })
         });
         wireframe.click(object, 'open')
+        this.panSkybox(object)
         zoomed = true;
       });
       object.addEventListener('mouseover', (event) => {
@@ -231,6 +233,36 @@ class World {
     });
   }
 
+  panSkybox(object) {
+    const tl = gsap.timeline();
+    console.log(object, 'transition camera')
+    tl.to(controls.target, 2, {
+      x: object.position.x,
+      y: object.position.y,
+      z: object.position.z - 20
+    })
+    .to(camera.position, 2, {
+      x: 25,
+      y: 100,
+      z: -100
+    }, 0)
+    .to(camera.position, 2, {
+      x: -25,
+      y: -100,
+      z: 50
+    })
+    .to(camera.position, 2, {
+      x: 25,
+      y: 50,
+      z: -50
+    })
+    .to(camera.position, 2, {
+      x: object.position.x,
+      y: object.position.y,
+      z: object.position.z
+    })
+  }
+
   enterWorld() {
     const tl = gsap.timeline();
     tl.to(controls.target, 2, {
@@ -240,97 +272,109 @@ class World {
       ease: 'expo.out',
       onStart: () => {this.startAnimation('intro start')}
     })
-    tl.to(camera.position, 2, {
+    .to(camera.position, 2, {
       x: 0,
       y: 200,
       z: -200,
       ease: 'expo.out'
     }, 0)
-    tl.to(camera.position, 2, {
+    .to(camera.position, 2, {
       x: balls.ball1.position.x,
       y: balls.ball1.position.y,
       z: balls.ball1.position.z - 40,
-      ease: 'expo.out'
-    })
-    tl.to(controls.target, 2, {
+      ease: 'expo.out',
+      onComplete: () => {console.log('ball1 camera end')}
+    }, "+=1")
+    .to(controls.target, 2, {
       x: balls.ball1.position.x,
       y: balls.ball1.position.y,
       z: balls.ball1.position.z,
-      ease: 'expo.out'
-    }, 2)
-    tl.to(camera.position, 2, {
+      ease: 'expo.out',
+      onComplete: () => {console.log('ball1 controls end')}
+    }, 3)
+    .to(camera.position, 2, {
       x: balls.ball2.position.x,
       y: balls.ball2.position.y,
       z: balls.ball2.position.z - 40,
-      ease: 'expo.out'
-    })
-    tl.to(controls.target, 2, {
+      ease: 'expo.out',
+      onComplete: () => {console.log('ball2 camera end')}
+    }, "+=1")
+    .to(controls.target, 2, {
       x: balls.ball2.position.x,
       y: balls.ball2.position.y,
       z: balls.ball2.position.z,
-      ease: 'expo.out'
-    }, 4)
-    tl.to(camera.position, 2, {
+      ease: 'expo.out',
+      onComplete: () => {console.log('ball2 controls end')}
+    }, 6)
+    .to(camera.position, 2, {
       x: balls.ball3.position.x,
       y: balls.ball3.position.y,
       z: balls.ball3.position.z - 40,
-      ease: 'expo.out'
-    })
-    tl.to(controls.target, 2, {
+      ease: 'expo.out',
+      onComplete: () => {console.log('ball3 camera end')}
+    }, "+=1")
+    .to(controls.target, 2, {
       x: balls.ball3.position.x,
       y: balls.ball3.position.y,
       z: balls.ball3.position.z,
-      ease: 'expo.out'
-    }, 6)
-    tl.to(camera.position, 2, {
+      ease: 'expo.out',
+      onComplete: () => {console.log('ball3 controls end')}
+    }, 9)
+    .to(camera.position, 2, {
       x: balls.ball4.position.x,
       y: balls.ball4.position.y,
       z: balls.ball4.position.z - 40,
-      ease: 'expo.out'
-    })
-    tl.to(controls.target, 2, {
+      ease: 'expo.out',
+      onComplete: () => {console.log('ball4 controls end')}
+    }, "+=1")
+    .to(controls.target, 2, {
       x: balls.ball4.position.x,
       y: balls.ball4.position.y,
       z: balls.ball4.position.z,
-      ease: 'expo.out'
-    }, 8)
-    tl.to(camera.position, 2, {
+      ease: 'expo.out',
+      onComplete: () => {console.log('ball4 controls end')}
+    }, 12)
+    .to(camera.position, 2, {
       x: balls.ball5.position.x,
       y: balls.ball5.position.y,
       z: balls.ball5.position.z - 40,
-      ease: 'expo.out'
-    })
-    tl.to(controls.target, 2, {
+      ease: 'expo.out',
+      onComplete: () => {console.log('ball5 camera end')}
+    }, "+=1")
+    .to(controls.target, 2, {
       x: balls.ball5.position.x,
       y: balls.ball5.position.y,
       z: balls.ball5.position.z,
-      ease: 'expo.out'
-    }, 10)
-    tl.to(camera.position, 2, {
+      ease: 'expo.out',
+      onComplete: () => {console.log('ball5 controls end')}
+    }, 15)
+    .to(camera.position, 2, {
       x: balls.ball6.position.x,
       y: balls.ball6.position.y,
       z: balls.ball6.position.z - 40,
-      ease: 'expo.out'
-    })
-    tl.to(controls.target, 2, {
+      ease: 'expo.out',
+      onComplete: () => {console.log('ball6 camera end')}
+    }, "+=1")
+    .to(controls.target, 2, {
       x: balls.ball6.position.x,
       y: balls.ball6.position.y,
       z: balls.ball6.position.z,
-      ease: 'expo.out'
-    }, 12)
-    tl.to(camera.position, 4, {
+      ease: 'expo.out',
+      onComplete: () => {console.log('ball6 controls end')}
+    }, 18)
+    .to(camera.position, 4, {
       x: 0,
       y: 200,
       z: -200,
       ease: 'expo.out',
       onComplete: () => {this.addInteraction()}
-    })
-    tl.to(controls.target, 2, {
+    }, "+=1")
+    .to(controls.target, 2, {
       x: 0,
       y: 0,
       z: 0,
       ease: 'expo.out'
-    }, 14)
+    }, 21)
     
   }
 

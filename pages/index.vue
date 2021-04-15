@@ -106,7 +106,7 @@ export default {
       src: [this.data.flythrough_sound],
       autoplay: false,
       loop: false,
-      volume: 0.35
+      volume: 0.15
     })
     this.hoverSound = new Howl({
       src: [this.data.planetary_hover_sound],
@@ -200,7 +200,6 @@ export default {
         if (chat) {
           chat.forEach(item => {
             if (item.acf_fc_layout === 'image') {
-              console.log(item.image)
               imageArray.push(item.image)
             }
           });
@@ -215,19 +214,16 @@ export default {
       this.setPopup(true)
       this.modalTimeout = setTimeout(() => {
         this.modal = true
-      }, 500)
+      }, 7000)
     },
     mouseOverHandler(name) {
-      console.log(`${name} Over Handler`)
       this.hoverSound.play()
       this.ballHovered = name
     },
     mouseOutHandler(name) {
-      console.log(`${name} Out Handler`)
       this.ballHovered = false
     },
     clickHandler(name, index) {
-      console.log(name, index)
       const scene = index + 1
       this.sense = name
       this.modalPop()
