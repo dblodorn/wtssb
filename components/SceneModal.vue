@@ -203,7 +203,6 @@ export default {
   }
   .chat-item.image.feature-image {
     padding: 0!important;
-    display: none;
   }
   .text {
     padding: 0 var(--chat-x-pad) 2rem;
