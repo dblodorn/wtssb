@@ -1,5 +1,5 @@
 <template>
-  <menu id="nav-container" :class="[popup && 'hide', 'bezier-300']">
+  <menu id="nav-container" :class="[popup && 'hide', 'bezier-300', animating && 'animating']">
     <button 
       v-for="(item, index) in scenes" 
       :key="`slide-button-${index}`"
@@ -7,7 +7,7 @@
       @click="navHandler(index)"
       @mouseenter="hoverHandler"
     >
-      <span :class="['bezier-300', item.title]">{{item.title}}</span>
+      <span :class="['bezier-300', item.title, animating && 'animating']">{{item.title}}</span>
     </button>
     <button
       :class="['nav-button center-nav loaded', currentScene === 'center' && 'active']"
@@ -38,7 +38,6 @@ export default {
       bgSound: null,
       hoverSound: null,
       clickSound: null,
-      // currentScene: 'center',
       opts: {
         autoplay: false,
         loop: true,
@@ -114,6 +113,7 @@ export default {
   computed: {
     ...mapState({
       popup: 'popup',
+      animating: 'animating',
       scenes: 'scenes',
       currentScene: 'currentScene'
     })
@@ -148,6 +148,16 @@ export default {
     z-index: 12000;
     width: var(--nav-wrapper);
     height: var(--nav-wrapper);
+    &.animating {
+      pointer-events: none;
+      opacity: .5;
+      .center-nav {
+        animation: pulseAlpha 500ms infinite;
+      }
+      span {
+        display: none!important;
+      }
+    }
     &.hide {
       pointer-events: none;
       opacity: 0;

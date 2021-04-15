@@ -15,10 +15,12 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content:  process.env.APP_TITLE || '' }
+      { hid: 'description', name: 'description', content:  process.env.APP_TITLE }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/png', href: '/WTSSB_Fav-32x32.png' },
+      { rel: 'apple-touch-icon', href: '/WTSSB_Fav-32x32.png' },
+      { rel: 'apple-touch-icon', sizes: '180x180', href: '/WTSSB_Fav-180x180.png' },
     ]
   },
   loading: { 

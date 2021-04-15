@@ -2,7 +2,7 @@
   <viewport-wrapper :zIndex="1">
     <portal to="navigation">
       <navigation
-        :class="[!modelsLoaded && 'loading', intro && 'intro', ballHovered]"
+        :class="[!modelsLoaded && 'loading', intro && 'intro', ballHovered, ]"
         :cameraHandler="(slide) => cameraHandler(slide)"
         :sounds="{scenes: data.planetary_ball_scene, hover: data.nav_hover_sound, click: data.nav_click_sound}"
       />
@@ -126,7 +126,9 @@ export default {
           mouseOverFunction: (name) => {this.mouseOverHandler(name)},
           mouseOutFunction: (name) => {this.mouseOutHandler(name)},
           ballFunction: (name, index) => this.clickHandler(name, index),
-          loadedCallback: (arg) => {this.modelLoadedHandler(arg)}
+          loadedCallback: (arg) => {this.modelLoadedHandler(arg)},
+          animationStart: () => this.animatingStart(), 
+          animationDone: () => this.animatingEnd(),
         })
       }, 50)
     })
@@ -140,8 +142,17 @@ export default {
     ...mapMutations({
       setPopup: 'setPopup',
       ballLoaded: 'ballLoaded',
-      setScene: 'setScene'
+      setScene: 'setScene',
+      setAnimating: 'setAnimating'
     }),
+    animatingStart() {
+      console.log('animating vue')
+      this.setAnimating(true)
+    },
+    animatingEnd() {
+      console.log('animating done vue')
+      this.setAnimating(false)
+    },
     modelLoadedHandler(ball) {
       this.ballLoaded(ball)
     },

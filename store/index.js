@@ -2,6 +2,7 @@ export const state = () => ({
   api: false,
   popup: false,
   currentScene: 'center',
+  animating: false,
   scenes: [
     {
       title: 'Touch',
@@ -47,6 +48,9 @@ export const mutations = {
   },
   setPopup(state, bool) {
     state.popup = bool
+  },
+  setAnimating(state, bool) {
+    state.animating = bool
   },
   setScene(state, number) {
     state.currentScene = number

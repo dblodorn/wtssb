@@ -2,7 +2,7 @@ import { World } from "./World"
 
 let world;
 
-export async function startWorld ({container, data, onLoad, ballFunction, mouseOverFunction, mouseOutFunction, loadedCallback}) {
+export async function startWorld ({container, data, onLoad, ballFunction, mouseOverFunction, mouseOutFunction, animationStart, animationDone, loadedCallback}) {
   
   world = new World({
     container: container, 
@@ -11,7 +11,9 @@ export async function startWorld ({container, data, onLoad, ballFunction, mouseO
     ballFunction: ballFunction,  
     mouseOverFunction:  mouseOverFunction,  
     mouseOutFunction: mouseOutFunction,
-    loadedCallback: loadedCallback
+    loadedCallback: loadedCallback,
+    animationStart: animationStart, 
+    animationDone: animationDone,
   });
   
   await world.init();

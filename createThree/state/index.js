@@ -5,6 +5,7 @@ export default {
   slideCount: 6,
   api: false,
   wireFrame: false,
+  animating: false,
   lights: {
     addLights: true,
     exposure: 1.0,

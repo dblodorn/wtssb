@@ -64,22 +64,16 @@ export default {
     }
   },
   mounted() {
-    console.log('open chat')
-    console.log('offset', this.$refs.chat.offsetHeight)
-    console.log(this.$refs.chat.children)
     const children = Array.from(this.$refs.chat.children)
-
     children.forEach(element => {
       this.chatHeight = this.chatHeight + element.children[0].scrollHeight
     });
     console.log('height', this.chatHeight)
-    
     this.$refs.chat.addEventListener('scroll', 
       (event) => this.scroll(event), { passive: true }
     )
   },
   beforeDestroy() {
-    console.log('close chat')
     this.$refs.chat.removeEventListener('scroll',
       (event) => this.scroll(event), { passive: true }
     )
@@ -92,9 +86,7 @@ export default {
       }
     },
     scroll(event) {
-      console.log(this.$refs.chat.offsetHeight)
       this.rotate = event.target.scrollTop / ( this.chatHeight - this.$refs.chat.offsetHeight)
-      console.log(this.rotate)
     }
   }
 }

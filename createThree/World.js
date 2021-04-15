@@ -34,10 +34,13 @@ let mouseOutHandler;
 let onLoadFunction;
 let loadedFunction;
 let skyBox;
+let marsBox;
+let animationStartHandler;
+let animationDoneHandler;
 
 let zoomed = false;
 class World {
-  constructor({container, data, onLoad, ballFunction, mouseOverFunction, mouseOutFunction,  loadedCallback}) {
+  constructor({container, data, onLoad, ballFunction, mouseOverFunction, mouseOutFunction, animationStart, animationDone, loadedCallback}) {
     camera = createCamera(container);
     scene = createScene();
     renderer = createRenderer(container);
@@ -53,13 +56,16 @@ class World {
     this.cameraHandler = this.cameraHandler.bind(this);
     this.closeHandler = this.closeHandler.bind(this);
     this.motionHandler = this.motionHandler.bind(this);
-    this.zoomOutHandler = this.zoomOutHandler.bind(this);
+    this.startAnimation = this.startAnimation.bind(this);
+    this.endAnimation = this.endAnimation.bind(this);
 
     clickHandler = ballFunction
     mouseOutHandler = mouseOutFunction
     mouseOverHandler = mouseOverFunction
     onLoadFunction = onLoad
     loadedFunction = loadedCallback
+    animationStartHandler = animationStart
+    animationDoneHandler = animationDone
 
     container.append(renderer.domElement);
   
@@ -80,39 +86,36 @@ class World {
     const resizer = new Resizer(container, camera, renderer);
   }
 
+  endAnimation(arg) {
+    animationDoneHandler()
+    console.log(arg)
+    state.animating = false
+  }
+
+  startAnimation(arg) {
+    animationStartHandler()
+    console.log(arg)
+    state.animating = true
+  }
+
   motionHandler(object, speed) {
     gsap.to(camera.position, speed / 5, {
       x: object.position.x,
       y: object.position.y,
       z: object.position.z - 40,
       ease: 'expo.out',
+      onStart: () => this.startAnimation('motionHandler start')
     })
-    gsap.to(controls.target, speed, {
+    gsap.to(controls.target, speed / 2, {
       x: object.position.x,
       y: object.position.y,
       z: object.position.z,
       ease: 'expo.out',
-    })
-  }
-
-  zoomOutHandler(object) {
-    console.log('zoom', object)
-    gsap.to(camera.position, 2, {
-      x: object.position.x,
-      y: object.position.y,
-      z: object.position.z + 140,
-      ease: 'expo.out',
-    })
-    gsap.to(controls.target, 2, {
-      x: object.position.x,
-      y: object.position.y,
-      z: object.position.z,
-      ease: 'expo.out',
+      onComplete: () => this.endAnimation('motionHandler end')
     })
   }
 
   cameraHandler(slide) {
-    console.log(slide)
     if (slide === 0) {
       this.motionHandler(balls.ball1, 6)
     } else if (slide === 1) {
@@ -131,6 +134,8 @@ class World {
         y: 0,
         z: 0,
         ease: 'expo.out',
+        onStart: () => this.startAnimation('Center start'),
+        onComplete: () => this.endAnimation('Center end')
       })
       gsap.to(camera.position, 5, {
         x: 0,
@@ -144,6 +149,13 @@ class World {
   closeHandler(scene) {
     zoomed = false;
     this.cameraHandler('center')
+    marsBox.material.forEach(element => {
+      // element.opacity = 0
+      gsap.to(element, 2, {
+        opacity: 0,
+        ease: 'expo.out',
+      })
+    });
     switch (scene) {
       case 'Touch':
         wireframe.click(balls.ball1, 'close')
@@ -183,20 +195,106 @@ class World {
   }
 
   enterWorld() {
-    gsap.to(controls.target, 5, {
+    const tl = gsap.timeline();
+    tl.to(controls.target, 2, {
       x: 0,
       y: 0,
       z: 0,
       ease: 'expo.out',
-      onComplete: () => console.log('enter-done-controls')
+      onStart: () => {this.startAnimation('intro start')}
     })
-    gsap.to(camera.position, 5, {
+    tl.to(camera.position, 2, {
+      x: 0,
+      y: 200,
+      z: -200,
+      ease: 'expo.out'
+    }, 0)
+    tl.to(camera.position, 2, {
+      x: balls.ball1.position.x,
+      y: balls.ball1.position.y,
+      z: balls.ball1.position.z - 40,
+      ease: 'expo.out'
+    })
+    tl.to(controls.target, 2, {
+      x: balls.ball1.position.x,
+      y: balls.ball1.position.y,
+      z: balls.ball1.position.z,
+      ease: 'expo.out'
+    }, 2)
+    tl.to(camera.position, 2, {
+      x: balls.ball2.position.x,
+      y: balls.ball2.position.y,
+      z: balls.ball2.position.z - 40,
+      ease: 'expo.out'
+    })
+    tl.to(controls.target, 2, {
+      x: balls.ball2.position.x,
+      y: balls.ball2.position.y,
+      z: balls.ball2.position.z,
+      ease: 'expo.out'
+    }, 4)
+    tl.to(camera.position, 2, {
+      x: balls.ball3.position.x,
+      y: balls.ball3.position.y,
+      z: balls.ball3.position.z - 40,
+      ease: 'expo.out'
+    })
+    tl.to(controls.target, 2, {
+      x: balls.ball3.position.x,
+      y: balls.ball3.position.y,
+      z: balls.ball3.position.z,
+      ease: 'expo.out'
+    }, 6)
+    tl.to(camera.position, 2, {
+      x: balls.ball4.position.x,
+      y: balls.ball4.position.y,
+      z: balls.ball4.position.z - 40,
+      ease: 'expo.out'
+    })
+    tl.to(controls.target, 2, {
+      x: balls.ball4.position.x,
+      y: balls.ball4.position.y,
+      z: balls.ball4.position.z,
+      ease: 'expo.out'
+    }, 8)
+    tl.to(camera.position, 2, {
+      x: balls.ball5.position.x,
+      y: balls.ball5.position.y,
+      z: balls.ball5.position.z - 40,
+      ease: 'expo.out'
+    })
+    tl.to(controls.target, 2, {
+      x: balls.ball5.position.x,
+      y: balls.ball5.position.y,
+      z: balls.ball5.position.z,
+      ease: 'expo.out'
+    }, 10)
+    tl.to(camera.position, 2, {
+      x: balls.ball6.position.x,
+      y: balls.ball6.position.y,
+      z: balls.ball6.position.z - 40,
+      ease: 'expo.out'
+    })
+    tl.to(controls.target, 2, {
+      x: balls.ball6.position.x,
+      y: balls.ball6.position.y,
+      z: balls.ball6.position.z,
+      ease: 'expo.out'
+    }, 12)
+    tl.to(camera.position, 4, {
       x: 0,
       y: 200,
       z: -200,
       ease: 'expo.out',
-      onComplete: () => console.log('enter-done-camera')
+      onComplete: () => {this.endAnimation('intro end')}
     })
+    tl.to(controls.target, 2, {
+      x: 0,
+      y: 0,
+      z: 0,
+      ease: 'expo.out'
+    }, 14)
+    
   }
 
   async init() {
@@ -204,7 +302,14 @@ class World {
 
     skyBox = new createSkybox({images: state.api.skybox_bg})
     scene.add(skyBox)
-    
+
+    marsBox = new createSkybox({images: state.api.skybox_terrain})
+    marsBox.material.forEach(element => {
+      element.transparent = true
+      element.opacity = 0
+    });
+    scene.add(marsBox)
+
     onLoadFunction();
 
     balls = {
@@ -255,6 +360,12 @@ class World {
       object.addEventListener('click', (event) => {
         event.stopPropagation();
         clickHandler(object.name, index);
+        marsBox.material.forEach(element => {
+          gsap.to(element, 2, {
+            opacity: 1,
+            ease: 'expo.out',
+          })
+        });
         wireframe.click(object, 'open')
         zoomed = true;
       });
@@ -262,19 +373,18 @@ class World {
         event.stopPropagation();
         document.body.style.cursor = "pointer";
         if (!zoomed) {
-          mouseOverHandler(object.name)
           wireframe.hoverIn(object)
+          mouseOverHandler(object.name)
         }
       });
       object.addEventListener('mouseout', (event) => {
         event.stopPropagation();
         document.body.style.cursor = "default";
-        if (!zoomed) {
-          mouseOutHandler(object.name)
+        if (!zoomed ) {
           wireframe.hoverOut(object)
+          mouseOutHandler(object.name)
         }
       });
-      console.log(`OBJECT NAME: ${object.name} LOADED`);
     });
   }
 }
