@@ -71,6 +71,7 @@ export default {
 </script>
 
 <style lang="scss">
+  /*
   :root {
     --chat-width: 42.5rem;
     --chat-bg: #f6faf8;
@@ -83,14 +84,6 @@ export default {
     --chat-x-pad: 3rem;
     --chat-y-pad: 1.5rem;
   }
-  @keyframes slideIn {
-    from {
-      transform: translateX(calc(var(--chat-width) * -1));
-    }
-    to {
-      transform: translateX(0);
-    }
-  }
   .chat-close {
     position: absolute;
     top: 0;
@@ -100,6 +93,7 @@ export default {
     background: var(--black);
     justify-content: space-between;
   }
+  
   .chat-window {
     width: var(--chat-width);
     height: 100vh;
@@ -111,8 +105,6 @@ export default {
     z-index: 1000;
     overflow: hidden;
     filter: drop-shadow(0px 0px 15px rgba(0,0,0,.25));
-    animation: slideIn 250ms once;
-    animation-fill-mode: both;
     * {
       font-family: var(--font-a);
       font-style: normal;
@@ -187,4 +179,5 @@ export default {
       height: auto;
     }
   }
+  */
 </style>

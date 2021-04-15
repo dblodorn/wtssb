@@ -98,6 +98,14 @@ export default {
       transform: rotate(360deg);
     }
   }
+  @keyframes slideIn {
+    from {
+      transform: translateX(calc(var(--chat-width) * -1));
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
   :root {
     --img-wrapper-size: 95vh;
   }
@@ -172,6 +180,8 @@ export default {
     z-index: 1000;
     overflow: hidden;
     filter: drop-shadow(0px 0px 15px rgba(0,0,0,.25));
+    animation: slideIn 250ms once;
+    animation-fill-mode: both;
     * {
       font-family: var(--font-a);
       font-style: normal;
