@@ -1,10 +1,10 @@
 <template>
   <section id="intro-wrapper" class="pad-single y-pad-top inner-page">
-    <div class="intro-copy" v-html="copy" />
+    <div class="intro-copy text-shadow" v-html="copy" />
     <slot/>
     <div class="video-wrapper">
       <video 
-        v-if="type === '.mp4'"
+        v-if="type === 'mp4'"
         playsinline 
         muted 
         autoplay
@@ -37,6 +37,7 @@ export default {
   },
   mounted() {
     this.type = this.getFileType(this.video)
+    console.log(this.type)
   },
   methods: {
     getFileType(file) {
@@ -45,7 +46,6 @@ export default {
   },
   computed: {
     isLoaded() {
-      console.log(this.loaded)
       return this.loaded
     }
   }
