@@ -35,14 +35,8 @@ export default {
   },
   data() {
     return {
-      bgSound: null,
       hoverSound: null,
-      clickSound: null,
-      opts: {
-        autoplay: false,
-        loop: true,
-        volume: 0.45
-      }
+      clickSound: null
     }
   },
   mounted() {
@@ -50,13 +44,13 @@ export default {
       src: [this.sounds.hover],
       autoplay: false,
       loop: false,
-      volume: 0.15
+      volume: parseFloat(this.sounds.hoverVolume)
     })
     this.clickSound = new Howl({
       src: [this.sounds.click],
       autoplay: false,
       loop: false,
-      volume: 0.15
+      volume: parseFloat(this.sounds.clickVolume)
     })
   },
   methods: {
@@ -69,45 +63,32 @@ export default {
     navHandler(index) {
       this.cameraHandler(index)
       this.clickSound.play()
-      
-      let sound;
+
       switch (index) {
         case 0:
-          // this.currentScene = 1
           this.setScene(1)
           break;
         case 1:
-          // this.currentScene = 2
           this.setScene(2)
           break;
         case 2:
-          // this.currentScene = 3
           this.setScene(3)
           break;
         case 3:
-          // this.currentScene = 4
           this.setScene(4)
           break;
         case 4:
-          // this.currentScene = 5
           this.setScene(5)
           break;
         case 5:
-          // this.currentScene = 6
           this.setScene(6)
           break;
         case 'center':
-          // this.currentScene = 'center'
           this.setScene('center')
           break;
         default:
           console.log(`SCENE INDEx ${index}.`);
       }
-      this.bgSound = new Howl({
-        src: [sound],
-        ...this.opts
-      })
-      this.bgSound.play()
     }
   },
   computed: {
@@ -134,11 +115,11 @@ export default {
     --nav-bg-blue: #00006f;
   }
   @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to { 
+    0% {
       transform: rotate(360deg);
+    }
+    100% { 
+      transform: rotate(0deg);
     }
   }
   #nav-container {
@@ -149,6 +130,7 @@ export default {
     width: var(--nav-wrapper);
     height: var(--nav-wrapper);
     &.animating {
+      animation: spin 2s linear 0s infinite;
       pointer-events: none;
       opacity: .5;
       .center-nav {
@@ -169,7 +151,7 @@ export default {
       }
     }
     &.loading {
-      animation: spin 2000ms infinite;
+      animation: spin 2s linear 0s infinite reverse;
     }  
   }
   #nav-container:after {

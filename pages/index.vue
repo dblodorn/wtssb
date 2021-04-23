@@ -4,7 +4,12 @@
       <navigation
         :class="[!modelsLoaded && 'loading', intro && 'intro', ballHovered, ]"
         :cameraHandler="(slide) => cameraHandler(slide)"
-        :sounds="{scenes: data.planetary_ball_scene, hover: data.nav_hover_sound, click: data.nav_click_sound}"
+        :sounds="{
+          hover: data.nav_hover_sound, 
+          hoverVolume: data.nav_hover_sound_volume,
+          click: data.nav_click_sound,
+          clickVolume: data.nav_click_sound_volume,
+        }"
       />
     </portal>
     <portal v-if="intro" to="intro">
@@ -83,48 +88,55 @@ export default {
       modelsLoaded: false,
       currentChat: null,
       bgSound: null,
-      sceneSound: null,
       flythroughSound: null,
       intro: true,
       hoverSound: null,
       clickSound: null,
       ballHovered: false,
-      opts: {
-        autoplay: false,
-        loop: true,
-        volume: 0.05
-      }
+      sceneSound: null,
+      sceneSoundAudio: false,
+      sceneVolume: 0,
+      introSound: null
     }
   },
   mounted() {
     // SOUND
+    this.introSound = new Howl({
+      src: [this.data.intro_page_audio],
+      autoplay: false,
+      loop: true,
+      volume: parseFloat(this.data.intro_page_audio_volume)
+    })
     this.bgSound = new Howl({
       src: [this.data.landing_page_audio],
-      ...this.opts
+      autoplay: false,
+      loop: true,
+      volume: parseFloat(this.data.landing_page_audio_volume)
     })
     this.flythroughSound = new Howl({
       src: [this.data.flythrough_sound],
       autoplay: false,
       loop: false,
-      volume: 0.15
+      volume: parseFloat(this.data.flythrough_sound_volume)
     })
     this.hoverSound = new Howl({
       src: [this.data.planetary_hover_sound],
       autoplay: false,
       loop: false,
-      volume: 0.1
+      volume: parseFloat(this.data.planetary_hover_sound_volume)
     })
     this.clickSound = new Howl({
       src: [this.data.planetary_click_sound],
       autoplay: false,
       loop: false,
-      volume: 0.35
+      volume: parseFloat(this.data.planetary_click_sound_volume)
     })
     // STARTUP
     this.worldWrapper = this.$refs.threeWorld
     this.video = this.data.video_1
     this.currentChat = this.data.scene_1_chat
     this.$nextTick(() => {
+      this.introSound.play()
       setTimeout(() => {
         startWorld({
           container: this.worldWrapper,
@@ -153,11 +165,9 @@ export default {
       setAnimating: 'setAnimating'
     }),
     animatingStart() {
-      console.log('animating vue')
       this.setAnimating(true)
     },
     animatingEnd() {
-      console.log('animating done vue')
       this.setAnimating(false)
     },
     modelLoadedHandler(ball) {
@@ -165,8 +175,11 @@ export default {
     },
     enterHandler() {
       this.intro = false
+      this.introSound.fade(parseFloat(this.data.intro_page_audio_volume), 0, 5000)
       this.bgSound.play()
+      this.bgSound.fade(0, parseFloat(this.data.landing_page_audio_volume), 5000)
       this.flythroughSound.play()
+      setTimeout(() => {this.introSound.stop()}, 6000)
       enterWorld()
     },
     cameraHandler(slide) {
@@ -178,7 +191,10 @@ export default {
       closeFunction(scene)
       this.setPopup(false)
       this.setScene('center')
-      this.sceneSound.stop()
+      if(this.sceneSound !== null) {
+        this.sceneSound.fade(this.sceneVolume, 0, 2500)
+      }
+      this.bgSound.fade(0, parseFloat(this.data.landing_page_audio_volume), 2500)
     },
     loadedHandler() {
       this.modelsLoaded = true
@@ -229,7 +245,6 @@ export default {
       this.modalPop()
       this.clickSound.play()
       this.currentSlide = scene
-      let sound;
       if(this.sceneSound !== null) {
         this.sceneSound.stop()
       }
@@ -237,43 +252,54 @@ export default {
         case 1:
           this.video = this.data.video_1
           this.currentChat = this.data.scene_1_chat
-          sound = this.data.planetary_ball_scene.ball_1
+          this.sceneSoundAudio = this.data.planetary_ball_scene.ball_1
+          this.sceneVolume = parseFloat(this.data.planetary_ball_scene.ball_volume_1)
           break;
         case 2:
           this.video = this.data.video_2
           this.currentChat = this.data.scene_2_chat
-          sound = this.data.planetary_ball_scene.ball_2
+          this.sceneSoundAudio = this.data.planetary_ball_scene.ball_2
+          this.sceneVolume = parseFloat(this.data.planetary_ball_scene.ball_volume_2)
           break;
         case 3:
           this.video = this.data.video_3
           this.currentChat = this.data.scene_3_chat
-          sound = this.data.planetary_ball_scene.ball_3
+          this.sceneSoundAudio = this.data.planetary_ball_scene.ball_3
+          this.sceneVolume = parseFloat(this.data.planetary_ball_scene.ball_volume_3)
           break;
         case 4:
           this.video = this.data.video_4
           this.currentChat = this.data.scene_4_chat
-          sound = this.data.planetary_ball_scene.ball_4
+          this.sceneSoundAudio = this.data.planetary_ball_scene.ball_4
+          this.sceneVolume = parseFloat(this.data.planetary_ball_scene.ball_volume_4)
           break;
         case 5:
           this.video = this.data.video_5
           this.currentChat = this.data.scene_5_chat
-          sound = this.data.planetary_ball_scene.ball_5
+          this.sceneSoundAudio = this.data.planetary_ball_scene.ball_5
+          this.sceneVolume = parseFloat(this.data.planetary_ball_scene.ball_volume_5)
           break;
         case 6:
           this.video = this.data.video_6
           this.currentChat = this.data.scene_6_chat
-          sound = this.data.planetary_ball_scene.ball_6
+          this.sceneSoundAudio = this.data.planetary_ball_scene.ball_6
+          this.sceneVolume = parseFloat(this.data.planetary_ball_scene.ball_volume_6)
           break;
         default:
           console.log(`SCENE INDEx ${index}.`);
       }
       this.sceneSound = new Howl({
-        src: [sound],
+        src: [this.sceneSoundAudio],
         autoplay: false,
         loop: true,
-        volume: 0.25
+        volume: this.sceneVolume
       })
-      this.sceneSound.play()
+      this.bgSound.fade(parseFloat(this.data.landing_page_audio_volume), 0, 2500)
+      // this.bgSound.stop()
+      this.$nextTick(() => {
+        this.sceneSound.play()
+        this.sceneSound.fade(0, this.sceneVolume, 2500)
+      })
     }
   },
   head () {

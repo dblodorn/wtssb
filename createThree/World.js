@@ -241,20 +241,20 @@ class World {
       y: object.position.y,
       z: object.position.z - 20
     })
-    .to(camera.position, 2, {
-      x: 25,
-      y: 100,
-      z: -100
+    .to(camera.position, 3, {
+      x: object.position.x * -1,
+      y: object.position.y * -1,
+      z: object.position.z * -1
     }, 0)
-    .to(camera.position, 2, {
+    .to(camera.position, 3, {
       x: -25,
-      y: -100,
-      z: 50
+      y: -50,
+      z: 10
     })
-    .to(camera.position, 2, {
+    .to(camera.position, 5, {
       x: 25,
       y: 50,
-      z: -50
+      z: -10
     })
     .to(camera.position, 2, {
       x: object.position.x,

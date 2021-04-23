@@ -62,7 +62,9 @@ export default {
     }
   },
   mounted() {
-    console.log('SCENE MOUNTED')
+    window.addEventListener('keyup', (event) => {
+      if (event.keyCode === 27) { this.closeHandler(this.sceneData.sense) }
+    }, { passive: true });
     const children = Array.from(this.$refs.chat.children)
     children.forEach(element => {
       this.chatHeight = this.chatHeight + element.children[0].scrollHeight
@@ -73,6 +75,7 @@ export default {
     )
   },
   beforeDestroy() {
+    window.addEventListener('keyup', this.closeHandler, { passive: true });
     this.$refs.chat.removeEventListener('scroll',
       (event) => this.scroll(event), { passive: true }
     )

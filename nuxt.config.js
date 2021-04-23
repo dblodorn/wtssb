@@ -35,6 +35,7 @@ export default {
     { src: '~plugins/vue-fragment' },
     { src: "~plugins/components" },
     { src: "~plugins/global" },
+    { src: '~plugins/typeSplitter' },
     { src: '~plugins/aos', ssr: false },
     { src: "~plugins/preloadAll" }
   ],
