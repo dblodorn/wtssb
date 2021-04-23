@@ -1,6 +1,10 @@
 <template>
   <section id="intro-wrapper" class="pad-single y-pad-top inner-page">
-    <div class="intro-copy text-shadow" v-html="copy" />
+    <div 
+      class="intro-copy text-shadow" 
+      v-html="`<p>${copy}</p>`"
+      ref="description"
+    />
     <slot/>
     <div class="video-wrapper">
       <video 
@@ -38,8 +42,28 @@ export default {
   mounted() {
     this.type = this.getFileType(this.video)
     console.log(this.type)
+    this.$nextTick(() => {
+      this.textRoll(this.$refs.description)
+    })
   },
   methods: {
+    async asyncForEach(array, callback) {
+      for (let index = 0; index < array.length; index++) {
+        await callback(array[index], index, array);
+      }
+    },
+    textRoll(array) {
+      this.asyncForEach(array, async (item, index) => {
+        await waitFor(250);
+        item.$el.classList.add('reveal')
+        if (array.length - 1 === index) {
+          this.lastCallback()
+        }
+      })
+    },
+    lastCallback() {
+      console.log('type done')
+    },
     getFileType(file) {
       return file.split('.').pop();
     }
