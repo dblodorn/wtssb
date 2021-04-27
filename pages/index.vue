@@ -12,6 +12,11 @@
         }"
       />
     </portal>
+    <portal v-if="info" to="intro">
+      <viewport-wrapper :zIndex="10000">
+        <info-panel />
+      </viewport-wrapper>
+    </portal>
     <portal v-if="intro" to="intro">
       <viewport-wrapper :zIndex="10">
         <intro
@@ -48,7 +53,7 @@
 
 <script>
 import axios from 'axios'
-import { mapMutations } from 'vuex'
+import { mapMutations, mapState } from 'vuex'
 
 import { 
   startWorld, 
@@ -62,6 +67,7 @@ import { Howl } from 'howler'
 
 import Navigation from '@/components/Navigation'
 import Intro from '@/components/Intro'
+import InfoPanel from '@/components/InfoPanel'
 import SceneModal from '@/components/SceneModal'
 
 export default {
@@ -75,6 +81,7 @@ export default {
   components: {
     Navigation,
     Intro,
+    InfoPanel,
     SceneModal
   },
   data() {
@@ -99,6 +106,11 @@ export default {
       introSound: null
     }
   },
+  computed: {
+    ...mapState({
+      info: 'info'
+    })
+  },
   mounted() {
     // SOUND
     this.introSound = new Howl({
@@ -116,7 +128,7 @@ export default {
     this.flythroughSound = new Howl({
       src: [this.data.flythrough_sound],
       autoplay: false,
-      loop: false,
+      loop: true,
       volume: parseFloat(this.data.flythrough_sound_volume)
     })
     this.hoverSound = new Howl({
@@ -146,8 +158,8 @@ export default {
           mouseOutFunction: (name) => {this.mouseOutHandler(name)},
           ballFunction: (name, index) => this.clickHandler(name, index),
           loadedCallback: (arg) => {this.modelLoadedHandler(arg)},
-          animationStart: () => this.animatingStart(), 
-          animationDone: () => this.animatingEnd(),
+          animationStart: (arg) => this.animatingStart(arg), 
+          animationDone: (arg) => this.animatingEnd(arg),
         })
       }, 50)
     })
@@ -155,6 +167,7 @@ export default {
   beforeDestroy() {
     clearWorld()
     this.bgSound.stop()
+    this.flythroughSound.stop()
     clearTimeout(this.modalTimeout)
   },
   methods: {
@@ -164,11 +177,19 @@ export default {
       setScene: 'setScene',
       setAnimating: 'setAnimating'
     }),
-    animatingStart() {
+    animatingStart(arg) {
       this.setAnimating(true)
+      console.log('animating-start::', arg)
     },
-    animatingEnd() {
+    animatingEnd(arg) {
       this.setAnimating(false)
+      console.log('animating-end::', arg)
+      if (arg === 'intro-end') {
+        this.bgSound.play()
+        this.bgSound.fade(0, parseFloat(this.data.landing_page_audio_volume), 3500)
+        this.flythroughSound.fade(parseFloat(this.data.flythrough_sound_volume), 0, 3500)
+        setTimeout(() => {this.flythroughSound.stop()}, 4000)
+      }
     },
     modelLoadedHandler(ball) {
       this.ballLoaded(ball)
@@ -176,8 +197,6 @@ export default {
     enterHandler() {
       this.intro = false
       this.introSound.fade(parseFloat(this.data.intro_page_audio_volume), 0, 5000)
-      this.bgSound.play()
-      this.bgSound.fade(0, parseFloat(this.data.landing_page_audio_volume), 5000)
       this.flythroughSound.play()
       setTimeout(() => {this.introSound.stop()}, 6000)
       enterWorld()
@@ -311,6 +330,13 @@ export default {
 </script>
 
 <style lang="scss">
+  .circle-button {
+    width: 2.25rem;
+    height: 2.25rem;
+    position: fixed;
+    z-index: 12000;
+    border: 2px solid;
+  }
   .close-button {
     width: 2.25rem;
     height: 2.25rem;

@@ -102,7 +102,7 @@ export default {
   }
   @keyframes slide {
     from {
-      transform: translateX(var(--chat-width));
+      transform: translateX(calc(var(--chat-width) * -1 ));
     }
     to {
       transform: translateX(0);
@@ -142,7 +142,7 @@ export default {
     z-index: 100;
     position: absolute;
     top: calc((100vh - var(--img-wrapper-size)) / 2);
-    left: calc((100vh - var(--img-wrapper-size)) * 2);
+    right: calc((100vh - var(--img-wrapper-size)) * 2);
     width: var(--img-wrapper-size);
     height: var(--img-wrapper-size);
     border-radius: calc(var(--img-wrapper-size) / 2);
@@ -170,15 +170,16 @@ export default {
     height: var(--close-height);
     background: var(--black);
     justify-content: space-between;
+    border-bottom: 1px solid var(--white);
   }
   .chat-window {
     width: var(--chat-width);
     height: 100vh;
     position: fixed;
     bottom: 0;
-    right: 0;
+    left: 0;
     background-color: var(--white);
-    background: var(--chat-bg);
+    background: var(--black);
     z-index: 1000;
     overflow: hidden;
     filter: drop-shadow(0px 0px 15px rgba(0,0,0,.25));
@@ -209,18 +210,23 @@ export default {
   }
   .text {
     padding: 0 var(--chat-x-pad) 2rem;
-    &:nth-of-type(1n) {
-      .chat-name {
-        background-color: var(--chat-orange);
-      }
-      .chat-text {
-        margin-left: var(--chat-text-offset);
-      }
+    .chat-name-inner {
+      background-color: var(--chat-orange);
     }
-    &:nth-of-type(2n) {
+    .chat-text {
+      margin-left: var(--chat-text-offset);
+    }
+  }
+  .text-wrapper {
+    position: relative;
+    margin-top: var(--chat-name-height);
+    &.right {
       .chat-name {
-        background-color: var(--chat-blue);
-        right: 0;
+        right: 0!important;
+        justify-content: flex-end;
+        .chat-name-inner {
+          background-color: var(--chat-blue);
+        }
         * {
           color: var(--white);
         }
@@ -231,10 +237,6 @@ export default {
       }
     }
   }
-  .text-wrapper {
-    position: relative;
-    margin-top: var(--chat-name-height);
-  }
   .chat-text {
     padding: var(--pad-single);
     background: var(--chat-bg);
@@ -243,13 +245,17 @@ export default {
     filter: drop-shadow(0px 0px 15px rgba(0,0,0,.25));
     z-index: 0;
   }
-  .chat-name {
-    padding: 0 var(--pad-single);
-    height: var(--chat-name-height);
-    border-radius: calc(var(--chat-name-height) / 2);
-    filter: drop-shadow(0px 0px 2px rgba(0,0,0,.05));
-    max-width: 12rem;
+  .chat-name-inner {
+    padding: .6rem var(--pad-double) 0;
     overflow-x: hidden;
+    filter: drop-shadow(0px 0px 2px rgba(0,0,0,.05));
+    border-radius: calc(var(--chat-name-height) / 2);
+    height: 100%;
+    display: flex;
+    align-content: center;
+  }
+  .chat-name {
+    height: var(--chat-name-height);
     width: 100%;
     z-index: 10;
     position: absolute;

@@ -3,9 +3,9 @@
     :class="['chat-item-wrapper bezier-500', intersected && 'intersected']"
     ref="container"
   >
-    <div v-if="chat.acf_fc_layout === 'text'" class="text-wrapper">
-      <div class="chat-name flex-centered">
-        <span v-html="chat.name"/>
+    <div v-if="chat.acf_fc_layout === 'text'" :class="['text-wrapper', chat.rt && 'right']">
+      <div class="chat-name flex-row">
+        <div class="chat-name-inner"><span v-html="chat.name"/></div>
       </div>
       <div class="chat-text">
         <p v-html="chat.text"/>

@@ -3,6 +3,8 @@ export const state = () => ({
   popup: false,
   currentScene: 'center',
   animating: false,
+  info: false,
+  muted: false,
   scenes: [
     {
       title: 'Touch',
@@ -43,6 +45,12 @@ export const mutations = {
   },
   setPopup(state, bool) {
     state.popup = bool
+  },
+  setInfoPopup(state, bool) {
+    state.info = bool
+  },
+  toggleMuted(state, bool) {
+    state.muted = bool
   },
   setAnimating(state, bool) {
     state.animating = bool

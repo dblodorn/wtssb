@@ -89,14 +89,12 @@ class World {
   }
 
   endAnimation(arg) {
-    animationDoneHandler()
-    console.log(arg)
+    animationDoneHandler(arg)
     state.animating = false
   }
 
   startAnimation(arg) {
-    animationStartHandler()
-    console.log(arg)
+    animationStartHandler(arg)
     state.animating = true
   }
 
@@ -197,7 +195,7 @@ class World {
 
   // ADD INTERACTION
   addInteraction() {
-    this.endAnimation('intro end')
+    this.endAnimation('intro-end')
     Object.entries(balls).forEach(([name, object], index) => {
       interactionManager.add(object);
       // INTERACTION:
