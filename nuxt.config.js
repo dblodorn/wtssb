@@ -34,6 +34,7 @@ export default {
     { src: '~plugins/event-bus' },
     { src: '~plugins/vue-fragment' },
     { src: "~plugins/components" },
+    { src: '~plugins/vue-inline-svg' },
     { src: "~plugins/global" },
     { src: '~plugins/typeSplitter' },
     { src: '~plugins/aos', ssr: false },

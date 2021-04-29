@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="106px" height="106px" viewBox="0 0 106 106" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="sound" stroke-width="3">
+            <path d="M68.729,61.587 C71.0063169,59.3097374 72.2857047,56.221074 72.2857047,53.0005 C72.2857047,49.779926 71.0063169,46.6912626 68.729,44.414" id="Path" stroke="#FFFFFF" stroke-linecap="square"></path>
+            <path d="M75.6,68.456 C79.6992069,64.356825 82.00212,58.7971314 82.00212,53 C82.00212,47.2028686 79.6992069,41.643175 75.6,37.544" id="Path" stroke="#FFFFFF" stroke-linecap="square"></path>
+            <path d="M63,81 L41,65 L28,65 C25.2385763,65 23,62.7614237 23,60 L23,46 C23,43.2385763 25.2385763,41 28,41 L41,41 L63,25 L63,81 Z" id="Path" stroke="#FFFFFF" stroke-linecap="square"></path>
+            <circle id="Oval" stroke="#FFFFFF" cx="53" cy="53" r="51.5"></circle>
+        </g>
+    </g>
+</svg>

@@ -150,18 +150,6 @@ export default {
     backface-visibility: hidden; 
   }
   /* CHAT */
-  :root {
-    --chat-width: 42.5rem;
-    --chat-bg: #f6faf8;
-    --close-height: 4rem;
-    --chat-orange: #f37043;
-    --chat-blue: #394792;
-    --chat-text-offset: 2rem;
-    --chat-text-width: 25rem;
-    --chat-name-height: 3rem;
-    --chat-x-pad: 3rem;
-    --chat-y-pad: 1.5rem;
-  }
   .chat-close {
     position: absolute;
     top: 0;

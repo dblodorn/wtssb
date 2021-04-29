@@ -47,12 +47,12 @@ html {
 }
 
 * > ::selection {
-  background: var(--black);
+  background: var(--chat-blue);
   color: var(--white);
 }
   
 * > ::-moz-selection {
-  background: var(--black);
+  background: var(--chat-blue);
   color: var(--white);
 }
 
