@@ -1,5 +1,5 @@
 <template>
-  <menu id="nav-container" :class="[popup && 'hide', 'bezier-300', animating && 'animating']">
+  <menu id="nav-container" :class="[popup && 'hide', info && 'hide', 'bezier-300', animating && 'animating']">
     <button 
       v-for="(item, index) in scenes" 
       :key="`slide-button-${index}`"
@@ -39,6 +39,9 @@ export default {
       clickSound: null
     }
   },
+  watch: {
+    muted: 'muteHandler'
+  },
   mounted() {
     this.hoverSound = new Howl({
       src: [this.sounds.hover],
@@ -57,6 +60,10 @@ export default {
     ...mapMutations({
       setScene: 'setScene'
     }),
+    muteHandler() {
+      this.hoverSound.mute(this.muted)
+      this.clickSound.mute(this.muted)
+    },
     hoverHandler() {
       this.hoverSound.play()
     },
@@ -96,7 +103,9 @@ export default {
       popup: 'popup',
       animating: 'animating',
       scenes: 'scenes',
-      currentScene: 'currentScene'
+      currentScene: 'currentScene',
+      info: 'info',
+      muted: 'muted'
     })
   }
 }
@@ -124,6 +133,7 @@ export default {
   }
   #nav-container {
     position: fixed;
+    overflow: visible;
     bottom: 5vmin;
     left: var(--nav-left);
     z-index: 12000;

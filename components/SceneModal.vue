@@ -1,5 +1,5 @@
 <template>
-  <viewport-wrapper :zIndex="10000">
+  <viewport-wrapper :zIndex="9000">
     <div class="modal-inner pad-single">
       <div id="chat-wrapper" class="chat-window">
         <div class="chat-close flex-center-vert x-pad-single">

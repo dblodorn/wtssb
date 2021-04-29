@@ -46,11 +46,11 @@ export const mutations = {
   setPopup(state, bool) {
     state.popup = bool
   },
-  setInfoPopup(state, bool) {
-    state.info = bool
+  setInfoPopup(state) {
+    state.info = !state.info
   },
-  toggleMuted(state, bool) {
-    state.muted = bool
+  toggleMuted(state) {
+    state.muted = !state.muted
   },
   setAnimating(state, bool) {
     state.animating = bool

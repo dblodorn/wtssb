@@ -1,5 +1,24 @@
 <template>
   <viewport-wrapper :zIndex="1">
+    <portal to="controls">
+      <div class="controls-wrapper">
+        <button class="circle-button mute-button" @click="toggleMuted">
+          <svg v-if="!muted" viewBox="0 0 94.47 87.88" xml:space="preserve">
+            <path class="st0" d="M47.43,15.64c15.68,0,28.45,12.76,28.45,28.45S63.12,72.53,47.43,72.53S18.98,59.77,18.98,44.09 S31.75,15.64,47.43,15.64 M47.43,14.64c-16.26,0-29.45,13.18-29.45,29.45c0,16.26,13.18,29.45,29.45,29.45 c16.26,0,29.45-13.18,29.45-29.45C76.88,27.82,63.69,14.64,47.43,14.64L47.43,14.64z"/>
+            <polygon class="st0" points="47.18,56.63 39.28,48.74 34.54,48.74 34.54,44.16 34.54,44.01 34.54,39.44 39.28,39.44 47.18,31.54 "/>
+            <line class="st1" x1="49.84" y1="48.83" x2="60.32" y2="38.36"/>
+            <line class="st1" x1="60.32" y1="48.83" x2="49.84" y2="38.36"/>
+          </svg>
+          <img v-else src="icons/Sound-On-Icon-Blue.svg" alt="">
+        </button>
+        <button class="circle-button info-button" @click="setInfoPopup">
+          <svg version="1.1" x="0px" y="0px" viewBox="0 0 94.47 87.88" xml:space="preserve">
+            <path class="st0" d="M47.24,15.64c15.68,0,28.45,12.76,28.45,28.45S62.92,72.53,47.24,72.53S18.79,59.77,18.79,44.09 S31.55,15.64,47.24,15.64 M47.24,14.64c-16.26,0-29.45,13.18-29.45,29.45c0,16.26,13.18,29.45,29.45,29.45s29.45-13.18,29.45-29.45 C76.68,27.82,63.5,14.64,47.24,14.64L47.24,14.64z"/>
+            <path class="st0" d="M41.27,51.9h5.7V40.37h-5.11v-2.36h7.66V51.9h5.31v2.36H41.27V51.9z M45.92,33.16c0-0.63,0.22-1.17,0.67-1.62 c0.45-0.45,0.99-0.67,1.62-0.67c0.63,0,1.17,0.22,1.62,0.67c0.45,0.45,0.67,0.99,0.67,1.62c0,0.63-0.22,1.17-0.67,1.62 c-0.45,0.45-0.99,0.67-1.62,0.67c-0.63,0-1.17-0.22-1.62-0.67C46.14,34.34,45.92,33.8,45.92,33.16z"/>
+          </svg>
+        </button>
+      </div>
+    </portal>
     <portal to="navigation">
       <navigation
         :class="[!modelsLoaded && 'loading', intro && 'intro', ballHovered, ]"
@@ -12,9 +31,9 @@
         }"
       />
     </portal>
-    <portal v-if="info" to="intro">
-      <viewport-wrapper :zIndex="10000">
-        <info-panel />
+    <portal v-if="info" to="info">
+      <viewport-wrapper :zIndex="12000">
+        <info-panel :copy="data.info_panel_copy"/>
       </viewport-wrapper>
     </portal>
     <portal v-if="intro" to="intro">
@@ -108,8 +127,12 @@ export default {
   },
   computed: {
     ...mapState({
-      info: 'info'
+      info: 'info',
+      muted: 'muted'
     })
+  },
+  watch: {
+    muted: 'muteHandler'
   },
   mounted() {
     // SOUND
@@ -175,8 +198,24 @@ export default {
       setPopup: 'setPopup',
       ballLoaded: 'ballLoaded',
       setScene: 'setScene',
-      setAnimating: 'setAnimating'
+      setAnimating: 'setAnimating',
+      toggleMuted: 'toggleMuted',
+      setInfoPopup: 'setInfoPopup'
     }),
+    muteHandler() {
+      console.log('muteState', this.muted)
+      this.introSound.mute(this.muted)
+      this.bgSound.mute(this.muted)
+      this.flythroughSound.mute(this.muted)
+      this.hoverSound.mute(this.muted)
+      this.clickSound.mute(this.muted)
+      if (this.sceneSound !== null) {
+        this.sceneSound.mute(this.muted)
+      }
+    },
+    infoHandler(bool) {
+      this.setInfoPopup(bool)
+    },
     animatingStart(arg) {
       this.setAnimating(true)
       console.log('animating-start::', arg)
@@ -330,12 +369,47 @@ export default {
 </script>
 
 <style lang="scss">
+  .controls-wrapper {
+    height: 100vh;
+    width: 0;
+    position: fixed;
+    overflow: visible;
+    top: 0;
+    right: 0;
+    z-index: 12000;
+  }
   .circle-button {
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 6rem;
+    height: 6rem;
     position: fixed;
     z-index: 12000;
-    border: 2px solid;
+    padding: 0;
+    svg,
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      * {
+        fill: white;
+      }
+      .st1 {
+        stroke: white;
+      }
+    }
+    &.mute-button {
+      top: 1.25rem;
+      right: 1.25rem;
+    }
+    &.info-button {
+      bottom: 1.25rem;
+      right: 1.25rem;
+    }
   }
   .close-button {
     width: 2.25rem;
