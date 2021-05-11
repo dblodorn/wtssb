@@ -40,16 +40,6 @@ export default {
     { src: '~plugins/aos', ssr: false },
     { src: "~plugins/preloadAll" }
   ],
-  buildModules: [
-    'nuxt-purgecss'
-  ],
-  purgeCSS: {
-    whitelist: [
-      ...whitelister([
-        'assets/css/wtssb.css'
-      ])
-    ]
-  },
   googleAnalytics: {
     id: process.env.GA_ID,
   },

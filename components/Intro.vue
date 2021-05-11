@@ -88,7 +88,7 @@ export default {
       font-family: var(--cirka);
       font-weight: 300;
       font-size: 6vmin;
-      line-height: 1.2;
+      line-height: 1.08;
     }
   }
 </style>

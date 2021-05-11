@@ -61,27 +61,27 @@ export const mutations = {
   ballLoaded(state, ball) {
     switch (ball) {
       case 1:
-        console.log('Ball 1')
+        console.log('Touch')
         state.scenes[0].loaded = true
         break;
       case 2:
-        console.log('Ball 2')
+        console.log('Taste')
         state.scenes[1].loaded = true
         break;
       case 3:
-        console.log('Ball 3')
+        console.log('Smell')
         state.scenes[2].loaded = true
         break;
       case 4:
-        console.log('Ball 4')
+        console.log('Hearing')
         state.scenes[3].loaded = true
         break;
       case 5:
-        console.log('Ball 5')
+        console.log('Sight')
         state.scenes[4].loaded = true
         break;
       case 6:
-        console.log('Ball 6')
+        console.log('Synesthesia')
         state.scenes[5].loaded = true
         break;
       default:

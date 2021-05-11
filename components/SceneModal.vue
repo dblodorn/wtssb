@@ -156,7 +156,6 @@ export default {
     left: 0;
     width: 100%;
     height: var(--close-height);
-    background: var(--black);
     justify-content: space-between;
     border-bottom: 1px solid var(--white);
   }
@@ -166,8 +165,7 @@ export default {
     position: fixed;
     bottom: 0;
     left: 0;
-    background-color: var(--white);
-    background: var(--black);
+    background: rgba(0,0,0,.6);
     z-index: 1000;
     overflow: hidden;
     filter: drop-shadow(0px 0px 15px rgba(0,0,0,.25));
@@ -195,6 +193,12 @@ export default {
   }
   .chat-item.image.feature-image {
     padding: 0!important;
+  }
+  .chat-item:first-child {
+    .chat-name-inner {
+      background-color: var(--dk-grey)!important;
+      color: white!important;
+    }
   }
   .text {
     padding: 0 var(--chat-x-pad) 2rem;
@@ -227,7 +231,7 @@ export default {
   }
   .chat-text {
     padding: var(--pad-single);
-    background: var(--chat-bg);
+    background: var(--lt-grey);
     border-radius: calc(var(--chat-name-height) / 2);
     width: var(--chat-text-width);
     filter: drop-shadow(0px 0px 15px rgba(0,0,0,.25));

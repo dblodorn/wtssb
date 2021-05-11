@@ -3,8 +3,8 @@
     <button 
       v-for="(item, index) in scenes" 
       :key="`slide-button-${index}`"
-      :class="['nav-button', item.loaded ? 'loaded' : 'ball-loading', currentScene === (index + 1) && 'active']"
-      @click="navHandler(index)"
+      :class="['nav-button', item.loaded ? 'loaded' : 'ball-loading', `button-${index}`, currentScene === (index + 1) && 'active']"
+      @click="navHandler(item.title)"
       @mouseenter="hoverHandler"
     >
       <span :class="['bezier-300', item.title, animating && 'animating']">{{item.title}}</span>
@@ -70,7 +70,6 @@ export default {
     navHandler(index) {
       this.cameraHandler(index)
       this.clickSound.play()
-
       switch (index) {
         case 0:
           this.setScene(1)
@@ -94,7 +93,8 @@ export default {
           this.setScene('center')
           break;
         default:
-          console.log(`SCENE INDEx ${index}.`);
+          this.setScene(index)
+          console.log(`SCENE INDEX ${index}.`);
       }
     }
   },

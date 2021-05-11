@@ -116,18 +116,19 @@ class World {
   }
 
   cameraHandler(slide) {
-    if (slide === 0) {
+    console.log('nav', slide)
+    if (slide === 'Touch') {
       this.motionHandler(balls.ball1, 6)
-    } else if (slide === 1) {
-      this.motionHandler(balls.ball2, 6)
-    } else if (slide === 2) {
-      this.motionHandler(balls.ball3, 6)
-    } else if (slide === 3) {
-      this.motionHandler(balls.ball4, 6)
-    } else if (slide === 4) {
-      this.motionHandler(balls.ball5, 6)
-    } else if (slide === 5) {
+    } else if (slide === 'Taste') {
       this.motionHandler(balls.ball6, 6)
+    } else if (slide === 'Smell') {
+      this.motionHandler(balls.ball3, 6)
+    } else if (slide === 'Hearing') {
+      this.motionHandler(balls.ball4, 6)
+    } else if (slide === 'Sight') {
+      this.motionHandler(balls.ball5, 6)
+    } else if (slide === 'Synesthesia') {
+      this.motionHandler(balls.ball2, 6)
     } else if (slide === 'center') {
       gsap.to(controls.target, 5, {
         x: 0,

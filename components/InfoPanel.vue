@@ -63,6 +63,7 @@ export default {
       grid-template-columns: 1fr 1fr;
       max-width: 140rem;
       padding-top: 5vmin;
+      padding-bottom: 10vmin;
       padding-left: 10vmin;
       grid-gap: 7vmin;
     }
