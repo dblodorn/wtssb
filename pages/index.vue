@@ -28,7 +28,8 @@
       <viewport-wrapper :zIndex="12000">
         <info-panel 
           :copy="data.info_panel_copy"
-          :colophon="data.info_panel_colophon"  
+          :colophon="data.info_panel_colophon"
+          :slides="data.info_panel_images"
         />
       </viewport-wrapper>
     </portal>

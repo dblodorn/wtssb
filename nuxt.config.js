@@ -28,6 +28,7 @@ export default {
   },
   css: [
     '~assets/css/main.css',
+    '~assets/css/swiper.css',
     '~assets/css/wtssb.css'
   ],
   plugins: [
@@ -37,6 +38,7 @@ export default {
     { src: '~plugins/vue-inline-svg' },
     { src: "~plugins/global" },
     { src: '~plugins/typeSplitter' },
+    { src: '~plugins/vue-awesome-swiper', ssr: false },
     { src: '~plugins/aos', ssr: false },
     { src: "~plugins/preloadAll" }
   ],
