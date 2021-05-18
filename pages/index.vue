@@ -14,7 +14,7 @@
     </portal>
     <portal to="navigation">
       <navigation
-        :class="[!modelsLoaded && 'loading', intro && 'intro', ballHovered, ]"
+        :class="[!modelsLoaded && 'loading', intro && 'intro', ballHovered]"
         :cameraHandler="(slide) => cameraHandler(slide)"
         :sounds="{
           hover: data.nav_hover_sound, 
@@ -33,7 +33,11 @@
         />
       </viewport-wrapper>
     </portal>
-    <portal v-if="intro" to="intro">
+    <portal
+      v-if="intro"
+      to="intro"
+      transition="fade"
+    >
       <viewport-wrapper :zIndex="10">
         <intro
           :video="data.intro_video"

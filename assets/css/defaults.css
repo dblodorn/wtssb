@@ -27,6 +27,7 @@ html {
 }
 
 /* SCROLL BAR */
+/*
 *::-webkit-scrollbar {
   height: 0;
   width: 0;
@@ -41,6 +42,15 @@ html {
 *::-webkit-scrollbar-thumb:hover {
   background: var(--grey-lt);
 }
+
+@media (--lg) {
+  *::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+    display: block;
+  }
+}
+*/
 
 * {
   -webkit-overflow-scrolling: touch;
@@ -59,12 +69,4 @@ html {
 * {
   box-sizing: border-box; 
   outline: 0;
-}
-
-@media (--lg) {
-  *::-webkit-scrollbar {
-    height: 0;
-    width: 0;
-    display: block;
-  }
 }

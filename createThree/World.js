@@ -122,11 +122,11 @@ class World {
     } else if (slide === 'Taste') {
       this.motionHandler(balls.ball6, 6)
     } else if (slide === 'Smell') {
-      this.motionHandler(balls.ball3, 6)
+      this.motionHandler(balls.ball5, 6)
     } else if (slide === 'Hearing') {
       this.motionHandler(balls.ball4, 6)
     } else if (slide === 'Sight') {
-      this.motionHandler(balls.ball5, 6)
+      this.motionHandler(balls.ball3, 6)
     } else if (slide === 'Synesthesia') {
       this.motionHandler(balls.ball2, 6)
     } else if (slide === 'center') {
