@@ -1,6 +1,6 @@
 <template>
   <viewport-wrapper :zIndex="9000">
-    <div class="modal-inner pad-single">
+    <div class="modal-inner pad-single" @click="closeHandler(sceneData.sense)">
       <div id="chat-wrapper" class="chat-window">
         <div class="chat-close flex-center-vert x-pad-single">
           <h6 class="white" v-html="sceneData.sense"/>
@@ -32,7 +32,6 @@
         </transition>
       </div>
     </div>
-    <div class="modal-background" @click="closeHandler(sceneData.sense)"/>
   </viewport-wrapper>
 </template>
 

@@ -41,6 +41,7 @@
       <viewport-wrapper :zIndex="10">
         <intro
           :video="data.intro_video"
+          :videoPoster="data.intro_video_cover"
           :copy="data.intro_copy"
         >
           <button 

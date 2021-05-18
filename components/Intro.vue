@@ -7,15 +7,15 @@
     />
     <slot/>
     <div class="video-wrapper">
-      <video 
-        v-if="type === 'mp4'"
+      <video
         playsinline 
-        muted 
+        muted
         autoplay
-        loop 
+        loop
+        :poster="videoPoster"
         :src="video"
+        @ended="endedHandler"
       />
-      <img v-else :src="video">
     </div>
   </section>
 </template>
@@ -25,6 +25,9 @@ export default {
   name: 'intro',
   props: {
     video: {
+      type: String
+    },
+    videoPoster: {
       type: String
     },
     loaded: {
@@ -51,6 +54,9 @@ export default {
       for (let index = 0; index < array.length; index++) {
         await callback(array[index], index, array);
       }
+    },
+    endedHandler() {
+      console.log('video ended')
     },
     textRoll(array) {
       this.asyncForEach(array, async (item, index) => {
