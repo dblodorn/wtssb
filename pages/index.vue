@@ -49,7 +49,7 @@
             :class="['button-wrapper bezier-300', modelsLoaded && videoDone ? 'loaded' : 'loading']"
             @click="enterHandler"
           >
-            <!--<span class="loading-text sm-size font-a bezier-300">LOADING</span>-->
+            <span class="loading-text sm-size font-a bezier-300">LOADING</span>
             <span class="launch-text sm-size font-a bezier-300">LAUNCH</span>
           </button>
         </intro>

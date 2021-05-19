@@ -1,10 +1,9 @@
 <template>
   <section id="intro-wrapper" class="pad-single y-pad-top inner-page">
-    <div 
-      class="intro-copy text-shadow" 
-      v-html="`<p>${copy}</p>`"
-      ref="description"
-    />
+    <div class="intro-copy text-shadow">
+      <p class="intro-p" v-html="copy" />
+      <p v-if="!isDesktop"><span>To get the full experience, please view on a laptop or desktop computer.</span></p>
+    </div>
     <slot/>
     <div class="video-wrapper">
       <video
@@ -21,7 +20,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 
 export default {
   name: 'intro',
@@ -75,6 +74,9 @@ export default {
     })
   },
   computed: {
+    ...mapGetters({
+      isDesktop: 'screen/isDesktop'
+    }),
     isLoaded() {
       return this.loaded
     }
@@ -85,16 +87,41 @@ export default {
 <style lang="scss">
   .intro-copy {
     position: fixed;
+    top: 0;
+    left: 0;
     z-index: 10000;
-    width: 90vmin;
-    top: 5vmin;
-    left: 10vmin;
+    width: 100%;
+    padding: 4rem 2rem 0;
     * {
       color: var(--white);
       font-family: var(--cirka);
       font-weight: 300;
-      font-size: 6vmin;
+      font-size: 3.25rem;
       line-height: 1.08;
+      padding-bottom: 0;
+    }
+    span {
+      display: inline-block;
+      padding-top: 1.5rem;
+      font-size: 2.25rem!important;
+      line-height: 1.1;
+      font-style: italic;
+    }
+  }
+  @media(--lg) {
+    .intro-copy {
+      top: 5vmin;
+      left: 10vmin;
+      max-width: 90vmin;
+      padding: 0;
+      * {
+        color: var(--white);
+        font-size: 6vmin;
+        line-height: 1.08;
+      }
+      span {
+        font-size: 4vmin!important;
+      }
     }
   }
 </style>
