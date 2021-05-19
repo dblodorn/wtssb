@@ -1,7 +1,7 @@
 <template>
   <section id="intro-wrapper" class="pad-single y-pad-top inner-page">
     <div 
-      class="intro-copy text-shadow" 
+      :class="['intro-copy', isDesktop && 'text-shadow']" 
       v-html="`<p>${copy}<br><span>Launches 20/05/2021 : 5:00PM CEST<span></p>`"
       ref="description"
     />
@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 
 export default {
   name: 'intro',
@@ -54,7 +54,6 @@ export default {
       }
     },
     endedHandler() {
-      // console.log('video ended')
       this.$refs.introVideo.play();
       this.setVideoDone()
     },
@@ -67,9 +66,6 @@ export default {
         }
       })
     },
-    lastCallback() {
-      // console.log('type done')
-    },
     getFileType(file) {
       return file.split('.').pop();
     },
@@ -78,6 +74,9 @@ export default {
     })
   },
   computed: {
+    ...mapGetters({
+      isDesktop: 'screen/isDesktop'
+    }),
     isLoaded() {
       return this.loaded
     }
@@ -88,19 +87,36 @@ export default {
 <style lang="scss">
   .intro-copy {
     position: fixed;
+    top: 0;
+    left: 0;
     z-index: 10000;
-    width: 90vmin;
-    top: 5vmin;
-    left: 10vmin;
+    width: 100%;
+    padding: 4rem 2rem 0;
     * {
-      color: var(--white);
+      color: var(--black);
       font-family: var(--cirka);
       font-weight: 300;
-      font-size: 6vmin;
+      font-size: 3.25rem;
       line-height: 1.08;
     }
     span {
-      font-size: 4vmin!important;
+      font-size: 2.25rem!important;
+    }
+  }
+  @media(--lg) {
+    .intro-copy {
+      top: 5vmin;
+      left: 10vmin;
+      max-width: 90vmin;
+      padding: 0;
+      * {
+        color: var(--white);
+        font-size: 6vmin;
+        line-height: 1.08;
+      }
+      span {
+        font-size: 4vmin!important;
+      }
     }
   }
 </style>
