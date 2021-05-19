@@ -1,5 +1,5 @@
 <template>
-  <menu id="nav-container" :class="[popup && 'hide', info && 'hide', 'bezier-300', animating && 'animating']">
+  <menu id="nav-container" :class="[popup && 'hide', info && 'hide', 'bezier-300', animating || !videoDone && 'animating']">
     <button 
       v-for="(item, index) in scenes" 
       :key="`slide-button-${index}`"
@@ -7,7 +7,7 @@
       @click="navHandler(item.title)"
       @mouseenter="hoverHandler"
     >
-      <span :class="['bezier-300', item.title, animating && 'animating']">{{item.title}}</span>
+      <span :class="['bezier-300', item.title, animating || !videoDone && 'animating']">{{item.title}}</span>
     </button>
     <button
       :class="['nav-button center-nav loaded', currentScene === 'center' && 'active']"
@@ -94,7 +94,7 @@ export default {
           break;
         default:
           this.setScene(index)
-          console.log(`SCENE INDEX ${index}.`);
+          // console.log(`SCENE INDEX ${index}.`);
       }
     }
   },
@@ -105,7 +105,8 @@ export default {
       scenes: 'scenes',
       currentScene: 'currentScene',
       info: 'info',
-      muted: 'muted'
+      muted: 'muted',
+      videoDone: 'videoDone'
     })
   }
 }

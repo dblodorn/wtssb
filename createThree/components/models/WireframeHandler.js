@@ -9,7 +9,7 @@ import gsap from 'gsap';
 export default function(model, show) {
   
   click = () => {
-    console.log(model.scale.x)
+    // console.log(model.scale.x)
     const currentScale = model.scale.x
     let newScale;
     model.traverse(function(child) {
@@ -34,7 +34,7 @@ export default function(model, show) {
   }
   
   hover = () => {
-    console.log('hover')
+    // console.log('hover')
   }
   
   

@@ -31,11 +31,6 @@
                 <span>View Artist Edition</span>
               </button>
             </li>
-            <li>
-              <a href="https://media.dmbk.io/wp-content/uploads/sites/30/2021/04/29162910/EXAMPLE.pdf" target="_blank" class="lozenge-button">
-                <span>PDF of Books</span>
-              </a>
-            </li>
           </ul>
         </div>
       </div>

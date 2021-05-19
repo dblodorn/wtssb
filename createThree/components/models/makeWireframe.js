@@ -7,7 +7,7 @@ import {
 import gsap from 'gsap';
 
 export const click = (model, state) => {
-  console.log(model.scale.x)
+  // console.log(model.scale.x)
   const currentScale = model.scale.x
   let newScale;
   if (state === 'open') {

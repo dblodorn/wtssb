@@ -69,7 +69,7 @@ export default {
     children.forEach(element => {
       this.chatHeight = this.chatHeight + element.children[0].scrollHeight
     });
-    console.log('height', this.chatHeight)
+    // console.log('height', this.chatHeight)
     this.$refs.chat.addEventListener('scroll', 
       (event) => this.scroll(event), { passive: true }
     )

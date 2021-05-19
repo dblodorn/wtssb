@@ -1,7 +1,7 @@
 <template>
   <viewport-wrapper :zIndex="1">
     <portal to="controls">
-      <div class="controls-wrapper">
+      <div class="controls-wrapper" v-if="isDesktop">
         <button class="circle-button mute-button shadow" @click="toggleMuted">
           <inline-svg :class="['button-img', !muted && 'show']" src="icons/volume-mute.svg"/>
           <inline-svg :class="['button-img', muted && 'show']" src="icons/sound.svg"/>
@@ -14,7 +14,8 @@
     </portal>
     <portal to="navigation">
       <navigation
-        :class="[!modelsLoaded && 'loading', intro && 'intro', ballHovered]"
+        v-if="isDesktop"
+        :class="[!modelsLoaded && !videoDone && 'loading', intro && 'intro', ballHovered]"
         :cameraHandler="(slide) => cameraHandler(slide)"
         :sounds="{
           hover: data.nav_hover_sound, 
@@ -36,7 +37,6 @@
     <portal
       v-if="intro"
       to="intro"
-      transition="fade"
     >
       <viewport-wrapper :zIndex="10">
         <intro
@@ -45,10 +45,11 @@
           :copy="data.intro_copy"
         >
           <button 
-            :class="['button-wrapper bezier-300', modelsLoaded ? 'loaded' : 'loading']"
+            v-if="isDesktop"
+            :class="['button-wrapper bezier-300', modelsLoaded && videoDone ? 'loaded' : 'loading']"
             @click="enterHandler"
           >
-            <span class="loading-text sm-size font-a bezier-300">LOADING</span>
+            <!--<span class="loading-text sm-size font-a bezier-300">LOADING</span>-->
             <span class="launch-text sm-size font-a bezier-300">LAUNCH</span>
           </button>
         </intro>
@@ -74,7 +75,7 @@
 
 <script>
 import axios from 'axios'
-import { mapMutations, mapState } from 'vuex'
+import { mapMutations, mapState, mapGetters } from 'vuex'
 
 import { 
   startWorld, 
@@ -128,9 +129,13 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      isDesktop: 'screen/isDesktop'
+    }),
     ...mapState({
       info: 'info',
-      muted: 'muted'
+      muted: 'muted',
+      videoDone: 'videoDone'
     })
   },
   watch: {
@@ -205,7 +210,6 @@ export default {
       setInfoPopup: 'setInfoPopup'
     }),
     muteHandler() {
-      console.log('muteState', this.muted)
       this.introSound.mute(this.muted)
       this.bgSound.mute(this.muted)
       this.flythroughSound.mute(this.muted)
@@ -220,11 +224,9 @@ export default {
     },
     animatingStart(arg) {
       this.setAnimating(true)
-      console.log('animating-start::', arg)
     },
     animatingEnd(arg) {
       this.setAnimating(false)
-      console.log('animating-end::', arg)
       if (arg === 'intro-end') {
         this.bgSound.play()
         this.bgSound.fade(0, parseFloat(this.data.landing_page_audio_volume), 3500)

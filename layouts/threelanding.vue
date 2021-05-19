@@ -2,7 +2,7 @@
   <fragment>
     <portal-target name="navigation" transition="fade"/>
     <portal-target name="info"/>
-    <portal-target name="intro"/>
+    <portal-target name="intro" transition="fade"/>
     <portal-target name="controls"/>
     <portal-target name="modal" transition="fade"/>
     <main id="three-wrapper">

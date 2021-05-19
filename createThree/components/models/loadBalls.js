@@ -13,7 +13,7 @@ export default async function (loop, loadedFunction) {
 
   const [touchModel, synesthesiaModel, sightModel, hearingModel, smellModel, tasteModel] = await Promise.all([
     loader.loadAsync(balls.ball_1.model, (event) => onLoading(event, 'Ball1')).then((result) => {
-      console.log('Loaded Ball1', result);
+      // console.log('Loaded Ball1', result);
       loadedFunction(1)
       return result;
     }),

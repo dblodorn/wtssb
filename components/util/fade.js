@@ -10,10 +10,10 @@ export default Vue.component('fade', {
       },
       on: {
         beforeEnter: function (el) {
-          console.log('fade in')
+          // console.log('fade in')
         },
         afterEnter: function (el) {
-          console.log('fade entered')
+          // console.log('fade entered')
         }
       }
     }

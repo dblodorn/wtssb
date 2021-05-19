@@ -8,10 +8,10 @@
     <slot/>
     <div class="video-wrapper">
       <video
+        ref="introVideo"
         playsinline 
         muted
         autoplay
-        loop
         :poster="videoPoster"
         :src="video"
         @ended="endedHandler"
@@ -21,6 +21,8 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
+
 export default {
   name: 'intro',
   props: {
@@ -42,13 +44,6 @@ export default {
       type: null
     }
   },
-  mounted() {
-    this.type = this.getFileType(this.video)
-    console.log(this.type)
-    this.$nextTick(() => {
-      this.textRoll(this.$refs.description)
-    })
-  },
   methods: {
     async asyncForEach(array, callback) {
       for (let index = 0; index < array.length; index++) {
@@ -56,7 +51,9 @@ export default {
       }
     },
     endedHandler() {
-      console.log('video ended')
+      // console.log('video ended')
+      this.$refs.introVideo.play();
+      this.setVideoDone()
     },
     textRoll(array) {
       this.asyncForEach(array, async (item, index) => {
@@ -68,11 +65,14 @@ export default {
       })
     },
     lastCallback() {
-      console.log('type done')
+      // console.log('type done')
     },
     getFileType(file) {
       return file.split('.').pop();
-    }
+    },
+    ...mapMutations({
+      setVideoDone: 'setVideoDone'
+    })
   },
   computed: {
     isLoaded() {

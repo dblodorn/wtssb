@@ -116,7 +116,7 @@ class World {
   }
 
   cameraHandler(slide) {
-    console.log('nav', slide)
+    // console.log('nav', slide)
     if (slide === 'Touch') {
       this.motionHandler(balls.ball1, 6)
     } else if (slide === 'Taste') {
@@ -234,7 +234,7 @@ class World {
 
   panSkybox(object) {
     const tl = gsap.timeline();
-    console.log(object, 'transition camera')
+    // console.log(object, 'transition camera')
     tl.to(controls.target, 2, {
       x: object.position.x,
       y: object.position.y,

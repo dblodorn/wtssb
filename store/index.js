@@ -5,6 +5,7 @@ export const state = () => ({
   animating: false,
   info: false,
   muted: false,
+  videoDone: false,
   scenes: [
     {
       title: 'Touch',
@@ -58,34 +59,37 @@ export const mutations = {
   setScene(state, number) {
     state.currentScene = number
   },
+  setVideoDone(state) {
+    state.videoDone = true
+  },
   ballLoaded(state, ball) {
     switch (ball) {
       case 1:
-        console.log('Touch')
+        //console.log('Touch')
         state.scenes[0].loaded = true
         break;
       case 2:
-        console.log('Taste')
+        //console.log('Taste')
         state.scenes[1].loaded = true
         break;
       case 3:
-        console.log('Smell')
+        //console.log('Smell')
         state.scenes[2].loaded = true
         break;
       case 4:
-        console.log('Hearing')
+        //console.log('Hearing')
         state.scenes[3].loaded = true
         break;
       case 5:
-        console.log('Sight')
+        //console.log('Sight')
         state.scenes[4].loaded = true
         break;
       case 6:
-        console.log('Synesthesia')
+        //console.log('Synesthesia')
         state.scenes[5].loaded = true
         break;
       default:
-        console.log(`Ball INDEx ${ball}.`);
+        //console.log(`Ball INDEx ${ball}.`);
     }
   }
 }
