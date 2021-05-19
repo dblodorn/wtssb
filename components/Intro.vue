@@ -2,11 +2,13 @@
   <section id="intro-wrapper" class="pad-single y-pad-top inner-page">
     <div 
       class="intro-copy text-shadow" 
-      v-html="`<p>${copy}</p>`"
+      v-html="`<p>${copy}<br><span>Launches 20/05/2021 : 5:00PM CEST<span></p>`"
       ref="description"
     />
     <slot/>
     <div class="video-wrapper">
+      <img :src="videoPoster" alt="">
+      <!--
       <video
         ref="introVideo"
         playsinline 
@@ -16,6 +18,7 @@
         :src="video"
         @ended="endedHandler"
       />
+      -->
     </div>
   </section>
 </template>
@@ -95,6 +98,9 @@ export default {
       font-weight: 300;
       font-size: 6vmin;
       line-height: 1.08;
+    }
+    span {
+      font-size: 4vmin!important;
     }
   }
 </style>
