@@ -1,5 +1,5 @@
 <template>
-  <menu id="nav-container" :class="[popup && 'hide', info && 'hide', 'bezier-300', animating || !videoDone && 'animating']">
+  <menu id="nav-container" :class="[popup && 'hide', info && 'hide', 'bezier-300', animating && 'animating']">
     <button 
       v-for="(item, index) in scenes" 
       :key="`slide-button-${index}`"
