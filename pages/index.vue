@@ -1,6 +1,5 @@
 <template>
   <viewport-wrapper :zIndex="1">
-    <!--
     <portal to="controls">
       <div class="controls-wrapper" v-if="isDesktop">
         <button class="circle-button mute-button shadow" @click="toggleMuted">
@@ -35,7 +34,6 @@
         />
       </viewport-wrapper>
     </portal>
-    -->
     <portal
       v-if="intro"
       to="intro"
@@ -46,7 +44,6 @@
           :videoPoster="data.intro_video_cover"
           :copy="data.intro_copy"
         >
-          <!--
           <button 
             v-if="isDesktop"
             :class="['button-wrapper bezier-300', modelsLoaded && videoDone ? 'loaded' : 'loading']"
@@ -55,11 +52,9 @@
             <span class="loading-text sm-size font-a bezier-300">LOADING</span>
             <span class="launch-text sm-size font-a bezier-300">LAUNCH</span>
           </button>
-          -->
         </intro>
       </viewport-wrapper>
     </portal>
-    <!--
     <portal v-if="modal" to="modal">
       <scene-modal 
         :sceneData="{
@@ -70,13 +65,11 @@
         :closeHandler="(scene) => closeHandler(scene)"
       />
     </portal>
-    
     <section 
       id="three-world" 
       :class="['bezier-300', modelsLoaded ? 'visible' : 'loading']"
       ref="threeWorld"
     />
-    -->
   </viewport-wrapper>
 </template>
 
@@ -149,8 +142,6 @@ export default {
     muted: 'muteHandler'
   },
   mounted() {
-    // SOUND
-    /*
     this.introSound = new Howl({
       src: [this.data.intro_page_audio],
       autoplay: false,
@@ -201,15 +192,12 @@ export default {
         })
       }, 50)
     })
-    */
   },
   beforeDestroy() {
-    // clearWorld()
-    /*
+    clearWorld()
     this.bgSound.stop()
     this.flythroughSound.stop()
     clearTimeout(this.modalTimeout)
-    */
   },
   methods: {
     ...mapMutations({
@@ -368,7 +356,7 @@ export default {
         volume: this.sceneVolume
       })
       this.bgSound.fade(parseFloat(this.data.landing_page_audio_volume), 0, 2500)
-      // this.bgSound.stop()
+      this.bgSound.stop()
       this.$nextTick(() => {
         this.sceneSound.play()
         this.sceneSound.fade(0, this.sceneVolume, 2500)
