@@ -6,6 +6,8 @@
     </div>
     <slot/>
     <div class="video-wrapper">
+      <img :src="videoPoster" alt="">
+      <!--
       <video
         ref="introVideo"
         playsinline 
@@ -15,6 +17,7 @@
         :src="video"
         @ended="endedHandler"
       />
+      -->
     </div>
   </section>
 </template>
@@ -50,7 +53,6 @@ export default {
       }
     },
     endedHandler() {
-      // console.log('video ended')
       this.$refs.introVideo.play();
       this.setVideoDone()
     },
@@ -62,9 +64,6 @@ export default {
           this.lastCallback()
         }
       })
-    },
-    lastCallback() {
-      // console.log('type done')
     },
     getFileType(file) {
       return file.split('.').pop();
@@ -93,7 +92,7 @@ export default {
     width: 100%;
     padding: 4rem 2rem 0;
     * {
-      color: var(--white);
+      color: var(--black);
       font-family: var(--cirka);
       font-weight: 300;
       font-size: 3.25rem;
@@ -106,6 +105,25 @@ export default {
       font-size: 2.25rem!important;
       line-height: 1.1;
       font-style: italic;
+    }
+  }
+  @media(--lg) {
+    .intro-copy {
+      top: 5vmin;
+      left: 10vmin;
+      max-width: 90vmin;
+      padding: 0;
+      * {
+        color: var(--white);
+        font-size: 6vmin;
+        line-height: 1.08;
+      }
+      span {
+        font-size: 4vmin!important;
+      }
+    }
+    span {
+      font-size: 2.25rem!important;
     }
   }
   @media(--lg) {
