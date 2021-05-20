@@ -121,7 +121,7 @@ export default {
       }
     }
     span {
-      font-size: 2.25rem!important;
+      font-size: 2.25rem;
     }
   }
   @media(--lg) {
