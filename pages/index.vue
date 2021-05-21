@@ -255,6 +255,8 @@ export default {
       if(this.sceneSound !== null) {
         this.sceneSound.fade(this.sceneVolume, 0, 2500)
       }
+      console.log('close', scene)
+      this.bgSound.play()
       this.bgSound.fade(0, parseFloat(this.data.landing_page_audio_volume), 2500)
     },
     loadedHandler() {
