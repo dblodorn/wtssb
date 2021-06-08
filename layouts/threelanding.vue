@@ -30,12 +30,10 @@ export default {
     this.setScreenSize()
     window.addEventListener('resize', this.debouncedResize, { passive: true })
     window.addEventListener('scroll', this.scroll, { passive: true })
-    // window.addEventListener('mousemove', this.mouseMove, { passive: true })
   },
   beforeDestroy () {
     window.removeEventListener('resize', this.debouncedResize, { passive: true })
     window.removeEventListener('mousemove', this.mouseMove, { passive: true })
-    // window.removeEventListener('mousemove', this.mouseMove, { passive: true })
   },
   methods: {
     async resize() {

@@ -4,7 +4,7 @@ export const state = () => ({
   currentScene: 'center',
   animating: false,
   info: false,
-  muted: false,
+  muted: true,
   videoDone: false,
   scenes: [
     {

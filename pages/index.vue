@@ -119,6 +119,7 @@ export default {
       bgSound: null,
       flythroughSound: null,
       intro: true,
+      introPlayed: false,
       hoverSound: null,
       clickSound: null,
       ballHovered: false,
@@ -177,7 +178,7 @@ export default {
     this.video = this.data.video_1
     this.currentChat = this.data.scene_1_chat
     this.$nextTick(() => {
-      this.introSound.play()
+      // 
       setTimeout(() => {
         startWorld({
           container: this.worldWrapper,
@@ -216,6 +217,11 @@ export default {
       this.clickSound.mute(this.muted)
       if (this.sceneSound !== null) {
         this.sceneSound.mute(this.muted)
+      }
+      console.log(this.introPlayed, this.muted)
+      if (!this.introPlayed && !this.muted) {
+        this.introSound.play()
+        this.introPlayed = true
       }
     },
     infoHandler(bool) {
