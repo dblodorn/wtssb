@@ -3,12 +3,12 @@
     <portal to="controls">
       <div class="controls-wrapper" v-if="isDesktop">
         <button class="circle-button mute-button shadow" @click="toggleMuted">
-          <inline-svg :class="['button-img', !muted && 'show']" src="icons/volume-mute.svg"/>
-          <inline-svg :class="['button-img', muted && 'show']" src="icons/sound.svg"/>
+          <span :class="['button-text', !muted && 'show']">MUTE</span>
+          <span :class="['button-text', muted && 'show']">UN-MUTE</span>
         </button>
         <button class="circle-button info-button shadow" @click="setInfoPopup">
-          <inline-svg :class="['button-img', !info && 'show']" src="icons/info.svg"/>
-          <inline-svg :class="['button-img', info && 'show']" src="icons/info-close.svg"/>
+          <span :class="['button-text', !info && 'show']">INFO</span>
+          <span :class="['button-text', info && 'show']">CLOSE</span>
         </button>
       </div>
     </portal>
@@ -46,7 +46,7 @@
         >
           <button 
             v-if="isDesktop"
-            :class="['button-wrapper bezier-300', modelsLoaded && videoDone ? 'loaded' : 'loading']"
+            :class="['button-wrapper bezier-300', modelsLoaded ? 'loaded' : 'loading']"
             @click="enterHandler"
           >
             <span class="loading-text sm-size font-a bezier-300">LOADING</span>
@@ -126,7 +126,20 @@ export default {
       sceneSound: null,
       sceneSoundAudio: false,
       sceneVolume: 0,
-      introSound: null
+      introSound: null,
+      audioContext: null,
+      userGestureEvents: [
+        'click',
+        'contextmenu',
+        'auxclick',
+        'dblclick',
+        'mousedown',
+        'mouseup',
+        'pointerup',
+        'touchend',
+        'keydown',
+        'keyup',
+      ]
     }
   },
   computed: {
@@ -136,7 +149,8 @@ export default {
     ...mapState({
       info: 'info',
       muted: 'muted',
-      videoDone: 'videoDone'
+      videoDone: 'videoDone',
+      touch: 'screen/touch'
     })
   },
   watch: {
@@ -177,9 +191,22 @@ export default {
     this.worldWrapper = this.$refs.threeWorld
     this.video = this.data.video_1
     this.currentChat = this.data.scene_1_chat
+    
+    // GET AUDIO CONTEXT
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const audioContext = new AudioContext();
+    
     this.$nextTick(() => {
-      // 
+      if(audioContext.state === 'suspended') {
+        
+        console.log('audio suspended', audioContext.state)
+        this.toggleMuted()
+        this.userGestureEvents.forEach(eventName => {
+          document.addEventListener(eventName, this.unlockAudio);
+        });
+      }
       setTimeout(() => {
+        this.introSound.play()
         startWorld({
           container: this.worldWrapper,
           data: this.data,
@@ -209,6 +236,17 @@ export default {
       toggleMuted: 'toggleMuted',
       setInfoPopup: 'setInfoPopup'
     }),
+    unlockAudio() {
+      this.$nextTick(() => {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        const audioContext = new AudioContext();
+        console.log('audio context interaction', audioContext.state)
+        this.toggleMuted()
+        this.userGestureEvents.forEach(eventName => {
+          document.removeEventListener(eventName, this.unlockAudio);
+        });
+      })
+    },
     muteHandler() {
       this.introSound.mute(this.muted)
       this.bgSound.mute(this.muted)
@@ -218,11 +256,12 @@ export default {
       if (this.sceneSound !== null) {
         this.sceneSound.mute(this.muted)
       }
-      console.log(this.introPlayed, this.muted)
+      /*
       if (!this.introPlayed && !this.muted) {
         this.introSound.play()
         this.introPlayed = true
       }
+      */
     },
     infoHandler(bool) {
       this.setInfoPopup(bool)
@@ -395,13 +434,17 @@ export default {
     position: fixed;
     z-index: 12000;
     padding: 0;
-    .button-img {
+    .button-img,
+    .button-text {
       display: none;
       pointer-events: none;
       &.show {
         display: block;
         pointer-events: all;
       }
+    }
+    span {
+      color: green;
     }
     svg,
     img {
