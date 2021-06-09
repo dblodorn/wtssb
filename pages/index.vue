@@ -2,11 +2,11 @@
   <viewport-wrapper :zIndex="1">
     <portal to="controls">
       <div class="controls-wrapper" v-if="isDesktop">
-        <button class="circle-button mute-button shadow" @click="toggleMuted">
+        <button class="lozenge-button circle-button mute-button sm-size font-a" @click="toggleMuted">
           <span :class="['button-text', !muted && 'show']">MUTE</span>
-          <span :class="['button-text', muted && 'show']">UN-MUTE</span>
+          <span :class="['button-text', muted && 'show']">UNMUTE</span>
         </button>
-        <button class="circle-button info-button shadow" @click="setInfoPopup">
+        <button class="lozenge-button circle-button info-button sm-size font-a" @click="setInfoPopup">
           <span :class="['button-text', !info && 'show']">INFO</span>
           <span :class="['button-text', info && 'show']">CLOSE</span>
         </button>
@@ -429,12 +429,29 @@ export default {
     z-index: 12000;
   }
   .circle-button {
-    width: 4rem;
-    height: 4rem;
     position: fixed;
     z-index: 12000;
-    padding: 0;
-    .button-img,
+    padding: var(--pad-micro) var(--pad-single) calc(var(--pad-micro) + 5px);
+    border: 1px solid #0000ff;
+    width: 12rem;
+    span {
+      font-size: var(--sm-size)!important;
+      position: relative;
+      color: var(--nav-green)!important;
+      &:after {
+        content: '';
+        width: 100%;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        bottom: 0px;
+        border-bottom: 1px solid var(--nav-green);
+      }
+    }
+    &:hover {
+      background-color: #7F7FBA;
+    }
     .button-text {
       display: none;
       pointer-events: none;
@@ -442,21 +459,6 @@ export default {
         display: block;
         pointer-events: all;
       }
-    }
-    span {
-      color: green;
-    }
-    svg,
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      margin: auto;
     }
     &.mute-button {
       bottom: 2rem;
