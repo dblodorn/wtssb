@@ -22,7 +22,7 @@ export default {
     })
   },
   created () {
-    if(process.env.TARGET === 'server') { this.getData() }
+    // if(process.env.TARGET === 'server') { this.getData() }
     this.debouncedResize = debounce(this.resize, 50)
   },
   mounted () {
@@ -53,7 +53,7 @@ export default {
       this.menuState = !this.menuState
     },
     ...mapActions({
-      getData: 'getData',
+      // getData: 'getData',
       setTouch: 'screen/setTouch',
       setScreenSize: 'screen/setScreenSize'
     }),

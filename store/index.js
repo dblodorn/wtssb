@@ -1,5 +1,7 @@
+import { options } from './../scripts/site_data.json'
+
 export const state = () => ({
-  api: false,
+  api: options,
   popup: false,
   currentScene: 'center',
   animating: false,
@@ -32,9 +34,10 @@ export const state = () => ({
 
 export const actions = {
   async nuxtServerInit({ dispatch }) {
-    await dispatch('getData')
+    // await dispatch('getData')
   },
   async getData({ commit }) {
+    // console.log(options)
     const { data } = await this.$axios.get(`${process.env.CMS_URL}`)
     commit('setData', data)
   },

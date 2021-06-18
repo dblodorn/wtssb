@@ -76,6 +76,7 @@
 <script>
 import axios from 'axios'
 import { mapMutations, mapState, mapGetters } from 'vuex'
+import { options } from './../scripts/site_data.json'
 
 import { 
   startWorld, 
@@ -94,12 +95,14 @@ import SceneModal from '@/components/SceneModal'
 
 export default {
   layout: 'threelanding',
+  /*
   asyncData () {
     return axios.get(`${process.env.CMS_URL}`)
       .then((res) => {
         return { data: res.data.options }
       })
   },
+  */
   components: {
     Navigation,
     Intro,
@@ -108,6 +111,7 @@ export default {
   },
   data() {
     return {
+      data: options,
       currentSlide: 1,
       worldWrapper: null,
       sense: 'touch',
