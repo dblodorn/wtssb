@@ -89,9 +89,6 @@ export default {
       }
     }
   },
-  mounted() {
-    console.log(this.slides)
-  },
   methods: {
     slidesToggle(bool) {
       this.slideshow = bool
