@@ -7,7 +7,6 @@
     <slot/>
     <div class="video-wrapper">
       <img :src="videoPoster" alt="">
-      <!--
       <video
         ref="introVideo"
         playsinline 
@@ -17,7 +16,6 @@
         :src="video"
         @ended="endedHandler"
       />
-      -->
     </div>
   </section>
 </template>
@@ -123,7 +121,7 @@ export default {
       }
     }
     span {
-      font-size: 2.25rem!important;
+      font-size: 2.25rem;
     }
   }
   @media(--lg) {

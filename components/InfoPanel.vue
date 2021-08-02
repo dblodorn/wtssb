@@ -6,7 +6,7 @@
           <button class="swiper-close" @click="slidesToggle(false)"/>
           <client-only>
             <swiper :options="swiperOption" ref="mySwiper">
-              <swiper-slide v-for="(item, i) in slides" v-bind:key="('slide-show-' + i)">
+              <swiper-slide v-for="(item, i) in infoSlides" v-bind:key="('slide-show-' + i)">
                 <img :src="item">
               </swiper-slide>
               <div class="control-right" slot="button-next">
@@ -60,6 +60,16 @@ export default {
   },
   data() {
     return {
+      infoSlides: [
+        "/slider-images/20210510_115852_resized.jpg",
+        "/slider-images/20210510_120037_resized.jpg",
+        "/slider-images/20210515_141419_resized.jpg",
+        "/slider-images/DSCF7189-web.jpg",
+        "/slider-images/poster-final-web.jpg",
+        "/slider-images/WhereTheSunSetsBlue-59_resized.jpg",
+        "/slider-images/WhereTheSunSetsBlue-60_resized.jpg",
+        "/slider-images/DSCF6224-b_resized.jpg",
+      ],
       type: null,
       swiper: null,
       slideshow: false,
@@ -79,7 +89,6 @@ export default {
       }
     }
   },
-  mounted() {},
   methods: {
     slidesToggle(bool) {
       this.slideshow = bool

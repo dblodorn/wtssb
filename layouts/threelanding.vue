@@ -22,7 +22,7 @@ export default {
     })
   },
   created () {
-    if(process.env.TARGET === 'server') { this.getData() }
+    // if(process.env.TARGET === 'server') { this.getData() }
     this.debouncedResize = debounce(this.resize, 50)
   },
   mounted () {
@@ -30,12 +30,10 @@ export default {
     this.setScreenSize()
     window.addEventListener('resize', this.debouncedResize, { passive: true })
     window.addEventListener('scroll', this.scroll, { passive: true })
-    // window.addEventListener('mousemove', this.mouseMove, { passive: true })
   },
   beforeDestroy () {
     window.removeEventListener('resize', this.debouncedResize, { passive: true })
     window.removeEventListener('mousemove', this.mouseMove, { passive: true })
-    // window.removeEventListener('mousemove', this.mouseMove, { passive: true })
   },
   methods: {
     async resize() {
@@ -55,7 +53,7 @@ export default {
       this.menuState = !this.menuState
     },
     ...mapActions({
-      getData: 'getData',
+      // getData: 'getData',
       setTouch: 'screen/setTouch',
       setScreenSize: 'screen/setScreenSize'
     }),

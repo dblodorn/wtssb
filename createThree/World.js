@@ -59,6 +59,8 @@ class World {
     this.startAnimation = this.startAnimation.bind(this);
     this.endAnimation = this.endAnimation.bind(this);
     this.addInteraction = this.addInteraction.bind(this);
+    this.onBallClick = this.onBallClick.bind(this);
+    this.removeInteraction = this.removeInteraction.bind(this);
     this.panSkybox = this.panSkybox.bind(this);
 
     clickHandler = ballFunction
@@ -116,7 +118,7 @@ class World {
   }
 
   cameraHandler(slide) {
-    // console.log('nav', slide)
+    console.log('scene open', slide)
     if (slide === 'Touch') {
       this.motionHandler(balls.ball1, 6)
     } else if (slide === 'Taste') {
@@ -148,8 +150,10 @@ class World {
   }
 
   closeHandler(scene) {
+    console.log('scene closed')
     zoomed = false;
     this.cameraHandler('center')
+    this.addInteraction()
     marsBox.material.forEach(element => {
       gsap.to(element, 2, {
         opacity: 0,
@@ -180,29 +184,30 @@ class World {
     }
   }
 
-  /* RENDER */
-  render() {
-    renderer.render(scene, camera);
+  // REMOVE INTERACTION
+  removeInteraction() {
+    console.log('remove interaction')
+    Object.entries(balls).forEach(([name, object], index) => {
+      interactionManager.remove(object);
+    });
   }
 
-  start() {
-    loop.start();
-  }
-
-  stop() {
-    loop.stop();
-    renderer.dispose();
+  onBallClick(name, index) {
+    clickHandler(name, index);
+    setTimeout(() => {
+      this.removeInteraction()
+    }, 300)
   }
 
   // ADD INTERACTION
   addInteraction() {
-    this.endAnimation('intro-end')
+    console.log('add interaction')
     Object.entries(balls).forEach(([name, object], index) => {
       interactionManager.add(object);
       // INTERACTION:
       object.addEventListener('click', (event) => {
         event.stopPropagation();
-        clickHandler(object.name, index);
+        this.onBallClick(object.name, index);
         marsBox.material.forEach(element => {
           gsap.to(element, 2, {
             opacity: 1,
@@ -366,7 +371,10 @@ class World {
       y: 200,
       z: -200,
       ease: 'expo.out',
-      onComplete: () => {this.addInteraction()}
+      onComplete: () => {
+        this.endAnimation('intro-end')
+        this.addInteraction()
+      }
     }, "+=1")
     .to(controls.target, 2, {
       x: 0,
@@ -377,6 +385,21 @@ class World {
     
   }
 
+  /* RENDER */
+  render() {
+    renderer.render(scene, camera);
+  }
+
+  start() {
+    loop.start();
+  }
+
+  stop() {
+    loop.stop();
+    renderer.dispose();
+  }
+
+  /* INIT */
   async init() {
     const models = await loadBalls(loop, loadedFunction);
 
@@ -436,8 +459,7 @@ class World {
       scene.add(object);
       loop.updatables.push(object);
     });
-
-    
+     
   }
 }
 

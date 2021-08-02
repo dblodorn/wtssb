@@ -1,15 +1,14 @@
 <template>
   <viewport-wrapper :zIndex="1">
-    <!--
     <portal to="controls">
       <div class="controls-wrapper" v-if="isDesktop">
-        <button class="circle-button mute-button shadow" @click="toggleMuted">
-          <inline-svg :class="['button-img', !muted && 'show']" src="icons/volume-mute.svg"/>
-          <inline-svg :class="['button-img', muted && 'show']" src="icons/sound.svg"/>
+        <button class="lozenge-button circle-button mute-button sm-size font-a" @click="toggleMuted">
+          <span :class="['button-text', !muted && 'show']">MUTE</span>
+          <span :class="['button-text', muted && 'show']">UNMUTE</span>
         </button>
-        <button class="circle-button info-button shadow" @click="setInfoPopup">
-          <inline-svg :class="['button-img', !info && 'show']" src="icons/info.svg"/>
-          <inline-svg :class="['button-img', info && 'show']" src="icons/info-close.svg"/>
+        <button class="lozenge-button circle-button info-button sm-size font-a" @click="setInfoPopup">
+          <span :class="['button-text', !info && 'show']">INFO</span>
+          <span :class="['button-text', info && 'show']">CLOSE</span>
         </button>
       </div>
     </portal>
@@ -35,7 +34,6 @@
         />
       </viewport-wrapper>
     </portal>
-    -->
     <portal
       v-if="intro"
       to="intro"
@@ -46,20 +44,17 @@
           :videoPoster="data.intro_video_cover"
           :copy="data.intro_copy"
         >
-          <!--
           <button 
             v-if="isDesktop"
-            :class="['button-wrapper bezier-300', modelsLoaded && videoDone ? 'loaded' : 'loading']"
+            :class="['button-wrapper bezier-300', modelsLoaded ? 'loaded' : 'loading']"
             @click="enterHandler"
           >
             <span class="loading-text sm-size font-a bezier-300">LOADING</span>
             <span class="launch-text sm-size font-a bezier-300">LAUNCH</span>
           </button>
-          -->
         </intro>
       </viewport-wrapper>
     </portal>
-    <!--
     <portal v-if="modal" to="modal">
       <scene-modal 
         :sceneData="{
@@ -70,19 +65,18 @@
         :closeHandler="(scene) => closeHandler(scene)"
       />
     </portal>
-    
     <section 
       id="three-world" 
       :class="['bezier-300', modelsLoaded ? 'visible' : 'loading']"
       ref="threeWorld"
     />
-    -->
   </viewport-wrapper>
 </template>
 
 <script>
 import axios from 'axios'
 import { mapMutations, mapState, mapGetters } from 'vuex'
+import { options } from './../scripts/site_data.json'
 
 import { 
   startWorld, 
@@ -101,12 +95,14 @@ import SceneModal from '@/components/SceneModal'
 
 export default {
   layout: 'threelanding',
+  /*
   asyncData () {
     return axios.get(`${process.env.CMS_URL}`)
       .then((res) => {
         return { data: res.data.options }
       })
   },
+  */
   components: {
     Navigation,
     Intro,
@@ -115,6 +111,7 @@ export default {
   },
   data() {
     return {
+      data: options,
       currentSlide: 1,
       worldWrapper: null,
       sense: 'touch',
@@ -126,13 +123,27 @@ export default {
       bgSound: null,
       flythroughSound: null,
       intro: true,
+      introPlayed: false,
       hoverSound: null,
       clickSound: null,
       ballHovered: false,
       sceneSound: null,
       sceneSoundAudio: false,
       sceneVolume: 0,
-      introSound: null
+      introSound: null,
+      audioContext: null,
+      userGestureEvents: [
+        'click',
+        'contextmenu',
+        'auxclick',
+        'dblclick',
+        'mousedown',
+        'mouseup',
+        'pointerup',
+        'touchend',
+        'keydown',
+        'keyup',
+      ]
     }
   },
   computed: {
@@ -142,15 +153,14 @@ export default {
     ...mapState({
       info: 'info',
       muted: 'muted',
-      videoDone: 'videoDone'
+      videoDone: 'videoDone',
+      touch: 'screen/touch'
     })
   },
   watch: {
     muted: 'muteHandler'
   },
   mounted() {
-    // SOUND
-    /*
     this.introSound = new Howl({
       src: [this.data.intro_page_audio],
       autoplay: false,
@@ -185,9 +195,22 @@ export default {
     this.worldWrapper = this.$refs.threeWorld
     this.video = this.data.video_1
     this.currentChat = this.data.scene_1_chat
+    
+    // GET AUDIO CONTEXT
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const audioContext = new AudioContext();
+    
     this.$nextTick(() => {
-      this.introSound.play()
+      if(audioContext.state === 'suspended') {
+        
+        console.log('audio suspended', audioContext.state)
+        this.toggleMuted()
+        this.userGestureEvents.forEach(eventName => {
+          document.addEventListener(eventName, this.unlockAudio);
+        });
+      }
       setTimeout(() => {
+        this.introSound.play()
         startWorld({
           container: this.worldWrapper,
           data: this.data,
@@ -201,15 +224,12 @@ export default {
         })
       }, 50)
     })
-    */
   },
   beforeDestroy() {
-    // clearWorld()
-    /*
+    clearWorld()
     this.bgSound.stop()
     this.flythroughSound.stop()
     clearTimeout(this.modalTimeout)
-    */
   },
   methods: {
     ...mapMutations({
@@ -220,6 +240,17 @@ export default {
       toggleMuted: 'toggleMuted',
       setInfoPopup: 'setInfoPopup'
     }),
+    unlockAudio() {
+      this.$nextTick(() => {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        const audioContext = new AudioContext();
+        console.log('audio context interaction', audioContext.state)
+        this.toggleMuted()
+        this.userGestureEvents.forEach(eventName => {
+          document.removeEventListener(eventName, this.unlockAudio);
+        });
+      })
+    },
     muteHandler() {
       this.introSound.mute(this.muted)
       this.bgSound.mute(this.muted)
@@ -229,6 +260,12 @@ export default {
       if (this.sceneSound !== null) {
         this.sceneSound.mute(this.muted)
       }
+      /*
+      if (!this.introPlayed && !this.muted) {
+        this.introSound.play()
+        this.introPlayed = true
+      }
+      */
     },
     infoHandler(bool) {
       this.setInfoPopup(bool)
@@ -267,6 +304,8 @@ export default {
       if(this.sceneSound !== null) {
         this.sceneSound.fade(this.sceneVolume, 0, 2500)
       }
+      console.log('close', scene)
+      this.bgSound.play()
       this.bgSound.fade(0, parseFloat(this.data.landing_page_audio_volume), 2500)
     },
     loadedHandler() {
@@ -368,7 +407,7 @@ export default {
         volume: this.sceneVolume
       })
       this.bgSound.fade(parseFloat(this.data.landing_page_audio_volume), 0, 2500)
-      // this.bgSound.stop()
+      this.bgSound.stop()
       this.$nextTick(() => {
         this.sceneSound.play()
         this.sceneSound.fade(0, this.sceneVolume, 2500)
@@ -394,30 +433,36 @@ export default {
     z-index: 12000;
   }
   .circle-button {
-    width: 4rem;
-    height: 4rem;
     position: fixed;
     z-index: 12000;
-    padding: 0;
-    .button-img {
+    padding: var(--pad-micro) var(--pad-single) calc(var(--pad-micro) + 5px);
+    border: 1px solid #0000ff;
+    width: 12rem;
+    span {
+      font-size: var(--sm-size)!important;
+      position: relative;
+      color: var(--nav-green)!important;
+      &:after {
+        content: '';
+        width: 100%;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+        bottom: 0px;
+        border-bottom: 1px solid var(--nav-green);
+      }
+    }
+    &:hover {
+      background-color: #7F7FBA;
+    }
+    .button-text {
       display: none;
       pointer-events: none;
       &.show {
         display: block;
         pointer-events: all;
       }
-    }
-    svg,
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      margin: auto;
     }
     &.mute-button {
       bottom: 2rem;

@@ -1,0 +1,1296 @@
+{
+  "options": {
+      "ball_1": {
+          "title": "Touch",
+          "model": "/2021/04/26210613/TouchBook_r7c-withNormal-05.gltf"
+      },
+      "ball_2": {
+          "title": "Synesthesia",
+          "model": "/2021/04/26211427/SynthesiaBook_r7d-wihtNormal-05.gltf"
+      },
+      "ball_3": {
+          "title": "Sight",
+          "model": "/2021/05/04000244/SightBook_r8b.gltf"
+      },
+      "ball_4": {
+          "title": "Hearing",
+          "model": "/2021/05/11191903/HearingBook_r7g.gltf"
+      },
+      "ball_5": {
+          "title": "Smell",
+          "model": "/2021/04/26211359/SmellBook_r7c-wihtNormal-05.gltf"
+      },
+      "ball_6": {
+          "title": "Taste",
+          "model": "/2021/04/15032824/TasteBook_r7.gltf"
+      },
+      "scene_1_chat": [
+          {
+              "acf_fc_layout": "text",
+              "name": "Subject:",
+              "text": "Piano, Hot Water, Shaver, Volcanic Landscape, Rubber Glove",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22060930/touch_5090_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "Can you tell me what you remember from the training week before the mission started?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "The last three days of the training week was the volcano training. We went to one of the most active volcano terrains in the world. This was a short version of a volcano training that real astronauts have to take. This training is relevant for real missions since planets we want to explore, including Mars, are usually covered with volcanic terrain. Astronauts visit volcano sites on Earth to have a preview of what they are really going to do on the other planet.<br />\r\n<br />\r\nAlso, this three-day exploration is meant to mimic the Extra Vehicular Activity (EVA) that we were going to do during the mission. We were supposed to do similar explorations but with a spacesuit on. If you go to this terrain, there is a clear sense that you are on another planet.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22060857/touch_4997_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22060855/touch_4995_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22060931/touch_5093_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "Looking at your pictures I also got the idea that you felt you were on another planet. For instance, the volcanic landscape interested me and I’m curious to hear more about it.",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "I was surprised to see such an exotic scenery on Earth. We didn’t have to go to other planets to experience otherworldliness. Some objects were difficult to touch as they are quite sharp, made of iron, and would cut your finger. The Mission Support made sure we brought proper climbing shoes for that training. I also remember touching Pele’s Hair.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22060928/touch_5051_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22060935/touch_5106_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "What’s that?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "It is the hair of Pele, the Hawaiian volcano goddess, which is actually formed when the lava explodes and meets a strong wind. It is a hair made of rock. Pele is a goddess that Hawaiian people admired and needed to appease. Our crew also performed a ritual the day before we entered the habitat.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22060859/touch_5034_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "Can you tell me about the picture where one of your crew members shaved a small square patch from your head?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "That was during the training week. Here we learned how to collect hair samples. Once a week during the mission, we had to collect hairs from the back of our heads. We had to completely shave to collect the freshest part of the growth. We had to store all the samples during the whole mission in aluminum foil. They were used to measure stress levels that NASA scientists later analyze. We were barbers for each other. We cut each other’s hair for the samples and also for normal haircuts. This was great to feel together as a team.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22060937/touch_5229_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22060939/touch_5301_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "Was physical exercise possible and if so, did it help lower stress levels?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "That was more mandatory then voluntarily. We had to do exercise every day for an hour and a half. Because we were in a limited area, we had an extensive workout schedule. The jumping rope was useful to “run” in a small space. We had also a treadmill and a bike facing one of the two windows that were in the habitat. We also had yoga mats. I liked to do the workout. Sometimes we did a group workout, which helped us build comradeship.<br />\r\n<br />\r\nThe schedule of the workouts was fixed by the Mission Support team. In the first two months, there was little autonomy in what we could decide to do. Most of the schedule was lorded over by the Mission Support. The next four months were a high-autonomy period where we could create our own schedule. The last two months of the mission were back to low autonomy.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22060948/touch_5532_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "I guess water is precious on such a mission and quite limited. Were you able to shower afterwards?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "Yeah well, we only had eight minutes per week for a hot shower. But we can divide it however we want. So, we had this timer attached to the shower booth. My first shower was 1 minute and 20 seconds. I had to stop the water (and the timer) when I applied the soap to save time. There were a lot of rules in the habitat and this was one of them.<br />\r\n <br />\r\nWe bought soap at “Walmart” but we had to buy this biodegradable soap. Hot water was heated with the propane gas from a tank outside the habitat. Having a hot shower was nice because the hab was actually very cold. We brought winter clothes to save electricity inside the hab. I brought my hairdryer, but I couldn’t use it because of the scarcity of the electricity. The crew members laughed at me for bringing it.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22060848/touch_0561_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22060852/touch_0633b_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "Did you have to save electricity for the more important experiments you had to execute?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "The most part of the electricity was used for basic needs such as cooking and lighting. During the real mission the electricity would also be used to charge up the rovers, the suits, power tools, communication systems, to heat the habitat and to extract pure-enough water from the ice frozen in the Martian subsoil.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "Could you tell me about the first moment you entered the habitat?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "This was the hardest moment to describe because so many feelings ran through me. There was a sense of regret, loneliness, stress, adventure, and nostalgia. We were just one wall away from the outside world. It’s crazy how this ceremonial situation constructed this sense of distance. I almost felt like I travelled from Earth to Mars at that moment, just by closing a door. During the training week, there were so many people around us (technicians, NASA staff, media, scientists, mission support people) and all of a sudden it was just the four of us. This created some kind of a melancholia, like in an empty house after a big party. <br />\r\n<br />\r\nFor a moment, I regretted about my decision to participate in the mission, and at the same time, I was very motivated. The first words I said to my crew were, “We are pretty much fucked.” I was paying homage to the first sentence from the novel <i>The Martian</i>.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22060850/touch_0581_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22060954/touch_enteringhab_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "After the door was closed behind you and you went through this whirlwind of emotions, how was the first night in the habitat?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "One of our crewmembers, Calum, played the piano after the first dinner at the hab. As he played Elton John’s song we started to sing along together. It was a very memorable moment. After we entered the hab, we all had this first emotional strike of loneliness. The performance at least gave us a sense of unity. After that, we hugged each other. A few crew members cried.<br />\r\n<br />\r\nThat was a unique experience because we were in a place and moment where you wouldn’t expect any music. Music is such a familiar thing, but the situation and place made the experience very special.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22060946/touch_5402_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "How about bringing a piano to Mars? That would be fun.",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "Maybe we can bring a light weighted keyboard to connect to our computer or simply project a keyboard on an empty desk. There are a lot of things that we needed to improvise in the hab. One way to do it flexibly is to use the 3D printing technology. We had a 3D printer to print parts and tools that we would have needed during the mission. When we are on Mars in the future, even our habitat might be 3D printed.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22060854/touch_0715_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22060949/touch_bookslice_small.png",
+              "feature_image": false
+          }
+      ],
+      "scene_2_chat": [
+          {
+              "acf_fc_layout": "text",
+              "name": "Subject:",
+              "text": "Diary, Memory, Nostalgia, Time Delay, Solitude, Darkness",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22061417/synesthesia_4946_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "There was this incident that amplified the sense of solitude.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "What was it about?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22061620/synesthesia_5466_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22061623/synesthesia_5533_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "One night, the network was suddenly shut down without notice, which means we lost the only connection to Earth, the Mission Support. We decided to wait until the next morning, hoping the network is restored. I let the crew sleep and did a night watch. The hab was completely dark with no sound, not even the sound of the wind. And that was the moment where I had this tsunami of solitude. It was only a few days into the mission but was surprised to feel this complete loneliness followed by nostalgia. I wasn’t prepared for that. I couldn’t really imagine how strong this feeling would be when I’m on the real planet Mars.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "Why was this solitude so different from loneliness you had in the past?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22061625/synesthesia_5537_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "Because that means we are truly on our own. In fact, crew autonomy is a constant challenge in this mission and real Mars missions.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "Crew autonomy seems to be a big deal, but there have been other manned missions before. Why is this one different?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22061615/synesthesia_5180_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22061356/synesthesia_0583_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "Until now we have been operating quite close to Earth. The difference in scale and time on a Mars mission is new and demand a different approach. Because of the time delay, real-time consultation with the Mission Support is not possible, while you need to quickly process information and make decisions especially in emergency situations.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "How do you deal with risk in such situations and how do you prioritize and make decisions as a crew?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22061606/synesthesia_5033_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22061607/synesthesia_5111_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "That’s a very important question. We did have emergency protocols to follow. For example, we had a hotline to the Mission Support that we can use in emergency situations by breaking the simulation. Obviously, in real missions on Mars, there is no “stop” button, and the crew needs to do whatever they can to resolve the situation.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "I guess robots and AI can be helpers that assist the crew in dangerous situations.",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22061354/synesthesia_0566_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22061621/synesthesia_5503_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "Right. Related to that, our mission included research with a rover. A rover can be helpful when we conduct an EVA in a new, potentially hazardous terrain by letting it inspect the region prior to human engagement. The rover would be equipped with multiple cameras and sensors, which collect not only visual information but also chemical, radiation, and organic signals.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "NASA has been sending robots into space before. Why do you think it’s important to send out humans despite the obvious danger?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22061609/synesthesia_5126_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "I believe we can’t replace the experience of seeing the new world with naked eyes with a picture from a camera of a rover. Setting the foot of a human being there will be a symbolic event that will inspire the humanity with the hope of seemingly impossible possibility.<br />\r\n<br />\r\nMore fundamentally, as a human being, we want to understand how we would respond to this new environment, which will reveal who we truly are. It’s not that we couldn’t replace our experience with that of machines in the future; it’s more that we wouldn’t want to. In some sense, we want to go to Mars because we want to better understand ourselves and the planet that we live on.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "Seeing another planet through the eyes of a robot is one thing, but actually experiencing that with all five human senses elevate that experience much more. I feel this is the main reason why we take the chance to send people on these missions. <br />\r\n<br />\r\nWhat else do you think is important in facing challenges on missions like these?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "Coming back to crew autonomy, I think ensuring cooperation among the crew is important. During the mission, we had the VR system where the crew was supposed to fulfill tasks in the virtual world by teaming up together. This is one way for the NASA scientists to measure the level of cooperation and productivity of the crew. Also, the virtual environments could help reduce our anxiety, as we can walk in the woods or have face-to-face conversation with family members.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "Did you think your crew was a good team?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22061611/synesthesia_5152_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22061412/synesthesia_0650_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "I think so and there is a reason for that. The main goal of the crew selection process is to ensure good team composition. The tedious screening process was meant to form a good team from the outset. The rest was up to us.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "How did you feel like when the mission was cancelled so early due to a withdrawal of a member?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "I was devastated. I felt like I had departed gloriously as if I would save the world, and then returned ridiculously fast as if I had forgotten to turn off my kitchen stove.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "You must have had things to reflect on. How do you deal with the aftermath?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22061406/synesthesia_0608_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22061342/synesthesia_0551a_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "I asked myself how I could make sense of this short adventure. I think every failure, like every success, has its unique tale. An athlete who has arrived at the Olympic stage after years of preparation may have tumbled as her racemate fell over her or she may not have been ready for the race after all. What we had experienced was no different. I tried to comfort myself with the idea that most adventures assume a certain amount of failure, and perhaps that is the very essence of an adventure.<br />\r\n<br />\r\nIt has been two years since I came back from Hawaii. From time to time, I talk to my crew and share news. They must have had time to reflect on the abrupt ending of the story.<br />\r\nAfter the mission, I had a debrief with a NASA researcher regarding the mission. I talked rather calmly about my experience of the habitat. It was a short mission, but there were surprisingly many things to reflect on. When I finished talking about my experience, the scientist asked me whether I wanted to know why I was selected in the mission as a commander. They added that if I heard the reason, I wouldn’t be able to apply to this Mars project again.<br />\r\n<br />\r\nI smiled and said no. Who knows, maybe I want to go there again.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22061627/synesthesia_bookslice_small.png",
+              "feature_image": false
+          }
+      ],
+      "scene_3_chat": [
+          {
+              "acf_fc_layout": "text",
+              "name": "Subject:",
+              "text": "Darkness, Family Photo, Window, Book, Camera, Sunset",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062132/sight_4883_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062204/sight_5460_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "Can you tell me where the habitat is located and what it looks like?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "It was located on top of Mauna Loa Volcano on the Big Island of Hawaii. Civilian access was restricted, and we took a four-wheel drive on a red unpaved road for thirty minutes to get there from Hawaii Route 200. <br />\r\n<br />\r\nThe habitat (hab) has a shape of a geodesic dome made of white fabric. It was a two-story structure of a thousand square feet, where we had a common area, kitchen, bathroom, science lab on the first floor and bedroom cubicles on the second floor. There was a container box called C-CAN that is attached to the dome through an airlock. To hide the hab from the sight of civilians, we even had a camouflage cover on one side of the dome.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062153/sight_5016_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "I’m wondering what motivated you to apply to the mission.",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "I’ve been interested in space travel for a long time. To me, space travel is the easiest way to experience a different perspective of the world, but obviously the hardest thing to really take part in. That’s why I was fascinated by this simulation mission. I expected that I would gain the perspective that a real astronaut would get in a real mission as well as during the screening process. <br />\r\n<br />\r\nIn the simulation, I was particularly interested in the moment that I would enter the habitat and the moment I would get out of it. I was curious about how I would see the world differently and discover unfamiliarity in the most familiar things. This is related to what is called the “overview effect,” which refers to the change in perspectives after observing the Earth from above in space.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062210/sight_5615_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062217/sight-2-1st-Floor-Plan-_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062203/sight_5323_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "So it was a Mars base on Earth. How did you power the habitat?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "Through the 10kw solar panel outside of the hab. We were unlucky in the first few days because it was cloudy all day and the batteries couldn’t be charged. So, we had to leave all our lights off. The hab was dark. It was always dark throughout the mission.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062128/sight_0598_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062134/sight_4894_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "What about your personal belongings? Packing a suitcase for a travel to Mars can be an interesting challenge.",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "We weren’t supposed to bring more than two full-size suitcases each. Among the important stuffs that I brought were family photos, books, and drawing tools. My family took a family photo for the first time after many years. We were all busy and living in different countries. I had to leave the planet for my family to gather for a photo. Usually I don’t carry family pictures with me, but I had it in my luggage to Mars. Also, my friends made an album with pictures of us, which was nice.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062215/sight_stuffs_brought_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "Why did you take paper books and printed photos with you, instead of electronic versions which are more light weight?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "I wanted to have a physical connection to Earth. Because we simulate the Earth-Mars distance by creating the 40-minute delay in communication round trip, we cannot have a phone call or facetime with family and friends. And, what if we run out of electricity?",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062154/sight_5083_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "At first glance, having a time delay seems to be a minor problem, but then again it sounds like it could lead to some major consequences for a crew.",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "That’s right. Because of the communication delay, there were things we needed to decide on our own without help from the Mission Support. That can be very challenging especially in an emergency situation. It also creates lots of responsibility for a commander. In the first few days in the mission I thought a lot about what the best decision process would be for our crew.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062206/sight_5534_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "How did you feel about being away from “Earth”? Did you yearn for home?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "There were only two windows in the hab and we could see the part of Mauno Lao Mountain and the horizon through one of them. That’s the only window towards the outside world where we could have seen the sunset. I always felt like the sunset was a bit far away. The hab was home but at the same time a prison.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062124/sight_0584_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062129/sight_0690_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "But at least you could go outside with your spacesuit, right?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "Yes, but you never see the outside world very clearly. I always had something between me and the outside world, whether it was a window or the helmet glass. No breeze on your face.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062148/sight_4903_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "That must have created a clear sense of isolation.",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "It was a physical isolation, which created a subtle sense of psychological isolation. We knew other people and a normal life were only a few miles away, but it was impossible for us to be there.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062208/sight_5579_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062126/sight_0588_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062130/sight_0694_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062213/sight_small.png",
+              "feature_image": false
+          }
+      ],
+      "scene_4_chat": [
+          {
+              "acf_fc_layout": "text",
+              "name": "Subject:",
+              "text": "Ping-pong, Karaoke, Bedroom, Wind, Earplugs, Music, Silence",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062816/hearing_4889_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "The architecture of the habitat is quite particular and is surrounded by vast stretches of volcanic land. Can you describe the atmosphere inside the hab?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "The habitat was such a quiet place. Ironically, some sounds became very loud because of that. The sound of the wind, for example. The dome is made out of a fabric, so at night, we could only hear the sound of the wind as the fabric trembled like in a big tent. You became more aware of your senses there.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062809/hearing_0689_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "The external civilized world felt further away than ever before but since the material of the hab was so thin, you were closer to the natural world than ever before. What else did you hear loudly?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "I remember the sound of us playing ping-pong. We had a ball but didn’t have a ping-pong table, nor rackets. We used a plastic office table and our slippers instead. But it was fun and very loud.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062836/hearing_5432_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "That sounds like a good way to ease stressful situations in the habitat.",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": " That’s right. Another example was one of the crew members. Apparently, she needed a private moment after a few days. She locked herself in the C-CAN and started singing in her language. But we could all hear it.<br />\r\n<br />\r\nThere is no privacy in the habitat. Everyone can hear you. When you need privacy, you even want to take the spacesuit and go outside. It’s like seeking isolation within the isolation. <br />\r\n<br />\r\nSinging a song is probably a good way to be immersed in yourself. The space is limited and so is the functionality of the space. The same space can be a workstation, pantry, karaoke area, office space, gym, or science lab.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062806/hearing_0632_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062804/hearing_0627_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "It’s funny to imagine that the space can become a Karaoke bar.",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "Karaoke is a common thing in Korea. We sing when we are stressed. It was funny to see a crew member from another country doing that.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062838/hearing_5536_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "When sounds become so amplified in the limited space, what was it like to listen to music?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "In terms of music, it wasn’t bad at all. Everybody brought playlists that were quite nice, so we took turn to be a DJ of the floor.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "Is it not possible to download any music in the habitat?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "There is no internet. Instead, there is a communication system that the HI-SEAS created which limits the bandwidth and creates a delay in communication. When we need something from the internet, we would ask the Mission Support to find it from the web and send to us.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062835/hearing_5220_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "Was there a moment where sound could be less pleasant?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "We tried to be thoughtful about the noise we made and how it affected other people. Because I snore sometimes, we tried to assign cubicles so that a sensitive member slept farthest from me. The bedroom was on the second floor of the dome but you could hear everything from the common room downstairs. With the inability of blocking the noise, you are deprived of your privacy. I brought some earplugs, which I shared with the other crew members.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062811/hearing_0702_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062840/hearing_5549_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "Can you elaborate a bit more about the picture with the seismograph?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "Oh, that was from the volcano training. We went to this volcano research center and that was the live seismograph that recorded the sound/vibration of the earth. It was interesting that the Earth is constantly vibrating and making a sound. The center also had a live video of the active Kilauea volcano, which in fact erupted a few months after our mission.",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062817/hearing_5005_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062833/hearing_5008_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "Listening consciously to the sound of the Earth, did this make you curious about what one would find on a mission to Mars?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "Yes, I was curious to hear what Mars sounded like. The NASA InSight Rover had not arrived to the real planet Mars by that time. It was the first rover that dug into the Martian surface to hear the sound of Mars but we hadn’t heard it yet.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062808/hearing_0669_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22062844/hearing_small.png",
+              "feature_image": false
+          }
+      ],
+      "scene_5_chat": [
+          {
+              "acf_fc_layout": "text",
+              "name": "Subject:",
+              "text": "Toilet, Socks, Detergent, Spacesuit, Sweat, C-CAN",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22063529/smell_4902_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "Personal hygiene can be important in maintaining a healthy emotional state. Could you tell me a bit more about the hygiene routine you had?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "As I said before, we had limited water and electricity resources. We were only able to do laundry every two weeks, because it is very energy consuming. That’s why I brought one-month worth of socks. The laundry detergent was also biodegradable. I wondered how one would do laundry on Mars because I didn’t think we could bring a washing machine with us, but we still had to do laundry.<br />\r\n<br />\r\nBeing aware of one own’s smell was told to be important etiquette in sharing a confined space with other crew members. We were not allowed to bring our perfume/scents because it can be annoying and emotionally distressing to others.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22063352/smell_0647_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "How did you and the crew manage the resources in the habitat?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "All the electricity that we used in the hab was supplied from the solar panels installed outside and stored in batteries. We had to constantly check the battery levels. We also had to check the water levels of two tanks outside of the hab. The act of constant checks and being anxious were our Martian utility bills.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22063331/smell_0575_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22063333/smell_0595_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22063335/smell_0628_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "When water is scarce, how did you flush the toilet?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "We had this bathroom with a shower, toilet and pissoir. It’s a composting toilet where you make compost out of your feces. Every time you do that, you need to add wood dust and bacteria spray. Every once in a while, you need to mix it with a handle, so it creates a good compost. There was one time the toilet didn’t work properly, so we had to dismantle it to clean up. When the biological process is working, these things turn into compost and don’t smell anymore. As our toilet wasn’t working and we dismantled it, we had the horrendous smell everywhere. Once a month you had to collect the compost and bring that outside with a spacesuit.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22063534/smell_5442_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22063533/smell_5440_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "I’m very interested in the smell and the tactility of a space suit. Can you explain a bit more about it? When did you have to wear it?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "When we went outside to conduct extra vehicular activities (EVA). We had to wear a spacesuit and the first sensory memory that I had of wearing it was the smell of the rubber, sweat, and plastic. The Mars Mission had a lot to do with smell. You can imagine how much it smells in the spacesuit when you’re not showering much. We had two types of suits. One was a yellow hazmat suit that smelled quite badly. We also had one white suit designed by Rhode Island School of Design. In these suits, there was ventilation for heat, which was helpful with the smell, too. The fans were electrical, which were run by small batteries.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22063536/smell_5531_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22063537/smell_5597_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22063343/smell_0638_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22063530/smell_4931_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "What exactly did you do during the EVA?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "We had to check the sulfur dioxide meter outside of the hab, which is a toxic gas that is emitted from the volcano nearby. When the level was too high, we had to be evacuated. This was a danger of living in the habitat. We learned these things during the volcano training. be evacuated. This was a danger of living in the habitat. We learned these things during the volcano training.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22063532/smell_5073_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22063332/smell_0591_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "If you get hurt and there is nobody around to help that could be a problem. How were you prepared for potential medical issues?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "We had a very extensive list of medical emergency supplies and during the training week we learned how to use them. At the same time, we earned a certificate from the Red Cross in CPR, first aid, and AED. We were supposed to be prepared for medical emergency situations.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22063327/smell_0564_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22063527/smell_0656_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "Being prepared for such situations means that there must be some risk involved in this mission.",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "Yes and no. In the simulation on the Mauna Loa Volcano there was no more risk involved than in our daily life situation. There was always a back door for when things would go wrong. But if you imagine being on planet Mars, it’s a totally different story.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22063539/smell_small.png",
+              "feature_image": false
+          }
+      ],
+      "scene_6_chat": [
+          {
+              "acf_fc_layout": "text",
+              "name": "Subject:",
+              "text": "Dried Strawberries, Volcano Ash, Curry, Saliva, Spicy Soup",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22064419/taste_5173_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "Tell me about the day right before you entered the habitat.",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "The day before we entered the hab, we had a ritual in a traditional Hawaiian way led by a native Hawaiian lady. We had Hawaiian food for dinner and also built a gift as an offering to the volcano goddess. In the gift, we put the food, rocks, corals, and plants that we wrapped in the leaves of a tropical plant. Then we drove up to the Kilauea Volcano. As the commander of the mission, I placed the gift near the volcano. Then our crew paused for a while to pray to the goddess.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22064047/taste_4951_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22064408/taste_5144_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22064418/taste_5148_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "I imagine your last meals with fresh ingredients on “Earth” must have been precious.",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "Oh yes. What awaited us at the habitat was a C-CAN (storage space) full of space food.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22064040/taste_0618_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22064039/taste_0587_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "Was there a rationed meal schedule or recipe instruction given by the Mission Support?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "They assigned a team of two members to prepare each meal. The first night was an exception. I made Korean spicy soup for the other crew mates. I felt proud that our first meal was a Korean dish. For some, the soup was too spicy. <br />\r\n<br />\r\nThe crew of Mission VI consisted of two women and two men, including me. All members were international, and it was the first four-member team, rather than a six-member team. There was an engineer from Scotland, an astrobiologist from Slovakia, an Australian who worked at the Rocket Lab, and me, a Korean social scientist.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22064421/taste_5383_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22064432/taste_5539_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "What was the crew selection process like?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "It was an interesting process. I never expected to be recruited but one of the reasons I applied to this mission was because I was curious about the selection process, which was said to be identical to the selection process of real astronauts. Except that there was no physical test for us. The process was a series of psychological and cognitive tests and interviews, spanning almost half a year. I remember that there were lots of questions about stress management, social skills, teamwork, leadership, and dealing with adversities.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22064407/taste_5003_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "It is very interesting that the recruitment process was based on psychological rather than physical traits.<br />\r\n<br />\r\nBack to the meal. What is it like to prepare a meal out of space food? Can you talk about food supplies and its durability on such a mission?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "In the container connected to the base called the C-CAN, all the ingredients were packed dry. Fruits, seafood, vegetables and meat products, all of them. You know dried strawberry in your morning cereal? It was like that. We first had to soak the ingredients into water for half an hour and use them to make curry, pasta, and so on. Rice and noodles were ingredients that were relatively familiar to us, as they come dry.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22064042/taste_0625_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22064422/taste_5419_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22064434/taste_processed-food-on-orbit_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "It sounds like an entirely new cooking challenge.",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "It was. In fact, during the training week, we had a dinner at the hab with all the HI-SEAS staffs. Experiencing the space food and sleeping at the hab were part of the training. I took two bites of the food and gave up. <br />\r\n<br />\r\nThat night was also the first night of the Winter Olympics in Pyeongchang, Korea. We connected the projector inside the hab, layed down and watched the opening ceremony. People cheered when the English, Slovakian, Australian and Korean players entered onto the field.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22064423/taste_5425_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Felicitas Rohden",
+              "text": "Another thing I found interesting was the use of your saliva to track data. How and why was it done?",
+              "rt": false
+          },
+          {
+              "acf_fc_layout": "text",
+              "name": "Sukjin Han",
+              "text": "We had to collect a saliva sample every day and refrigerate it, so NASA scientists can track our stress profile once the mission was completed. I hoped they don’t find too much curry from our saliva.",
+              "rt": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22064045/taste_0660_big.png",
+              "feature_image": true
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22064044/taste_0658_small.png",
+              "feature_image": false
+          },
+          {
+              "acf_fc_layout": "image",
+              "image": "/2021/05/22064436/taste_small.png",
+              "feature_image": false
+          }
+      ],
+      "model_config_1": {
+          "x": "0",
+          "y": "10",
+          "z": "80",
+          "scale": ".1",
+          "speed": ".01",
+          "animation_speed": "1"
+      },
+      "model_config_2": {
+          "x": "68",
+          "y": "10",
+          "z": "40",
+          "scale": ".1",
+          "speed": ".015",
+          "animation_speed": "1"
+      },
+      "model_config_3": {
+          "x": "68",
+          "y": "10",
+          "z": "-40",
+          "scale": ".1",
+          "speed": ".02",
+          "animation_speed": "1"
+      },
+      "model_config_4": {
+          "x": "0",
+          "y": "10",
+          "z": "-80",
+          "scale": ".1",
+          "speed": ".01",
+          "animation_speed": "1"
+      },
+      "model_config_5": {
+          "x": "-70",
+          "y": "10",
+          "z": "-40",
+          "scale": ".1",
+          "speed": ".02",
+          "animation_speed": "1"
+      },
+      "model_config_6": {
+          "x": "-70",
+          "y": "10",
+          "z": "40",
+          "scale": ".1",
+          "speed": ".003",
+          "animation_speed": "1"
+      },
+      "video_1": false,
+      "video_2": false,
+      "video_3": false,
+      "video_4": false,
+      "video_5": false,
+      "video_6": false,
+      "landing_page_audio": "/2021/04/29104136/backing4.mp3",
+      "planetary_ball_scene": {
+          "ball_1": "/2021/04/30084032/creepydrone1_long_mp3.mp3",
+          "ball_volume_1": "0.55",
+          "ball_2": "/2021/04/30085853/creepydrone3_long_MP3.mp3",
+          "ball_volume_2": "0.55",
+          "ball_3": "/2021/04/30091126/creepydrone2_long_MP3.mp3",
+          "ball_volume_3": "0.55",
+          "ball_4": "/2021/04/30100133/creepydrone4_long_MP3.mp3",
+          "ball_volume_4": "0.55",
+          "ball_5": "/2021/05/12081826/creeepydrone_5_MP3.mp3",
+          "ball_volume_5": "0.55",
+          "ball_6": "/2021/05/12084411/creepydrone_6_MP3.mp3",
+          "ball_volume_6": "0.55"
+      },
+      "planetary_hover_sound": "/2021/04/20141326/backward_short.wav",
+      "planetary_click_sound": "/2021/05/06103306/backwardstalkng_3_LONG.mp3",
+      "skybox_bg": [
+          "/2021/04/05031212/front-1.png",
+          "/2021/04/05031155/back-1.png",
+          "/2021/04/05031248/up-1.png",
+          "/2021/04/05031200/down-1.png",
+          "/2021/04/05031236/right-1.png",
+          "/2021/04/05031231/left-1.png"
+      ],
+      "intro_copy": "In an attempt to understand the material grammar of the planet Mars, this virtual journey is based on the artist, Felicitas Rohden's project entitled “Where the Sun Sets Blue”.",
+      "intro_video": "/2021/05/19033716/Main-Landing-Page-v4-nosound.mp4",
+      "nav_hover_sound": "/2021/04/29105537/chime_planet.mp3",
+      "nav_click_sound": "/2021/04/03021340/bleep-r1.m4a",
+      "skybox_terrain": [
+          "/2021/04/14000904/front.jpg",
+          "/2021/04/13235416/back.jpg",
+          "/2021/04/13235428/up-1.jpg",
+          "/2021/04/13235419/down-1.jpg",
+          "/2021/04/13235426/right.jpg",
+          "/2021/04/13235423/left.jpg"
+      ],
+      "flythrough_sound": "/2021/04/29084201/felicitasopeningMP3.mp3",
+      "landing_page_audio_volume": "0.5",
+      "flythrough_sound_volume": "0.5",
+      "planetary_hover_sound_volume": "0.5",
+      "planetary_click_sound_volume": "0.64",
+      "nav_hover_sound_volume": "0.92",
+      "nav_click_sound_volume": "0.56",
+      "intro_page_audio": "/2021/04/29083342/acoustic_crescendo_droneMP3.mp3",
+      "intro_page_audio_volume": "0.6",
+      "info_panel_copy": "<p>As we get closer to a human landing on Mars, our current perception of the red planet is limited to images transmitted from the rover and simulations. What would it be like living in a Mars simulation? How do we, as humans, live in a reality we know is not actually real?</p>\n<p>\"Where the Sun Sets Blue\" is based on six book objects, each written and designed from the perspective of the five senses: taste, smell, hearing, touch, sight and synesthesia. The project is based on a year-long correspondence between scientist, Sukjin Han, who was the commander of NASA’s Hi-SeAS Mission VI, and visual artist <a href=\"http://felicitasrohden.com/\" target=\"_blank\">Felicitas Rohden</a>. The collaboration between artist and scientist unearthed many sensory and emotional experiences such as isolation, distance and the unfamiliar.</p>\n<p>Each book object is encased in a smooth sphere-like form. A viewer must open the sphere to reach the inner core where the volume is wedged between the “crusts” and the “mantle”. Similar to the habitat, the book is small and secluded. As you read, you are forced to rotate the book evoking orientation loss much like one <a href=\"http://sukjinhan.com/\">Sukjin Han</a> may have felt during his mission.</p>\n",
+      "info_panel_images": [
+          "/2021/05/22060034/20210510_115852_resized-scaled.jpg",
+          "/2021/05/22060102/20210510_120037_resized-scaled.jpg",
+          "/2021/05/22060115/20210515_141419_resized-scaled.jpg",
+          "/2021/05/22060123/DSCF6224-b_resized-scaled.jpg",
+          "/2021/05/22060151/poster-final-scaled.jpg"
+      ],
+      "info_panel_colophon": "<p>Presented by: <a href=\"https://www.kunstunddenker.com/\" target=\"_blank\">Kunst &amp; Denker Contemporary</a><br />\nContact to inquire: <a href=\"mailto:mail@felicitasrohden.com\">mail@felicitasrohden.com</a><br />\nKindly supported by: Neustart Kultur</p>\n<p><i>This site is a collaboration between:</i><br />\nConcept and Creative Direction: <a href=\"http://felicitasrohden.com/\" target=\"_blank\">Felicitas Rohden</a><br />\nArt Direction and Design: <a href=\"https://altrstudio.co/\" target=\"_blank\">ALTR Studio</a><br />\nDevelopment: <a href=\"https://dain.kim\" target=\"_blank\">Dain Blodorn-Kim</a><br />\nMusic: <a href=\"https://www.discogs.com/artist/1001326-Luke-Calzonetti\" target=\"_blank\">Luke Calzonetti &amp; EC Band</a></p>\n",
+      "intro_video_cover": "/2021/05/18171800/video-cover.jpg"
+  }
+}
